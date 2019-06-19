@@ -22,3 +22,5 @@ CMD ["bin\\httpd.exe", "-DFOREGROUND"]
 COPY --from=installer C:\Apache24\ .
 COPY --from=installer C:\windows\system32\msvcp140.dll C:\windows\system32
 COPY --from=installer C:\windows\system32\vcruntime140.dll C:\windows\system32
+COPY httpd.conf C:\Apache24\conf\httpd.conf
+COPY index.html /usr/local/apache2/htdocs/
