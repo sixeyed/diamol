@@ -1,0 +1,24 @@
+# escape=`
+FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+ARG HTTPD_VERSION="2.4.39"
+
+RUN Write-Host "Downloading Apache version: $env:HTTPD_VERSION"; `
+    Invoke-WebRequest -OutFile httpd.zip "https://fossies.org/windows/www/httpd-$($env:HTTPD_VERSION)-win64-VC14.zip"; `
+    Expand-Archive httpd.zip -DestinationPath C:\ ;
+
+# VC++ redistributables
+RUN Invoke-WebRequest -OutFile VC_redist.x64.exe 'aka.ms/vs/16/release/VC_redist.x64.exe'; `
+    Start-Process .\VC_redist.x64.exe -ArgumentList '/install /passive /norestart' -Wait; 
+
+# Apache
+FROM mcr.microsoft.com/windows/nanoserver:1809
+
+EXPOSE 80 443
+WORKDIR C:\Apache24
+CMD ["bin\\httpd.exe", "-DFOREGROUND"]
+
+COPY --from=installer C:\Apache24\ .
+COPY --from=installer C:\windows\system32\msvcp140.dll C:\windows\system32
+COPY --from=installer C:\windows\system32\vcruntime140.dll C:\windows\system32
