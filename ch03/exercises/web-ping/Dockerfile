@@ -1,6 +1,6 @@
 FROM diamol/node
 
-ENV HOSTNAME="blog.sixeyed.com" \
+ENV TARGET="blog.sixeyed.com" \
     METHOD="HEAD" \
     INTERVAL="3000"
 

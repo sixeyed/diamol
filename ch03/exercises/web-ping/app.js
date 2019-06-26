@@ -1,11 +1,11 @@
 const https = require('https');
 
 const options = {
-    hostname: process.env.HOSTNAME,
+    hostname: process.env.TARGET,
     method: process.env.METHOD
   };
 
-console.log('** web-ping ** Pinging: %s; method: %s; %dms intervals', process.env.HOSTNAME, process.env.METHOD, process.env.INTERVAL);
+console.log('** web-ping ** Pinging: %s; method: %s; %dms intervals', options.hostname, options.method, process.env.INTERVAL);
   
 let i = 1;
 let start = new Date().getTime();
