@@ -1,4 +1,4 @@
-# DIAMOL Lab 1 - Sample Solution
+# DIAMOL Chapter 2 Lab - Sample Solution
 
 1. Run the web container from the chapter exercises:
 
