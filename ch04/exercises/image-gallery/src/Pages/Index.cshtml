@@ -1,0 +1,11 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Image Gallery</h1>
+    <h2>@Model.Caption</h2>
+    <img src="@Model.ImageUrl"></img>
+</div>
