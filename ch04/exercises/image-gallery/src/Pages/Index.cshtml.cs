@@ -34,7 +34,11 @@ namespace ImageGallery.Pages
         public async Task OnGetAsync()
         {
             var responseBody = await _HttpClient.GetStringAsync(_config["ImageService:Url"]);
-            var image = JsonSerializer.Parse<Image>(responseBody);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+            var image = JsonSerializer.Parse<Image>(responseBody, options);
             ImageUrl = image.Url;
             Caption = image.Caption;
             Copyright = image.Copyright;
