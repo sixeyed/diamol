@@ -1,6 +1,5 @@
 FROM diamol/golang AS builder
 
-ENV CGO_ENABLED=0
 COPY main.go .
 RUN go build -o /server
 
