@@ -1,8 +1,8 @@
 FROM diamol/golang AS builder
 
 COPY main.go .
-RUN go build -o /server && \
-    chmod +x /server
+RUN go build -o /server
+RUN chmod +x /server
 
 # app
 FROM diamol/base
