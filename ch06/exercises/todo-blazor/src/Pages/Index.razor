@@ -1,0 +1,21 @@
+﻿@page "/"
+
+@using ToDoList.Model
+@using ToDoList.Services
+
+@inject ToDoService ToDoService
+
+<h1>Welcome to the TODO list</h1>
+
+<p>You have @todoCount items to do. </p>
+
+<p><a href="/list">See the list</a> or <a href="/new">add a new item</a>.</p>
+
+@code {
+    int todoCount;
+
+    protected override async Task OnInitializedAsync()
+    {
+        todoCount = await ToDoService.GetToDoCountAsync();
+    }
+}

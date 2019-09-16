@@ -1,0 +1,31 @@
+﻿@page "/new"
+
+@using ToDoList.Model
+@using ToDoList.Services
+
+@inject ToDoService ToDoService
+@inject NavigationManager NavigationManager
+
+<h1>New Item</h1>
+
+<EditForm Model="@todo" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="item" class="new-item" @bind-Value="@todo.Item" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private ToDo todo = new ToDo
+    {
+        DateAdded = DateTime.Today
+    };
+
+    private async Task HandleValidSubmit()
+    {
+        await ToDoService.AddToDoAsync(todo);
+        NavigationManager.NavigateTo("list");
+    }
+}
