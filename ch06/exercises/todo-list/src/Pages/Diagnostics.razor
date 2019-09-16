@@ -29,7 +29,7 @@
 @code {
     Model.Diagnostics diagnostics;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         diagnostics = DiagnosticsService.GetDiagnostics();
     }
