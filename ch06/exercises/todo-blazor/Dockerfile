@@ -8,7 +8,7 @@ COPY src/ .
 RUN dotnet publish -c Release -o /out ToDoList.csproj
 
 # app image
-FROM diamol/dotnet-runtime
+FROM diamol/dotnet-aspnet
 
 WORKDIR /app
 ENTRYPOINT ["dotnet", "ToDoList.dll"]
