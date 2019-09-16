@@ -29,6 +29,7 @@ namespace ToDoList
                     options.UseSqlite(Configuration.GetConnectionString("ToDoDb")));
 
             services.AddScoped<ToDoService>();
+            services.AddSingleton<DiagnosticsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
