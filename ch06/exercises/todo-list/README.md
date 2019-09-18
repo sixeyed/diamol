@@ -13,7 +13,7 @@ docker image build -t diamol/todo-blazor --build-arg DATA_DIRECTORY=C:/data .
 Run a container:
 
 ```
-docker container run --name todo1 -it diamol/todo-blazor
+docker container run --name todo1 -it diamol/ch06-todo-list
 ```
 
 Add some items to the to-do list.
