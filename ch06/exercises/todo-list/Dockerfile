@@ -16,4 +16,7 @@ ENTRYPOINT ["dotnet", "ToDoList.dll"]
 ARG DATA_DIRECTORY="/data"
 VOLUME $DATA_DIRECTORY
 
+ARG USER='root'
+USER $USER
+
 COPY --from=builder /out/ .
