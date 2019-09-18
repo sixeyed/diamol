@@ -13,9 +13,11 @@ FROM diamol/dotnet-aspnet
 WORKDIR /app
 ENTRYPOINT ["dotnet", "ToDoList.dll"]
 
+# for Windows use --build-arg DATA_DIRECTORY=C:\data
 ARG DATA_DIRECTORY="/data"
 VOLUME $DATA_DIRECTORY
 
+ # for Windows use --build-arg USER=ContainerAdministrator
 ARG USER='root'
 USER $USER
 
