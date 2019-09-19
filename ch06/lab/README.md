@@ -6,10 +6,10 @@ If you've been running lots of containers from Chapter 6 and using lots of ports
 docker container rm -f $(docker container ls -aq)
 ```
 
-Now run a container with the latest to-do list image:
+Now run a container with the lab's to-do list image:
 
 ```
-docker container run -d -p 8015:80 diamol/ch06-todo-list:v3
+docker container run -d -p 8015:80 diamol/ch06-lab
 ```
 
 Browse to http://localhost:8015/list  - it should look like this:
@@ -21,28 +21,23 @@ Browse to http://localhost:8015/list  - it should look like this:
 Let's create a volume to use for storing the database file instead:
 
 ```
-docker volume create todo-list-v3
+docker volume create ch06-lab
 ```
 
 You can create a configuration file which specifies a different path for the database file, and that path can be your volume mount. 
 
-My [config.json](./solution/config.json) writes data to `/new-data`.
+My [config.json](./solution/config.json) configures the app to write the database file in `/new-data`.
 
 To put that together, we'll run a container which uses:
 
 - a read-only bind mount to load the new config file into the container
 - a read-write volume mount as the target for the database file
 
-Which is this on Windows:
+Which is this set of paths on Windows:
 
 ```
 $source="$(pwd)/solution".ToLower()
 $target='C:\app\new-data'
-
-docker container run -d -p 8016:80 `
-  --mount type=bind,source=$source,target=$target,readonly `
-  --volume todo-list-v3:$target `
-  diamol/todo:v3
 ```
 
 And this on Linux:
@@ -50,9 +45,15 @@ And this on Linux:
 ```
 source="$(pwd)/solution"
 $target='/app/new-data'
+```
 
+And now you can run the container:
+
+```
 docker container run -d -p 8016:80 `
   --mount type=bind,source=$source,target=$target,readonly `
-  --volume todo-list-v3:$target `
-  diamol/todo:v3
+  --volume ch06-lab:$target `
+  diamol/ch06-lab
 ```
+
+> You'll see an empty to-do list which you can endlessly fill
