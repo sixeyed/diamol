@@ -2,6 +2,8 @@
 
 If you've been running lots of containers from Chapter 6 and using lots of ports, you can start by tidying up:
 
+> This will remove **ALL** of your containers
+
 ```
 docker container rm -f $(docker container ls -aq)
 ```
@@ -36,24 +38,25 @@ To put that together, we'll run a container which uses:
 Which is this set of paths on Windows:
 
 ```
-$source="$(pwd)/solution".ToLower()
-$target='C:\app\new-data'
+$configSource="$(pwd)/solution".ToLower()
+$configTarget='c:\app\config'
+$dataTarget='c:\new-data'
 ```
 
 And this on Linux:
 
 ```
-source="$(pwd)/solution"
-$target='/app/new-data'
+configSource="$(pwd)/solution"
+configTarget='/app/config'
+dataTarget='/new-data'
 ```
 
 And now you can run the container:
 
 ```
-docker container run -d -p 8016:80 `
-  --mount type=bind,source=$source,target=$target,readonly `
-  --volume ch06-lab:$target `
-  diamol/ch06-lab
+docker container run -d -p 8016:80 --mount type=bind,source=$configSource,target=$configTarget,readonly --volume ch06-lab:$dataTarget diamol/ch06-lab
 ```
+
+And browse to http://localhost:8016/list
 
 > You'll see an empty to-do list which you can endlessly fill
