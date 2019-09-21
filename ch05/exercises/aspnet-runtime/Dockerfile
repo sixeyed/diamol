@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-preview6
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-rc1
 
 LABEL framework="dotnet"
 LABEL version="3.0"

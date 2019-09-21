@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0.100-preview6
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0.100-rc1
 
 LABEL framework="dotnet"
 LABEL version="3.0"
