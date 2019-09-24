@@ -1,1 +1,1 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0.100-rc1
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0.100

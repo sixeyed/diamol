@@ -1,1 +1,1 @@
-FROM mcr.microsoft.com/dotnet/core/runtime:3.0.0-rc1
+FROM mcr.microsoft.com/dotnet/core/runtime:3.0
