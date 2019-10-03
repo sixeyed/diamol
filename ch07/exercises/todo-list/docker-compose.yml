@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  
+  todo-web:
+    image: diamol/ch06-todo-list
+    ports:
+      - "8020:80"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat

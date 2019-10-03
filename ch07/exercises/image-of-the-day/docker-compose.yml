@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+
+  iotd:
+    image: diamol/ch04-iotd-log
+    networks:
+      - app-net
+
+  accesslog:
+    image: diamol/ch04-iotd-api
+    ports:
+      - "8010:80"
+    networks:
+      - app-net
+
+  image-gallery:
+    image: diamol/ch04-iotd-web
+    ports:
+      - "8020:80" 
+    depends_on:
+      - iotd-api
+      - iotd-log
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat

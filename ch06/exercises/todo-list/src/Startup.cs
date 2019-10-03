@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -18,21 +19,28 @@ namespace ToDoList
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddDbContext<ToDoContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("ToDoDb")));
+            var dbProvider = Configuration.GetValue<DbProvider>("Database:Provider");
+            _ = dbProvider switch
+            {
+                DbProvider.Sqlite => services.AddDbContext<ToDoContext>(options =>
+                     options.UseSqlite(Configuration.GetConnectionString("ToDoDb"))),
+
+                DbProvider.Postgres => services.AddDbContext<ToDoContext>(options =>
+                     options.UseNpgsql(Configuration.GetConnectionString("ToDoDb"),
+                     postgresOptions => postgresOptions.EnableRetryOnFailure())),
+
+                _ => throw new NotSupportedException("Supported providers: Sqlite and Posgtres")
+            };
 
             services.AddScoped<ToDoService>();
             services.AddSingleton<DiagnosticsService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
