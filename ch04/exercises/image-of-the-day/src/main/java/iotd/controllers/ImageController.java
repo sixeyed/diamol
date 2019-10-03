@@ -33,8 +33,7 @@ public class ImageController {
             RestTemplate restTemplate = new RestTemplate();
             ApodImage result = restTemplate.getForObject(apodUrl+apodKey, ApodImage.class);
             log.info("Fetched new APOD image from NASA"); 
-            //img = new Image(result.getUrl(), result.getTitle(), result.getCopyright());
-            img = new Image("https://apod.nasa.gov/apod/image/1907/BirdsEclipse_Caldas_960.jpg", "Birds During a Total Solar Eclipse", "Leonardo Caldas");
+            img = new Image(result.getUrl(), result.getTitle(), result.getCopyright());            
             cacheService.putImage(img);
         }
         else {

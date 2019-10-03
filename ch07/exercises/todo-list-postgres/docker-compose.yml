@@ -6,8 +6,6 @@ services:
     image: diamol/postgres:11.5    
     ports:
       - "5433:5432"
-    environment:
-      - sa_password=DockerCon!!!
     networks:
       - app-net
 

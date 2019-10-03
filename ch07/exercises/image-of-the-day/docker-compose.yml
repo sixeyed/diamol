@@ -2,25 +2,25 @@ version: '3.7'
 
 services:
 
-  iotd:
-    image: diamol/ch04-iotd-log
+  accesslog:
+    image: diamol/ch04-access-log
     networks:
       - app-net
 
-  accesslog:
-    image: diamol/ch04-iotd-api
+  iotd:
+    image: diamol/ch04-image-of-the-day
     ports:
-      - "8010:80"
+      - "8000:80"
     networks:
       - app-net
 
   image-gallery:
-    image: diamol/ch04-iotd-web
+    image: diamol/ch04-image-gallery
     ports:
-      - "8020:80" 
+      - "8010:80" 
     depends_on:
-      - iotd-api
-      - iotd-log
+      - accesslog
+      - iotd
     networks:
       - app-net
 
