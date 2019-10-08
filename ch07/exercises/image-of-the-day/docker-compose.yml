@@ -10,7 +10,7 @@ services:
   iotd:
     image: diamol/ch04-image-of-the-day
     ports:
-      - "8000:80"
+      - "80"
     networks:
       - app-net
 

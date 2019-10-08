@@ -3,14 +3,22 @@ version: '3.7'
 services:
   
   todo-db:
-    image: diamol/postgres:11.5    
+    image: diamol/postgres:11.5
+    restart: unless-stopped
     ports:
       - "5433:5432"
+    environment: 
+      - PGDATA=/var/lib/postgresql/data
+    volumes:
+      - type: bind
+        source: /data/postgres
+        target: /var/lib/postgresql/data
     networks:
       - app-net
 
   todo-web:
     image: diamol/ch06-todo-list
+    restart: unless-stopped
     ports:
       - "8030:80"
     environment:
