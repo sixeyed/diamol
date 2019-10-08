@@ -11,7 +11,7 @@ ENV IMAGE_API_URL="http://iotd/image" \
 
 CMD ["/web/server"]
 
-WORKDIR web
+WORKDIR /web
 COPY index.html .
 COPY --from=builder /server .
 RUN chmod +x server
