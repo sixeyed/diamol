@@ -1,3 +1,6 @@
+# This is the app definition for running in dev.
+# It runs a Postgres container and sets the web app to use Postgres.
+# It also sets the containers to restart, and uses a bind mount for the database files.
 version: '3.7'
 
 services:
@@ -5,8 +8,6 @@ services:
   todo-db:
     image: diamol/postgres:11.5
     restart: unless-stopped
-    ports:
-      - "5433:5432"
     environment: 
       - PGDATA=/var/lib/postgresql/data
     volumes:
@@ -20,21 +21,14 @@ services:
     image: diamol/ch06-todo-list
     restart: unless-stopped
     ports:
-      - "8030:80"
+      - "8050:80"
     environment:
       - Database:Provider=Postgres
     depends_on:
       - todo-db
-    networks:
-      - app-net
     secrets:
       - source: postgres-connection
         target: /app/config/secrets.json
-
-networks:
-  app-net:
-    external:
-      name: nat
 
 secrets:
   postgres-connection:

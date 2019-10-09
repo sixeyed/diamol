@@ -1,62 +1,26 @@
-# DIAMOL Chapter 6 Lab - Sample Solution
+# DIAMOL Chapter 7 Lab - Sample Solution
 
-If you've been running lots of containers from Chapter 6 and using lots of ports, you can start by tidying up:
+This solution uses [multiple Docker Compose files](https://docs.docker.com/compose/extends/) to share core the app definition across multiple environments, without duplication.
 
-> This will remove **ALL** of your containers
+## Dev environment
 
-```
-docker container rm -f $(docker container ls -aq)
-```
+This configuration uses Sqlite for data storage and published the web app to port `8040`.
 
-Now run a container with the lab's to-do list image:
+Run from this directory with:
 
 ```
-docker container run -d -p 8015:80 diamol/ch06-lab
+docker-compose -f docker-compose-core.yml -f docker-compose-dev.yml up -d
 ```
 
-Browse to http://localhost:8015/list  - it should look like this:
+## Test environment
 
-![Sample to-do list with some important tasks](./todo-list-v3.png)
-
-> A set of tasks which everyone should get done :)
-
-Let's create a volume to use for storing the database file instead:
 
 ```
-docker volume create ch06-lab
+docker-compose -f docker-compose-core.yml -f docker-compose-test.yml up -d
 ```
 
-You can create a configuration file which specifies a different path for the database file, and that path can be your volume mount. 
-
-My [config.json](./solution/config.json) configures the app to write the database file in `/new-data`.
-
-To put that together, we'll run a container which uses:
-
-- a read-only bind mount to load the new config file into the container
-- a read-write volume mount as the target for the database file
-
-Which is this set of paths on Windows:
+Or on Windows:
 
 ```
-$configSource="$(pwd)/solution".ToLower()
-$configTarget='c:\app\config'
-$dataTarget='c:\new-data'
+docker-compose -f docker-compose-core.yml -f docker-compose-test.yml -f docker-compose-test-windows.yml up -d
 ```
-
-And this on Linux:
-
-```
-configSource="$(pwd)/solution"
-configTarget='/app/config'
-dataTarget='/new-data'
-```
-
-And now you can run the container:
-
-```
-docker container run -d -p 8016:80 --mount type=bind,source=$configSource,target=$configTarget,readonly --volume ch06-lab:$dataTarget diamol/ch06-lab
-```
-
-And browse to http://localhost:8016/list
-
-> You'll see an empty to-do list which you can endlessly fill

@@ -1,0 +1,12 @@
+# This is the app definition for running in dev.
+# It explicitly sets the app to use Sqlite database.
+version: '3.7'
+
+services:
+
+  todo-web:
+    image: diamol/ch06-todo-list
+    ports:
+      - "8040:80"
+    environment:
+      - Database:Provider=Sqlite
