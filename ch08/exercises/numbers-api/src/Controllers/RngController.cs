@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -39,7 +36,7 @@ namespace Numbers.Api.Controllers
             else
             {
                 _logger.LogWarning("Unhealthy!");
-                return StatusCode(503);
+                return StatusCode(500);
             }
         }
     }

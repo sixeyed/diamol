@@ -1,5 +1,3 @@
-using System;
-
 namespace Numbers.Api
 {
     public static class Status
