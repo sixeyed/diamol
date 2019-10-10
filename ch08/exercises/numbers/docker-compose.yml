@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    image: diamol/ch08-numbers-api:v3
+    ports:
+      - "8087:80"
+    healthcheck:
+      interval: 5s
+      timeout: 1s
+      retries: 2
+      start_period: 5s
+    networks:
+      - app-net
+
+  numbers-web:
+    image: diamol/ch08-numbers-web:v3
+    restart: on-failure
+    ports:
+      - "8088:80"
+    healthcheck:
+      test: ["CMD", "dotnet", "Utilities.HttpCheck.dll", "-t", "150"]
+      interval: 5s
+      timeout: 1s
+      retries: 2
+      start_period: 10s
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat
