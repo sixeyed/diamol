@@ -1,0 +1,30 @@
+FROM diamol/dotnet-sdk AS builder
+
+WORKDIR /src
+COPY src/Numbers.Web/Numbers.Web.csproj .
+RUN dotnet restore
+
+COPY src/Numbers.Web/ .
+RUN dotnet publish -c Release -o /out Numbers.Web.csproj
+
+# http  utility for healthcheck
+FROM diamol/dotnet-sdk AS healthcheck-builder
+
+WORKDIR /src
+COPY src/Utilities.HttpCheck/Utilities.HttpCheck.csproj .
+RUN dotnet restore
+
+COPY src/Utilities.HttpCheck/ .
+RUN dotnet publish -c Release -o /out Utilities.HttpCheck.csproj
+
+# app image
+FROM diamol/dotnet-aspnet
+
+ENV RngApi:Url=https://blog.sixeyed.com
+
+CMD dotnet Utilities.HttpCheck.dll -c RngApi:Url -ls -t 900 && \
+    dotnet Numbers.Web.dll
+
+WORKDIR /app
+COPY --from=healthcheck-builder /out/ .
+COPY --from=builder /out/ .

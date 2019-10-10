@@ -1,10 +1,10 @@
 FROM diamol/dotnet-sdk AS builder
 
 WORKDIR /src
-COPY src/Numbers.Api.csproj .
+COPY src/Numbers.Api/Numbers.Api.csproj .
 RUN dotnet restore
 
-COPY src/ .
+COPY src/Numbers.Api/ .
 RUN dotnet publish -c Release -o /out Numbers.Api.csproj
 
 # app image
