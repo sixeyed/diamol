@@ -10,7 +10,7 @@ RUN dotnet publish -c Release -o /out Numbers.Web.csproj
 # app image
 FROM diamol/dotnet-aspnet
 
-ENV RngApi:Url=http://numbers-api
+ENV RngApi:Url=http://numbers-api/rng
 
 ENTRYPOINT ["dotnet", "/app/Numbers.Web.dll"]
 

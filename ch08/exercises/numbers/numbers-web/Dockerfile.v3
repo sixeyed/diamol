@@ -20,7 +20,7 @@ RUN dotnet publish -c Release -o /out Utilities.HttpCheck.csproj
 # app image
 FROM diamol/dotnet-aspnet
 
-ENV RngApi:Url=http://numbers-api
+ENV RngApi:Url=http://numbers-api/rng
 
 CMD dotnet Utilities.HttpCheck.dll -c RngApi:Url -ls -t 900 && \
     dotnet Numbers.Web.dll

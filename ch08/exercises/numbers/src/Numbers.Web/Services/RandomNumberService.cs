@@ -13,11 +13,11 @@ namespace Numbers.Web.Services
         {
             _config = config;
         }
-        
+
         public int GetNumber()
         {
             var client = new RestClient(_config["RngApi:Url"]);
-            var request = new RestRequest("rng");
+            var request = new RestRequest();
             var response = client.Execute(request);
             if (!response.IsSuccessful)
             {

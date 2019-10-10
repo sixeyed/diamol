@@ -34,7 +34,7 @@ namespace Utilities.HttpCheck
                     stopwatch.Stop();
                     if (settings.LogSuccess)
                     {
-                        Console.WriteLine($"HTTP: status {response.StatusCode}, took {stopwatch.ElapsedMilliseconds}ms");
+                        Console.WriteLine($"HTTPCheck: status {response.StatusCode}, url {targetUrl}, took {stopwatch.ElapsedMilliseconds}ms");
                     }
                     if (response.StatusCode == HttpStatusCode.OK &&
                         stopwatch.ElapsedMilliseconds < settings.TimeoutMilliseconds)
@@ -47,7 +47,7 @@ namespace Utilities.HttpCheck
             {
                 if (settings.LogFailure)
                 {
-                    Console.WriteLine($"HTTP: error. Exception {ex.Message}");
+                    Console.WriteLine($"HTTPCheck: error. Url {targetUrl}, exception {ex.Message}");
                 }
             }
             return exitCode;
