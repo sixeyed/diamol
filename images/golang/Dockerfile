@@ -1,2 +1,2 @@
-FROM golang:1.12.7
+FROM golang:1.13.1
 ENV CGO_ENABLED=0
