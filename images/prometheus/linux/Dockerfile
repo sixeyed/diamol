@@ -1,0 +1,1 @@
+FROM prom/prometheus:v2.13.1
