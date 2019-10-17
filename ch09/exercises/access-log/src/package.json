@@ -1,0 +1,11 @@
+{
+    "name": "access-log",
+    "version": "1.0.0",
+    "main": "server.js",
+    "author": "Elton Stoneman",
+    "dependencies": {
+      "restify":"8.3.3",
+      "winston": "3.2.1"
+    }
+  }
+  
