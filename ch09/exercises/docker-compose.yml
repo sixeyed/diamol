@@ -4,14 +4,14 @@ services:
   accesslog:
     image: diamol/ch09-access-log
     ports:
-      - "80"
+      - "8012:80"
     networks:
       - app-net
 
   iotd:
     image: diamol/ch09-image-of-the-day
     ports:
-      - "80"
+      - "8011:80"
     networks:
       - app-net
 
@@ -19,6 +19,16 @@ services:
     image: diamol/ch09-image-gallery
     ports:
       - "8010:80"
+    depends_on:
+      - accesslog
+      - iotd
+    networks:
+      - app-net
+
+  prometheus:
+    image: diamol/ch09-prometheus
+    ports:
+      - "9090:9090"
     depends_on:
       - accesslog
       - iotd
