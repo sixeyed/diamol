@@ -2,7 +2,9 @@ version: "3.7"
 
 services:
   accesslog:
-    image: diamol/ch04-access-log
+    image: diamol/ch09-access-log
+    ports:
+      - "80"
     networks:
       - app-net
 
