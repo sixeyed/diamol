@@ -10,7 +10,7 @@ docker image push registry.local:5000/gallery/ui
 
 > Pushes all tags for the repo
 
-## Check 
+## Check
 
 ```
 curl http://registry.local:5000/v2/gallery/ui/tags/list
@@ -25,7 +25,7 @@ curl --head \
 ```
 > Output headers include `Docker-Content-Digest`, this is the manifest you need
 
-e.g. 
+e.g.
 
 ```
 Docker-Content-Digest: sha256:127d0ed6f7a8d148a39b7ea168c083694d030e2bffbda60cb53057e731114fbb
@@ -38,7 +38,7 @@ curl -X DELETE \
   http://registry.local:5000/v2/gallery/ui/manifests/sha256:127d0ed6f7a8d148a39b7ea168c083694d030e2bffbda60cb53057e731114fbb
 ```
 
-## Check 
+## Check
 
 ```
 curl http://registry.local:5000/v2/gallery/ui/tags/list

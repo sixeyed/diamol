@@ -26,7 +26,7 @@ Let's create a volume to use for storing the database file instead:
 docker volume create ch06-lab
 ```
 
-You can create a configuration file which specifies a different path for the database file, and that path can be your volume mount. 
+You can create a configuration file which specifies a different path for the database file, and that path can be your volume mount.
 
 My [config.json](./solution/config.json) configures the app to write the database file in `/new-data`.
 
