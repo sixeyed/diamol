@@ -4,7 +4,7 @@ echo ---------------------
 echo My name is:
 echo $(hostname)
 echo ---------------------
-echo I''m running on:
+echo "I'm running on:"
 echo $(uname -s -r -m)
 echo ---------------------
 echo My address is:
