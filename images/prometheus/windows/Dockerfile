@@ -25,9 +25,11 @@ COPY --from=installer /prometheus/consoles/           /etc/prometheus/
 EXPOSE     9090
 VOLUME     C:\prometheus
 
-ENTRYPOINT ["C:\\bin\\prometheus.exe", `
-            "--storage.tsdb.path=/prometheus", `
-            "--web.console.libraries=/etc/prometheus/console_libraries", `
-            "--web.console.templates=/etc/prometheus/consoles" ]
+CMD echo %DOCKER_HOST%  DOCKER_HOST >> /windows/system32/drivers/etc/hosts && `
+    C:\\bin\\prometheus.exe `
+    --storage.tsdb.path=/prometheus `
+    --web.console.libraries=/etc/prometheus/console_libraries `
+    --web.console.templates=/etc/prometheus/consoles `
+    --config.file=/etc/prometheus/prometheus.yml
 
-CMD ["--config.file=/etc/prometheus/prometheus.yml"]
+COPY prometheus.yml /etc/prometheus/prometheus.yml
