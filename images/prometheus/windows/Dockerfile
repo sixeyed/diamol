@@ -24,6 +24,7 @@ COPY --from=installer /prometheus/consoles/           /etc/prometheus/
 
 EXPOSE     9090
 VOLUME     C:\prometheus
+USER ContainerAdministrator
 
 CMD echo %DOCKER_HOST%  DOCKER_HOST >> /windows/system32/drivers/etc/hosts && `
     C:\\bin\\prometheus.exe `
