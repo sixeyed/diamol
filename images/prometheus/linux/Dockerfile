@@ -1,5 +1,6 @@
 FROM prom/prometheus:v2.13.1
 
+USER root
 ENTRYPOINT []
 
 CMD echo "$DOCKER_HOST  DOCKER_HOST" >> /etc/hosts && \
