@@ -2,6 +2,16 @@ const restify = require("restify");
 const prom = require("prom-client");
 const log = require("./log");
 
+const accessCounter = new prom.Counter({
+  name: "access_log_total",
+  help: "Access Log - total log requests"
+});
+
+const ipGauge = new prom.Gauge({
+  name: "access_client_ip_current",
+  help: "Access Log - current unique IP addresses"
+});
+
 function stats(req, res, next) {
   log.Logger.debug("** GET /stats called");
   var data = {
@@ -15,6 +25,13 @@ function respond(req, res, next) {
   log.Logger.debug("** POST /access-log called");
   log.Logger.info("Access log, client IP: %s", req.body.clientIp);
   logCount++;
+
+  //metrics:
+  accessCounter.inc();
+  ipAddresses.push(req.body.clientIp);
+  let uniqueIps = Array.from(new Set(ipAddresses));
+  ipGauge.set(uniqueIps.length);
+
   res.send(201, "Created");
   next();
 }
@@ -22,6 +39,7 @@ function respond(req, res, next) {
 prom.collectDefaultMetrics();
 
 var logCount = 0;
+var ipAddresses = new Array();
 var server = restify.createServer();
 server.use(restify.plugins.bodyParser());
 server.get("/stats", stats);
