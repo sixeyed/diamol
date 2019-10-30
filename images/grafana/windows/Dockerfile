@@ -20,11 +20,11 @@ EXPOSE 3000
 WORKDIR C:\grafana\bin
 CMD ["grafana-server.exe"]
 
-ENV GF_PATHS_CONFIG="/etc/grafana/grafana.ini" `
-    GF_PATHS_DATA="/var/lib/grafana" `
-    GF_PATHS_HOME="/usr/share/grafana" `
-    GF_PATHS_LOGS="/var/log/grafana" `
-    GF_PATHS_PLUGINS="/var/lib/grafana/plugins" `
-    GF_PATHS_PROVISIONING="/etc/grafana/provisioning"
+ENV GF_PATHS_CONFIG="C:\\grafana\\conf\\defaults.ini" `
+    GF_PATHS_DATA="C:\\grafana\\data" `
+    GF_PATHS_HOME="C:\\grafana" `
+    GF_PATHS_LOGS="C:\\grafana\\data\\log" `
+    GF_PATHS_PLUGINS="C:\\grafana\\data\\plugins" `
+    GF_PATHS_PROVISIONING="C:\\grafana\\conf\\provisioning"
 
 COPY --from=installer C:\grafana C:\grafana
