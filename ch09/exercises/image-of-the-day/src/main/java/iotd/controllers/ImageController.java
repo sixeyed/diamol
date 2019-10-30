@@ -1,5 +1,8 @@
 package iotd;
 
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.MeterRegistry;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +20,9 @@ public class ImageController {
 
 	@Autowired
 	CacheService cacheService;
+
+    @Autowired
+    MeterRegistry registry;
     
     @Value("${apod.url}")
 	private String apodUrl;
@@ -25,6 +31,7 @@ public class ImageController {
 	private String apodKey;
 
     @RequestMapping("/image")
+    @Timed()
     public Image get() {
         log.debug("** GET /image called"); 
 
@@ -32,12 +39,16 @@ public class ImageController {
         if (img == null) {
             RestTemplate restTemplate = new RestTemplate();
             ApodImage result = restTemplate.getForObject(apodUrl+apodKey, ApodImage.class);
+
             log.info("Fetched new APOD image from NASA"); 
+            registry.counter("iotd_api_image_load", "status", "success").increment();
+
             img = new Image(result.getUrl(), result.getTitle(), result.getCopyright());            
             cacheService.putImage(img);
         }
         else {
-            log.debug("Loaded APOD image from cache"); 
+            log.debug("Loaded APOD image from cache");             
+            registry.counter("iotd_api_image_load", "status", "cached").increment();
         }
         return img;
     }

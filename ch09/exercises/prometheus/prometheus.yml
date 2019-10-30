@@ -20,3 +20,8 @@ scrape_configs:
           - accesslog
         type: A
         port: 80
+        
+  - job_name: "docker"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["DOCKER_HOST:9323"]

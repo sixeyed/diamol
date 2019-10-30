@@ -53,6 +53,8 @@ server.get("/metrics", function(req, res, next) {
   res.end(prom.register.metrics());
 });
 
+server.headersTimeout = 20;
+server.keepAliveTimeout = 10;
 server.listen(80, function() {
   log.Logger.info("%s listening at %s", server.name, server.url);
 });
