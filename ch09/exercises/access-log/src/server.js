@@ -1,16 +1,22 @@
 const restify = require("restify");
 const prom = require("prom-client");
 const log = require("./log");
+const os = require("os");
 
 const accessCounter = new prom.Counter({
   name: "access_log_total",
   help: "Access Log - total log requests"
 });
 
-const ipGauge = new prom.Gauge({
+const clientIpGauge = new prom.Gauge({
   name: "access_client_ip_current",
   help: "Access Log - current unique IP addresses"
 });
+
+//setup Prometheus with hostname label:
+const defaultLabels = { hostname: os.hostname() };
+prom.register.setDefaultLabels(defaultLabels);
+prom.collectDefaultMetrics();
 
 function stats(req, res, next) {
   log.Logger.debug("** GET /stats called");
@@ -30,13 +36,11 @@ function respond(req, res, next) {
   accessCounter.inc();
   ipAddresses.push(req.body.clientIp);
   let uniqueIps = Array.from(new Set(ipAddresses));
-  ipGauge.set(uniqueIps.length);
+  clientIpGauge.set(uniqueIps.length);
 
   res.send(201, "Created");
   next();
 }
-
-prom.collectDefaultMetrics();
 
 var logCount = 0;
 var ipAddresses = new Array();

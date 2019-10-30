@@ -7,6 +7,7 @@ import (
 	"io/ioutil"	
 	"net/http"
 	"os"
+	"time"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -25,9 +26,15 @@ func main() {
 	imageApiUrl :=  os.Getenv("IMAGE_API_URL")
 	logApiUrl := os.Getenv("ACCESS_API_URL")
 
+	tr := &http.Transport{
+		MaxIdleConns: 1,
+	    IdleConnTimeout: 1 * time.Second,
+	}
+	client := &http.Client{Transport: tr}
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 
-		response,_ := http.Get(imageApiUrl)
+		response,_ := client.Get(imageApiUrl)
 		defer response.Body.Close()
 		data,_ := ioutil.ReadAll(response.Body)
 		image := Image{}
@@ -38,7 +45,8 @@ func main() {
 			ClientIP: r.RemoteAddr,
 		}
 		jsonLog,_ := json.Marshal(log)
-		http.Post(logApiUrl, "application/json", bytes.NewBuffer(jsonLog))
+		response,_ = client.Post(logApiUrl, "application/json", bytes.NewBuffer(jsonLog))
+		defer response.Body.Close()
 	})
 	
 	http.Handle("/metrics", promhttp.Handler())

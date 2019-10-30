@@ -4,7 +4,7 @@ services:
   accesslog:
     image: diamol/ch09-access-log
     ports:
-      - "8012:80"
+      - "80"
     networks:
       - app-net
 

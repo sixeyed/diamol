@@ -14,5 +14,9 @@ scrape_configs:
 
   - job_name: "access-log"
     metrics_path: /metrics
-    static_configs:
-      - targets: ["accesslog"]
+    scrape_interval: 3s
+    dns_sd_configs:
+      - names:
+          - accesslog
+        type: A
+        port: 80
