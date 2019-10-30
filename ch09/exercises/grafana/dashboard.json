@@ -158,7 +158,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(image_gallery_requests_total) without(instance)",
+          "expr": "sum(image_gallery_in_flight_requests) without(instance)",
           "refId": "A"
         }
       ],
