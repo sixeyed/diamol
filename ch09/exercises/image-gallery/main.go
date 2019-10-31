@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"html/template"
 	"io/ioutil"	
+	"math/rand"
 	"net/http"
 	"os"
 	"time"
@@ -49,20 +50,27 @@ func main() {
 
 	prometheus.MustRegister(inFlightGauge, requestCounter)
 
-	indexHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		response,_ := client.Get(imageApiUrl)
-		defer response.Body.Close()
-		data,_ := ioutil.ReadAll(response.Body)
-		image := Image{}
-		json.Unmarshal([]byte(data), &image)	
-		tmpl.Execute(w, image)
+	rand.Seed(time.Now().UnixNano())
 
-		log := AccessLog{
-			ClientIP: r.RemoteAddr,
+	indexHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		//random failures:
+		if (rand.Intn(10) > 8) {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("Failed"))
+		} else {
+			response,_ := client.Get(imageApiUrl)
+			defer response.Body.Close()
+			data,_ := ioutil.ReadAll(response.Body)
+			image := Image{}
+			json.Unmarshal([]byte(data), &image)	
+			tmpl.Execute(w, image)
+			log := AccessLog{
+				ClientIP: r.RemoteAddr,
+			}
+			jsonLog,_ := json.Marshal(log)
+			response,_ = client.Post(logApiUrl, "application/json", bytes.NewBuffer(jsonLog))
+			defer response.Body.Close()
 		}
-		jsonLog,_ := json.Marshal(log)
-		response,_ = client.Post(logApiUrl, "application/json", bytes.NewBuffer(jsonLog))
-		defer response.Body.Close()
 	})
 
 	wrappedIndexHandler := promhttp.InstrumentHandlerInFlight(inFlightGauge,
