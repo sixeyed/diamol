@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  todo-list:
+    image: diamol/ch09-todo-list
+    ports:
+      - "8050:80"
+    networks:
+      - app-net
+
+  prometheus:
+    image: diamol/ch09-lab-prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - app-net
+
+  grafana:
+    image: diamol/ch09-lab-grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat

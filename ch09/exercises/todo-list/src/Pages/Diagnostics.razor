@@ -1,0 +1,36 @@
+﻿@page "/diagnostics"
+
+@using ToDoList.Model
+@using ToDoList.Services
+
+@inject DiagnosticsService DiagnosticsService
+
+<h1>Diagnostics</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Hostname</th>
+            <th>.NET Version</th>
+            <th>OS Architecture</th>
+            <th>OS Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@diagnostics.HostName</td>
+            <td>@diagnostics.FrameworkDescription</td>
+            <td>@diagnostics.OSArchitecture</td>
+            <td>@diagnostics.OSDescription</td>            
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    Model.Diagnostics diagnostics;
+
+    protected override void OnInitialized()
+    {
+        diagnostics = DiagnosticsService.GetDiagnostics();
+    }
+}
