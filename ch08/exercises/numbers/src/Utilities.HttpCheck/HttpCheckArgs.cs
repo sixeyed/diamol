@@ -13,7 +13,7 @@ namespace Utilities.HttpCheck
         [ArgShortcut("c")]
         public string UrlFromConfigSetting { get; set; }
 
-        [ArgShortcut("ls"), ArgDefaultValue(false)]
+        [ArgShortcut("ls"), ArgDefaultValue(true)]
         public bool LogSuccess { get; set; }
 
         [ArgShortcut("lf"), ArgDefaultValue(true)]

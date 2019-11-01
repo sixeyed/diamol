@@ -22,7 +22,7 @@ FROM diamol/dotnet-aspnet
 
 ENV RngApi:Url=http://numbers-api/rng
 
-CMD dotnet Utilities.HttpCheck.dll -c RngApi:Url -ls -t 900 && \
+CMD dotnet Utilities.HttpCheck.dll -c RngApi:Url -t 900 && \
     dotnet Numbers.Web.dll
 
 WORKDIR /app
