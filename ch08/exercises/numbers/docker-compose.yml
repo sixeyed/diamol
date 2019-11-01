@@ -16,6 +16,8 @@ services:
   numbers-web:
     image: diamol/ch08-numbers-web:v3
     restart: on-failure
+    environment:
+      - RngApi__Url=http://numbers-api/rng
     ports:
       - "8088:80"
     healthcheck:
