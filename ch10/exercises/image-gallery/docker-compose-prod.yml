@@ -1,0 +1,60 @@
+version: "3.7"
+
+x-labels: &logging
+  logging:  
+    options:
+      max-size: '100m'
+      max-file: '10'
+
+x-labels: &labels
+  app-name: image-gallery
+
+services:
+  accesslog:
+    <<: *logging
+    labels:
+      <<: *labels
+
+  iotd:
+    ports:
+      - 8080:80
+    <<: *logging
+    labels:
+      <<: *labels
+      public: api
+
+  image-gallery:
+    ports:
+      - 80:80
+    <<: *logging
+    labels:
+      <<: *labels
+      public: web
+
+  prometheus:
+    image: diamol/ch09-prometheus
+    ports:
+      - "9090:9090"
+    environment:
+      - DOCKER_HOST=${HOST_IP}
+    networks:
+      - app-net
+    <<: *logging
+    labels:
+      <<: *labels
+
+  grafana:
+    image: diamol/ch09-grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    networks:
+      - app-net
+    <<: *logging
+    labels:
+      <<: *labels
+
+networks:
+  app-net:
+      name: image-gallery-prod

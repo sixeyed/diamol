@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    image: diamol/ch08-numbers-api:v3
+    networks:
+      - app-net
+
+  numbers-web:
+    image: diamol/ch08-numbers-web:v3
+    environment:
+      - RngApi__Url=http://numbers-api/rng
+    networks:
+      - app-net
+

@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  iotd:
+    ports:
+      - 8020:80
+
+  image-gallery:
+    ports:
+      - 8010:80
+
+networks:
+  app-net:
+    name: image-gallery-dev

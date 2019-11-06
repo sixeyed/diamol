@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    healthcheck:
+      interval: 10s
+      retries: 2
+    restart: always
+    ports:
+      - "8090:80"
+
+  numbers-web:
+    restart: always
+    ports:
+      - "80:80"
+    healthcheck:
+      interval: 10s
+      retries: 2
+
+networks:
+  app-net:
+    name: numbers-uat

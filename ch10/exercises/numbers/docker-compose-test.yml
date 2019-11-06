@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    healthcheck:
+      interval: 20s
+      start_period: 15s
+      retries: 4
+
+  numbers-web:
+    ports:
+      - "8080:80"
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "dotnet", "Utilities.HttpCheck.dll", "-t", "250"]
+      interval: 20s
+      timeout: 10s
+      retries: 4
+      start_period: 10s
+
+networks:
+  app-net:
+      name: numbers-test

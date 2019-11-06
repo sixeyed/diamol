@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    ports:
+      - "8087:80"
+    healthcheck:
+      disable: true
+
+  numbers-web:
+    entrypoint:
+      - dotnet
+      - Numbers.Web.dll
+    ports:
+      - "8088:80"
+
+networks:
+  app-net:
+    name: numbers-dev
