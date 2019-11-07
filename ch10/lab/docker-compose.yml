@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  todo-web:
+    image: diamol/ch06-todo-list
+    secrets:
+      - source: todo-db-connection
+        target: /app/config/secrets.json

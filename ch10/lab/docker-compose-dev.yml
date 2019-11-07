@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  todo-web:
+    image: diamol/ch06-todo-list:v2
+    ports:
+      - 8089:80
+    environment:
+      - Database:Provider=Sqlite
+
+secrets:
+  todo-db-connection:
+    file: empty.json
