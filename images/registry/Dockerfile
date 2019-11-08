@@ -1,11 +1,11 @@
 FROM diamol/golang AS builder
 
-WORKDIR /go/src/github.com/docker
+WORKDIR ${GOPATH}/src/github.com/docker
 RUN git clone https://github.com/docker/distribution.git
 
-WORKDIR /go/src/github.com/docker/distribution
-RUN git checkout "v2.6.2"; \
-    go build -o /out/registry ./cmd/registry; \
+WORKDIR ${GOPATH}/src/github.com/docker/distribution
+RUN git checkout "v2.6.2" && \
+    go build -o /out/registry ./cmd/registry && \
     chmod +x /out/registry
 
 # Registry
