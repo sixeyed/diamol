@@ -23,10 +23,11 @@ ENV JENKINS_VERSION=${JENKINS_VERSION} \
 
 VOLUME ${JENKINS_HOME}
 
-EXPOSE 8080 50000
-ENTRYPOINT java -jar /jenkins/jenkins.war
+EXPOSE 8080
+ENTRYPOINT java -Duser.home=${JENKINS_HOME} -Djenkins.install.runSetupWizard=false -jar /jenkins/jenkins.war
 
 COPY --from=installer /usr/bin/docker /usr/bin/docker
 COPY --from=installer /jenkins.war /jenkins/jenkins.war
 
-COPY ./scripts/ /usr/share/jenkins/ref/init.groovy.d/
+COPY ./jenkins.install.UpgradeWizard.state ${JENKINS_HOME}/
+COPY ./scripts/ ${JENKINS_HOME}/init.groovy.d/
