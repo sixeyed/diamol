@@ -1,9 +1,12 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') {
+        stage('Verify') {
             steps {
-                echo 'Building...'
+                echo 'Verifying Docker...'
+                sh 'docker version'
+                echo 'Verifying Docker Compose...'
+                sh 'docker-compose version'
             }
         }
     }

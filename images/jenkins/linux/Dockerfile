@@ -9,6 +9,7 @@ RUN curl -SL -o jenkins.war http://mirrors.jenkins.io/war-stable/$JENKINS_VERSIO
 # Jenkins
 FROM openjdk:8-jre-alpine
 
+# jenkins deps
 RUN apk add --no-cache \
     bash \
     coreutils \
@@ -16,6 +17,18 @@ RUN apk add --no-cache \
     openssh-client \
     ttf-dejavu \
     unzip 
+
+# compose deps
+RUN apk add --no-cache \
+    gcc \
+    libc-dev \
+    libffi-dev \
+    make \
+    openssl-dev \
+    python-dev \
+    py-pip
+
+RUN pip install docker-compose
 
 ARG JENKINS_VERSION="2.190.2"
 ENV JENKINS_VERSION=${JENKINS_VERSION} \
