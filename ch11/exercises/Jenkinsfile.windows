@@ -1,0 +1,13 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Verify') {
+            steps {
+                echo 'Verifying Docker...'
+                bat 'docker version'
+                echo 'Verifying Docker Compose...'
+                bat 'docker-compose version'
+            }
+        }
+    }
+}
