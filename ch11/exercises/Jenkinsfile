@@ -6,8 +6,7 @@ pipeline {
     stages {
         stage('Verify') {
             steps {
-                sh 'docker version'
-                sh 'docker-compose version'
+                sh './ci/00-verify.bat'
             }
         }
         stage('Build') {
