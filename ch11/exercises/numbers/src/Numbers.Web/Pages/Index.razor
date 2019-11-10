@@ -1,0 +1,34 @@
+﻿@page "/"
+
+@using Numbers.Web.Services
+@inject RandomNumberService RngService
+
+<h1>DIAMOL Random Number Generator</h1>
+
+@if (callFailed){
+    <p>RNG service unavailable!</p>
+}
+
+@if (callFailed == false && randomNumber != -1){
+    <p>Here it is: @randomNumber</p>
+}
+
+<button class="btn btn-primary" @onclick="GetRandomNumber">Get a random number</button>
+
+@code {  
+    bool callFailed = false;  
+    int randomNumber = -1;
+
+    void GetRandomNumber()
+    {
+        callFailed = false;
+        try 
+        {
+            randomNumber = RngService.GetNumber();
+        }
+        catch
+        {
+            callFailed = true;
+        }
+    }
+}

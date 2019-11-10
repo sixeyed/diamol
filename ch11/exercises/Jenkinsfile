@@ -1,13 +1,21 @@
 pipeline {
-    agent any 
+    agent any
+    environment {
+       REGISTRY = "registry.diamol:5000"
+    }
     stages {
         stage('Verify') {
-            steps {
-                echo 'Verifying Docker...'
-                sh 'docker version'
-                echo 'Verifying Docker Compose...'
-                sh 'docker-compose version'
-            }
+            sh 'docker version'
+            sh 'docker-compose version'
+        }
+        stage('Build') {
+            sh ./ci/01-build.bat
+        }
+        stage('Test') {
+            sh ./ci/02-test.bat
+        }
+        stage('Push') {
+            sh ./ci/03-push.bat
         }
     }
 }

@@ -1,0 +1,22 @@
+version: "3.7"
+
+x-args: &args
+  args:
+    BUILD_NUMBER: ${BUILD_NUMBER:-0}
+    BUILD_TAG: ${BUILD_TAG:-local}
+
+services:
+  numbers-api:
+    build:
+      context: numbers
+      dockerfile: numbers-api/Dockerfile.v3
+      <<: *args
+
+  numbers-web:
+    build:
+      context: numbers
+      dockerfile: numbers-web/Dockerfile.v3
+      <<: *args
+
+networks:
+  app-net:
