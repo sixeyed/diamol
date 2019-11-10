@@ -5,17 +5,25 @@ pipeline {
     }
     stages {
         stage('Verify') {
-            sh 'docker version'
-            sh 'docker-compose version'
+            steps {
+                sh 'docker version'
+                sh 'docker-compose version'
+            }
         }
         stage('Build') {
-            sh ./ci/01-build.bat
+            steps {
+                sh ./ci/01-build.bat
+            }
         }
         stage('Test') {
-            sh ./ci/02-test.bat
+            steps {
+                sh ./ci/02-test.bat
+            }
         }
         stage('Push') {
-            sh ./ci/03-push.bat
+            steps {
+                sh ./ci/03-push.bat
+            }
         }
     }
 }
