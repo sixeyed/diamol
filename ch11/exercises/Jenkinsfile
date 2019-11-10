@@ -12,17 +12,17 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh ./ci/01-build.bat
+                sh './ci/01-build.bat'
             }
         }
         stage('Test') {
             steps {
-                sh ./ci/02-test.bat
+                sh './ci/02-test.bat'
             }
         }
         stage('Push') {
             steps {
-                sh ./ci/03-push.bat
+                sh './ci/03-push.bat'
             }
         }
     }
