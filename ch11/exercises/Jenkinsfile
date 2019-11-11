@@ -6,6 +6,7 @@ pipeline {
     stages {
         stage('Verify') {
             steps {
+                sh 'ls -l'
                 sh './ci/00-verify.bat'
             }
         }
