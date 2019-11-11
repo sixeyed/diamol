@@ -1,2 +1,2 @@
-echo Pushing numbers...
+echo 'Pushing numbers...'
 docker-compose push
