@@ -5,30 +5,30 @@ pipeline {
     }
     stages {
         stage('Verify') {
-            dir('ch11/exercises') {
-                steps {
+            steps {
+                dir('ch11/exercises') {
                     sh 'ls -l'
                     sh './ci/00-verify.bat'
                 }
             }
         }
         stage('Build') {
-            dir('ch11/exercises') {
-                steps {
+            steps {
+                dir('ch11/exercises') {
                     sh './ci/01-build.bat'
                 }
             }
         }
         stage('Test') {
-            dir('ch11/exercises') {
-                steps {
+            steps {
+                dir('ch11/exercises') {
                     sh './ci/02-test.bat'
                 }
             }
         }
         stage('Push') {
-            dir('ch11/exercises') {
-                steps {
+            steps {
+                dir('ch11/exercises') {
                     sh './ci/03-push.bat'
                 }
             }
