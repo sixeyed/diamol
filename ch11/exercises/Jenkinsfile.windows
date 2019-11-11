@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-       REGISTRY = "registry.diamol:5000"
+       REGISTRY = "registry.local:5000"
     }
     stages {
         stage('Verify') {
@@ -29,6 +29,8 @@ pipeline {
             steps {
                 dir('ch11/exercises') {
                     bat './ci/03-push.bat'
+                    echo "Pushed web to http://$REGISTRY/v2/diamol/ch11-numbers-web/tags/list"
+                    echo "Pushed api to http://$REGISTRY/v2/diamol/ch11-numbers-api/tags/list"
                 }
             }
         }
