@@ -9,13 +9,13 @@ services:
   numbers-api:
     build:
       context: numbers
-      dockerfile: numbers-api/Dockerfile.v3
+      dockerfile: numbers-api/Dockerfile.v4
       <<: *args
 
   numbers-web:
     build:
       context: numbers
-      dockerfile: numbers-web/Dockerfile.v3
+      dockerfile: numbers-web/Dockerfile.v4
       <<: *args
 
 networks:

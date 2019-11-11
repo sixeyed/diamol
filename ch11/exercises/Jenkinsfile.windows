@@ -6,22 +6,30 @@ pipeline {
     stages {
         stage('Verify') {
             steps {
-                bat './ci/00-verify.bat'
-            }            
+                dir('ch11/exercises') {
+                    bat './ci/00-verify.bat'
+                }
+            }
         }
         stage('Build') {
             steps {
-                bat ./ci/01-build.bat
+                dir('ch11/exercises') {
+                    bat './ci/01-build.bat'
+                }
             }
         }
         stage('Test') {
             steps {
-                bat ./ci/02-test.bat
+                dir('ch11/exercises') {
+                    bat './ci/02-test.bat'
+                }
             }
         }
         stage('Push') {
             steps {
-                bat ./ci/03-push.bat
+                dir('ch11/exercises') {
+                    bat './ci/03-push.bat'
+                }
             }
         }
     }

@@ -2,12 +2,12 @@ version: "3.7"
 
 services:
   numbers-api:
-    image: ${REGISTRY:-docker.io}/diamol/ch11-numbers-api:v3-${BUILD_NUMBER:-local}
+    image: ${REGISTRY:-docker.io}/diamol/ch11-numbers-api:v3-build-${BUILD_NUMBER:-local}
     networks:
       - app-net
 
   numbers-web:
-    image: ${REGISTRY:-docker.io}/diamol/ch11-numbers-web:v3-${BUILD_NUMBER:-local}
+    image: ${REGISTRY:-docker.io}/diamol/ch11-numbers-web:v3-build-${BUILD_NUMBER:-local}
     environment:
       - RngApi__Url=http://numbers-api/rng
     networks:

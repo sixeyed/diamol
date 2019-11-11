@@ -15,6 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('ch11/exercises') {
+                    sh 'chmod +x ./ci/01-build.bat'
                     sh './ci/01-build.bat'
                 }
             }
@@ -22,6 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 dir('ch11/exercises') {
+                    sh 'chmod +x ./ci/02-test.bat'
                     sh './ci/02-test.bat'
                 }
             }
@@ -29,6 +31,7 @@ pipeline {
         stage('Push') {
             steps {
                 dir('ch11/exercises') {
+                    sh 'chmod +x ./ci/03-push.bat'
                     sh './ci/03-push.bat'
                 }
             }
