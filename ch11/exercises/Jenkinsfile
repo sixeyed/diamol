@@ -7,7 +7,7 @@ pipeline {
         stage('Verify') {
             steps {
                 dir('ch11/exercises') {
-                    sh 'ls -l'
+                    sh 'chmod +x ./ci/00-verify.bat'
                     sh './ci/00-verify.bat'
                 }
             }
