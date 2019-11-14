@@ -8,7 +8,7 @@ services:
     networks:
       - infrastructure
 
-  registry.diamol:
+  registry.local:
     image: diamol/registry
     ports:
       - "5000:5000"
