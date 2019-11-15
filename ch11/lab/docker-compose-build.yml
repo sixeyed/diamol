@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  todo-web:
+    build:
+      context: todo-list
+      dockerfile: Dockerfile
+      args:
+        BUILD_NUMBER: ${BUILD_NUMBER:-0}
+
+networks:
+  app-net:

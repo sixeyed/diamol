@@ -3,6 +3,4 @@ version: "3.7"
 services:
   jenkins:
     volumes:
-      - type: bind
-        source: /var/run/docker.sock
-        target: /var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock

@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    environment {
+       REGISTRY = "registry.local:5000"
+    }
+    stages {
+        stage('Build') {
+            steps {
+                dir('ch11/lab') {
+                    sh 'chmod +x ./ci/01-build.bat'
+                    sh './ci/01-build.bat'
+                }
+            }
+        }
+        stage('Push') {
+            steps {
+                dir('ch11/lab') {
+                    sh 'chmod +x ./ci/02-push.bat'
+                    sh './ci/02-push.bat'
+                    echo "Pushed to http://$REGISTRY/v2/diamol/ch11-todo-list/tags/list"
+                }
+            }
+        }
+    }
+}
