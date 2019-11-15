@@ -7,6 +7,3 @@ services:
       dockerfile: Dockerfile
       args:
         BUILD_NUMBER: ${BUILD_NUMBER:-0}
-
-networks:
-  app-net:

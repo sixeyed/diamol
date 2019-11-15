@@ -5,3 +5,6 @@ services:
     image: diamol/ch11-todo-list
     networks:
       - app-net
+
+networks:
+  app-net:

@@ -1,4 +1,4 @@
-# DIAMOL Chapter 9 Lab - Sample Solution
+# DIAMOL Chapter 10 Lab - Sample Solution
 
 ## Dev
 
