@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    image: diamol/ch08-numbers-api:v2
+    healthcheck:
+      interval: 5s
+      retries: 2
+
+  numbers-web:
+    image: diamol/ch08-numbers-web:v2
+    healthcheck:
+      interval: 10s
+      retries: 2

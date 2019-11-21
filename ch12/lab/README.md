@@ -1,6 +1,6 @@
 # DIAMOL Chapter 12 Lab - Sample Solution
 
-Create newtwork and run services:
+Create network and run services:
 
 ```
 docker network create --driver overlay numbers
