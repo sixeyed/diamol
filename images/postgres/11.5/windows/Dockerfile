@@ -2,6 +2,18 @@
 #### Download and prepare PostgreSQL for Windows
 ####
 FROM mcr.microsoft.com/windows/servercore:1809 as prepare
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+# Install correct Visual C++ Redistributable Package
+RUN Write-Host('Visual C++ 2017 Redistributable Package') ; \
+    $URL2 = 'https://download.visualstudio.microsoft.com/download/pr/11100230/15ccb3f02745c7b206ad10373cbca89b/VC_redist.x64.exe' ; \
+    Invoke-WebRequest -Uri $URL2 -OutFile 'C:\\vcredist.exe' ; \
+    Start-Process 'C:\\vcredist.exe' -Wait \
+    -ArgumentList @( \
+    '/install', \
+    '/passive', \
+    '/norestart' \
+    )
 
 # Set the variables for EnterpriseDB
 ARG EDB_VER=11.5-1
@@ -26,18 +38,6 @@ RUN $SAMPLE_FILE = 'C:\\pgsql\\share\\postgresql.conf.sample' ; \
     $SAMPLE_CONF = Get-Content $SAMPLE_FILE ; \
     $SAMPLE_CONF = $SAMPLE_CONF -Replace '#listen_addresses = ''localhost''','listen_addresses = ''*''' ; \
     $SAMPLE_CONF | Set-Content $SAMPLE_FILE
-
-# Install correct Visual C++ Redistributable Package
-RUN Write-Host('Visual C++ 2017 Redistributable Package') ; \
-    $URL2 = 'https://download.visualstudio.microsoft.com/download/pr/11100230/15ccb3f02745c7b206ad10373cbca89b/VC_redist.x64.exe' ; \
-    Invoke-WebRequest -Uri $URL2 -OutFile 'C:\\vcredist.exe' ; \
-    Start-Process 'C:\\vcredist.exe' -Wait \
-    -ArgumentList @( \
-    '/install', \
-    '/passive', \
-    '/norestart' \
-    )
-
 
 # Copy relevant DLLs to PostgreSQL
 RUN Copy-Item 'C:\\windows\\system32\\vcruntime140.dll' -Destination 'C:\\pgsql\\bin\\vcruntime140.dll'
