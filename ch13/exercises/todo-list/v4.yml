@@ -12,7 +12,7 @@ services:
       - source: todo-list-secret
         target: /app/config/secrets.json
     deploy:
-      replicas: 2
+      replicas: 1
       resources:
         limits:
           cpus: "0.50"
@@ -22,8 +22,6 @@ services:
 
   todo-db:
     image: diamol/postgres:11.5
-    networks:
-      - app-net
     deploy:
       replicas: 1
       resources:

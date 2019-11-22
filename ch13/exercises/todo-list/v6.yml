@@ -8,6 +8,9 @@ services:
     configs:
       - source: todo-list-config
         target: /app/config/config.json
+    secrets:
+      - source: todo-list-secret
+        target: /app/config/secrets.json
     deploy:
       replicas: 1
       resources:
@@ -18,13 +21,20 @@ services:
       - app-net
 
   todo-db:
-    image: diamol/postgres:11.5
+    image: diamol/postgres:11.6
+    environment:
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - todo-db-data:/var/lib/postgresql/data
     deploy:
       replicas: 1
       resources:
         limits:
           cpus: "0.50"
           memory: 500M
+      placement:
+        constraints:
+          - node.labels.storage == raid
     networks:
       - app-net
 
@@ -32,5 +42,12 @@ configs:
   todo-list-config:
     external: true
 
+secrets:
+  todo-list-secret:
+    external: true
+
 networks:
   app-net:
+
+volumes:
+  todo-db-data:
