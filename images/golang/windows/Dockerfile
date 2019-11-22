@@ -21,7 +21,6 @@ ENV CGO_ENABLED=0
 
 USER ContainerAdministrator
 RUN setx /M PATH "%PATH%;C:\git\cmd;C:\git\mingw64\bin;C:\git\usr\bin;"
-USER ContainerUser
 
 COPY --from=git-installer /git/ /git
 
