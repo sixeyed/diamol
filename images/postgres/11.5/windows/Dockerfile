@@ -32,11 +32,11 @@ RUN Write-Host('Visual C++ 2017 Redistributable Package') ; \
     $URL2 = 'https://download.visualstudio.microsoft.com/download/pr/11100230/15ccb3f02745c7b206ad10373cbca89b/VC_redist.x64.exe' ; \
     Invoke-WebRequest -Uri $URL2 -OutFile 'C:\\vcredist.exe' ; \
     Start-Process 'C:\\vcredist.exe' -Wait \
-        -ArgumentList @( \
-            '/install', \
-            '/passive', \
-            '/norestart' \
-        )
+    -ArgumentList @( \
+    '/install', \
+    '/passive', \
+    '/norestart' \
+    )
 
 
 # Copy relevant DLLs to PostgreSQL
