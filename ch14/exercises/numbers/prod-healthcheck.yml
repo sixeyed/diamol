@@ -3,7 +3,7 @@ version: "3.7"
 services:
   numbers-api:
     healthcheck:
-      interval: 5s
+      interval: 2s
       timeout: 3s
       retries: 2
       start_period: 5s

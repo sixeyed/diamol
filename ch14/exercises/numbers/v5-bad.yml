@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   numbers-api:
-    image: diamol/ch08-numbers-api:v5
+    image: diamol/ch14-numbers-api:v5
 
   numbers-web:
-    image: diamol/ch08-numbers-web:v5
+    image: diamol/ch14-numbers-web:v5

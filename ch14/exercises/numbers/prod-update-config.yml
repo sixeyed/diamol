@@ -6,5 +6,9 @@ services:
       update_config:
         parallelism: 3
         monitor: 60s
-        order: start-first
         failure_action: rollback
+
+  numbers-web:
+    deploy:
+      update_config:
+        order: start-first
