@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    healthcheck:
+      interval: 5s
+      timeout: 3s
+      retries: 2
+      start_period: 5s
+
+  numbers-web:
+    healthcheck:
+      interval: 20s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
