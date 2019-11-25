@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  accesslog:
+    image: diamol/ch09-access-log
+
+  iotd:
+    image: diamol/ch09-image-of-the-day
+
+  image-gallery:
+    image: diamol/ch09-image-gallery

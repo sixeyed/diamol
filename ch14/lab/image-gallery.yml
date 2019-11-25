@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  accesslog:
+    image: diamol/ch04-access-log
+    networks:
+      - app-net
+
+  iotd:
+    image: diamol/ch04-image-of-the-day
+    ports:
+      - 8088:80
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/image"]
+      interval: 5s
+      timeout: 20s
+      retries: 2
+      start_period: 10s
+    deploy:
+      replicas: 4
+      update_config:
+        parallelism: 2
+        order: start-first
+        monitor: 90s
+        failure_action: rollback
+      rollback_config:
+        parallelism: 4
+        order: start-first
+        failure_action: continue
+    networks:
+      - app-net
+
+  image-gallery:
+    image: diamol/ch04-image-gallery
+    ports:
+      - 80:80
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    name: image-gallery-prod
