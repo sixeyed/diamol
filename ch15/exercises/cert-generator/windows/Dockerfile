@@ -25,8 +25,8 @@ COPY openssl.cnf .\ssl\openssl.cnf
 
 COPY generate-certs.bat C:\
 
-ENV HOST_NAME="" `
-  HOST_IP="" `
+ENV HOST_NAME="localhost" `
+  HOST_IP="127.0.0.1" `
   EXPIRY_DAYS=730
 
 WORKDIR C:\certs
