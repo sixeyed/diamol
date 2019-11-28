@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  timecheck:
+    environment:
+      - Application__Environment=PROD
+      - Timer__IntervalSeconds=20

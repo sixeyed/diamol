@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+    environment {
+       REGISTRY = "registry.local:5000"
+    }
+    stages {
+        stage('Verify') {
+            steps {
+                dir('ch15/exercises') {
+                    bat './ci/00-verify.bat'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                dir('ch15/exercises') {
+                    bat './ci/01-build.bat'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                dir('ch15/exercises') {
+                    bat './ci/02-test.bat'
+                }
+            }
+        }
+        stage('Push') {
+            steps {
+                dir('ch15/exercises') {
+                    bat './ci/03-push.bat'
+                    echo "Pushed web to http://$REGISTRY/v2/diamol/ch15-timecheck/tags/list"
+                }
+            }
+        }
+    }
+}
