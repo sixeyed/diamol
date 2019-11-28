@@ -51,7 +51,9 @@ pipeline {
             }
         }
         stage('Await approval') {
-            input "Deploy to prod?"
+            steps {
+                input message: 'Deploy to prod?', ok: 'Do it!'
+            }
         }
         stage('Production') {
             steps {
