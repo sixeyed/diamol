@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
        REGISTRY = "registry.local:5000"
-       UAT_ENGINE = "ip172-18-0-32-bngnu87ad2eg009qp1d0-2376.direct.labs.play-with-docker.com:80"
-       PROD_ENGINE = "ip172-18-0-32-bngnu87ad2eg009qp1d0-2376.direct.labs.play-with-docker.com:80"
+       UAT_ENGINE = "pwd-domain:80"
+       PROD_ENGINE = "pwd-domain:80"
     }
     stages {
         stage('Verify') {
@@ -36,8 +36,8 @@ pipeline {
                     dir('ch15/lab') {
                         sh 'chmod +x ./ci/03-push.bat'
                         sh './ci/03-push.bat'
-                        echo "Pushed web to http://$REGISTRY/v2/diamol/ch15-timecheck/tags/list"
-                        echo "Pushed web to https://hub.docker.com/r/sixeyed/diamol-ch15-timecheck"
+                        echo "Pushed to http://$REGISTRY/v2/diamol/ch15-timecheck/tags/list"
+                        echo "Pushed  to Docker Hub"
                     }
                 }
             }
