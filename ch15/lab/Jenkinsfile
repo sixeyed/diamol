@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Verify') {
             steps {
-                dir('ch15/exercises') {
+                dir('ch15/lab') {
                     sh 'chmod +x ./ci/00-verify.bat'
                     sh './ci/00-verify.bat'
                 }
@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('ch15/exercises') {
+                dir('ch15/lab') {
                     sh 'chmod +x ./ci/01-build.bat'
                     sh './ci/01-build.bat'
                 }
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                dir('ch15/exercises') {
+                dir('ch15/lab') {
                     sh 'chmod +x ./ci/02-test.bat'
                     sh './ci/02-test.bat'
                 }
@@ -33,7 +33,7 @@ pipeline {
         stage('Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-user', usernameVariable: 'user', passwordVariable: 'password')]) {
-                    dir('ch15/exercises') {
+                    dir('ch15/lab') {
                         sh 'chmod +x ./ci/03-push.bat'
                         sh './ci/03-push.bat'
                         echo "Pushed web to http://$REGISTRY/v2/diamol/ch15-timecheck/tags/list"
@@ -47,7 +47,7 @@ pipeline {
                 withCredentials([file(credentialsId: 'docker-ca.pem', variable: 'ca'),
                                  file(credentialsId: 'docker-cert.pem', variable: 'cert'),
                                  file(credentialsId: 'docker-key.pem', variable: 'key')]) {                    
-                    dir('ch15/exercises') {
+                    dir('ch15/lab') {
                         sh 'chmod +x ./ci/04-uat.bat'
                         sh './ci/04-uat.bat'
                         echo "Deployed to UAT"
@@ -65,7 +65,7 @@ pipeline {
                 withCredentials([file(credentialsId: 'docker-ca.pem', variable: 'ca'),
                                  file(credentialsId: 'docker-cert.pem', variable: 'cert'),
                                  file(credentialsId: 'docker-key.pem', variable: 'key')]) {                    
-                    dir('ch15/exercises') {
+                    dir('ch15/lab') {
                         sh 'chmod +x ./ci/05-deploy.bat'
                         sh './ci/05-deploy.bat'
                         echo "Deployed to PROD"
