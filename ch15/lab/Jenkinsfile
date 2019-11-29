@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-user', usernameVariable: 'user', passwordVariable: 'password')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-user', usernameVariable: 'hub_user', passwordVariable: 'hub_password')]) {
                     dir('ch15/lab') {
                         sh 'chmod +x ./ci/03-push.bat'
                         sh './ci/03-push.bat'
