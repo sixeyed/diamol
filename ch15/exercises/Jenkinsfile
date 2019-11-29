@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
        REGISTRY = "registry.local:5000"
-       SMOKE_ENGINE = "ip172-18-0-58-bngf5uot969000c674eg-2376.direct.labs.play-with-docker.com"
-       PROD_ENGINE = "ip172-18-0-58-bngf5uot969000c674eg-2376.direct.labs.play-with-docker.com"
+       SMOKE_ENGINE = "ip172-18-0-58-bngf5uot969000c674eg-2376.direct.labs.play-with-docker.com:80"
+       PROD_ENGINE = "ip172-18-0-58-bngf5uot969000c674eg-2376.direct.labs.play-with-docker.com:80"
     }
     stages {
         stage('Verify') {
