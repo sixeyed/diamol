@@ -39,15 +39,15 @@ pipeline {
                 }
             }
         }
-        stage('Smoke test') {
+        stage('UAT') {
             steps {
                 withCredentials([file(credentialsId: 'docker-ca.pem', variable: 'ca'),
                                  file(credentialsId: 'docker-cert.pem', variable: 'cert'),
                                  file(credentialsId: 'docker-key.pem', variable: 'key')]) {                    
                     dir('ch15/exercises') {
-                        sh 'chmod +x ./ci/04-smoke.bat'
-                        sh './ci/04-smoke.bat'
-                        echo "Deployed to SMOKE"
+                        sh 'chmod +x ./ci/04-uat.bat'
+                        sh './ci/04-uat.bat'
+                        echo "Deployed to UAT"
                     }
                 }
             }
