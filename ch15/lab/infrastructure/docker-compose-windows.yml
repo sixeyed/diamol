@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  jenkins:
+    volumes:
+      - type: npipe
+        source: \\.\pipe\docker_engine
+        target: \\.\pipe\docker_engine
+      - .\jenkins-scripts-windows:C:\data\init.groovy.d
