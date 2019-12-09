@@ -1,1 +1,1 @@
-FROM arm32v7/openjdk:11-jdk
+FROM arm32v7/openjdk:11-jre-slim
