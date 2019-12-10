@@ -1,2 +1,2 @@
 @echo off
-dir %1
+dir /B %1
