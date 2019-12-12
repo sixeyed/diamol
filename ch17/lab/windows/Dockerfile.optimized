@@ -1,0 +1,8 @@
+FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS install
+RUN Invoke-WebRequest -UseBasicParsing https://chocolatey.org/install.ps1 | Invoke-Expression
+RUN choco install -y docker
+
+FROM diamol/base
+ENV DOCKER_PATH="C:\\Program Files\\docker"
+RUN setx /M PATH "%PATH%;${DOCKER_PATH};"
+COPY --from=install ${DOCKER_PATH} ${DOCKER_PATH}
