@@ -1,8 +1,10 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS install
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN Invoke-WebRequest -UseBasicParsing https://chocolatey.org/install.ps1 | Invoke-Expression
 RUN choco install -y docker
 
 FROM diamol/base
 ENV DOCKER_PATH="C:\\Program Files\\docker"
-RUN setx /M PATH "%PATH%;${DOCKER_PATH};"
-COPY --from=install ${DOCKER_PATH} ${DOCKER_PATH}
+RUN setx /M PATH "%PATH%;%DOCKER_PATH%;"
+COPY --from=install C:\\Windows\\system32\\netapi32.dll C:\\Windows\\system32\\netapi32.dll
+COPY --from=install C:\\ProgramData\\chocolatey\\lib\\docker-cli\\tools\\docker.exe ${DOCKER_PATH}\\docker.exe
