@@ -1,0 +1,9 @@
+environment = "DEV"
+
+[apis]
+
+ [apis.image]
+ url = "http://iotd/image"
+
+ [apis.access]
+ url = "http://accesslog/access-log"

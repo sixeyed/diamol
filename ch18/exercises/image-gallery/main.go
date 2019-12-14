@@ -3,15 +3,25 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"io/ioutil"	
 	"math/rand"
 	"net/http"
-	"os"
 	"time"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/spf13/viper"
 )
+
+type Configuration struct {
+	Environment string
+    Apis map[string]Api `mapstructure:"apis"`
+}
+
+type Api struct {    
+    Url string
+}
 
 type Image struct {
 	Url       string `json:"url"`
@@ -23,11 +33,32 @@ type AccessLog struct {
 	ClientIP  string `json:"clientIp"`
 }
 
-func main() {
-	tmpl := template.Must(template.ParseFiles("index.html"))
-	imageApiUrl :=  os.Getenv("IMAGE_API_URL")
-	logApiUrl := os.Getenv("ACCESS_API_URL")
+func getConfig() Configuration {
+	viper.SetEnvPrefix("IG")
+	viper.AutomaticEnv()
+	viper.SetConfigName("config")
+	viper.AddConfigPath("/secrets")
+	viper.AddConfigPath("/config")
+	viper.AddConfigPath(".")
+	
+	config := Configuration{}
+	_ = viper.ReadInConfig()	
+	_ = viper.Unmarshal(&config)
 
+	return config
+}
+
+func main() {
+	config := getConfig()
+	imageApiUrl :=  config.Apis["image"].Url
+	logApiUrl := config.Apis["access"].Url
+	//imageApiUrl :=  viper.GetString("apis.image.url")
+	//logApiUrl := viper.GetString("apis.access.url")
+	fmt.Printf("Environment: %v\n", config.Environment) 
+	fmt.Printf("Image API: %v\n", imageApiUrl) 
+	fmt.Printf("Access API: %v\n", logApiUrl) 
+
+	tmpl := template.Must(template.ParseFiles("index.html"))
 	//re-use HTTP client with minimal keep-alive
 	tr := &http.Transport{
 		MaxIdleConns: 1,
