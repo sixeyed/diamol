@@ -16,7 +16,12 @@ import (
 
 type Configuration struct {
 	Environment string
+	Metrics Metrics
     Apis map[string]Api `mapstructure:"apis"`
+}
+
+type Metrics struct {    
+    Enabled bool
 }
 
 type Api struct {    
@@ -52,11 +57,7 @@ func main() {
 	config := getConfig()
 	imageApiUrl :=  config.Apis["image"].Url
 	logApiUrl := config.Apis["access"].Url
-	//imageApiUrl :=  viper.GetString("apis.image.url")
-	//logApiUrl := viper.GetString("apis.access.url")
-	fmt.Printf("Environment: %v\n", config.Environment) 
-	fmt.Printf("Image API: %v\n", imageApiUrl) 
-	fmt.Printf("Access API: %v\n", logApiUrl) 
+	fmt.Printf("Environment: %v, metrics enabled: %v\n", config.Environment, config.Metrics.Enabled) 
 
 	tmpl := template.Must(template.ParseFiles("index.html"))
 	//re-use HTTP client with minimal keep-alive
@@ -65,21 +66,6 @@ func main() {
 	    IdleConnTimeout: 1 * time.Second,
 	}
 	client := &http.Client{Transport: tr}
-
-	//create Prometheus metrics
-	inFlightGauge := prometheus.NewGauge(prometheus.GaugeOpts{
-		Name: "image_gallery_in_flight_requests",
-		Help: "Image Gallery - in-flight requests",
-	})
-	requestCounter := prometheus.NewCounterVec(
-		prometheus.CounterOpts{
-			Name: "image_gallery_requests_total",
-			Help: "Image Gallery - total requests",
-		},
-		[]string{"code", "method"},
-	)
-
-	prometheus.MustRegister(inFlightGauge, requestCounter)
 
 	rand.Seed(time.Now().UnixNano())
 
@@ -104,11 +90,28 @@ func main() {
 		}
 	})
 
-	wrappedIndexHandler := promhttp.InstrumentHandlerInFlight(inFlightGauge,
-							promhttp.InstrumentHandlerCounter(requestCounter, indexHandler))
-	
-	http.Handle("/", wrappedIndexHandler)
-	http.Handle("/metrics", promhttp.Handler())
+	if (config.Metrics.Enabled) {			
+		inFlightGauge := prometheus.NewGauge(prometheus.GaugeOpts{
+			Name: "image_gallery_in_flight_requests",
+			Help: "Image Gallery - in-flight requests",
+		})
+		requestCounter := prometheus.NewCounterVec(
+			prometheus.CounterOpts{
+				Name: "image_gallery_requests_total",
+				Help: "Image Gallery - total requests",
+			},
+			[]string{"code", "method"},
+		)
+		prometheus.MustRegister(inFlightGauge, requestCounter)
+
+		wrappedIndexHandler := promhttp.InstrumentHandlerInFlight(inFlightGauge,
+								promhttp.InstrumentHandlerCounter(requestCounter, indexHandler))
+		
+		http.Handle("/", wrappedIndexHandler)
+		http.Handle("/metrics", promhttp.Handler())
+	} else {
+		http.Handle("/", indexHandler)
+	}
 	
 	http.ListenAndServe(":80", nil)
 }

@@ -1,5 +1,8 @@
 environment = "DEV"
 
+[metrics]
+enabled = true
+
 [apis]
 
  [apis.image]
