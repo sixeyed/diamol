@@ -1,22 +1,34 @@
 using System.Net;
 using System.Runtime.InteropServices;
+using Microsoft.Extensions.Configuration;
 using ToDoList.Model;
 
 namespace ToDoList.Services
 {
     public class DiagnosticsService
     {
-        private static readonly Diagnostics _Diagnostics;
+        private static Diagnostics _Diagnostics;
+        private readonly IConfiguration _configuration;
 
-        static DiagnosticsService()
+        public DiagnosticsService(IConfiguration configuration)
         {
-            _Diagnostics = new Diagnostics
+            _configuration = configuration;
+            EnsureDiagnostics();
+        }
+
+        private void EnsureDiagnostics()
+        {
+            if (_Diagnostics == null)
             {
-                OSArchitecture = RuntimeInformation.OSArchitecture.ToString(),
-                OSDescription = RuntimeInformation.OSDescription,
-                FrameworkDescription = RuntimeInformation.FrameworkDescription,
-                HostName = Dns.GetHostName()
-            };
+                _Diagnostics = new Diagnostics
+                {
+                    OSArchitecture = RuntimeInformation.OSArchitecture.ToString(),
+                    OSDescription = RuntimeInformation.OSDescription,
+                    FrameworkDescription = RuntimeInformation.FrameworkDescription,
+                    HostName = Dns.GetHostName(),
+                    Environment = _configuration["Environment"]
+                };
+            }
         }
 
         public Diagnostics GetDiagnostics()

@@ -10,6 +10,7 @@ RUN dotnet publish -c Release -o /out ToDoList.csproj
 # app image
 FROM diamol/dotnet-aspnet
 
+ENV DOTNET_ENVIRONMENT="Development"
 WORKDIR /app
 ENTRYPOINT ["dotnet", "ToDoList.dll"]
 

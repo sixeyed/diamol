@@ -9,5 +9,7 @@ namespace ToDoList.Model
         public string HostName { get; set; }
 
         public string FrameworkDescription { get; set; }
+
+        public string Environment { get; set; }
     }
 }
