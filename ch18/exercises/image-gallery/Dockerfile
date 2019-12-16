@@ -11,9 +11,9 @@ RUN go build -o /server
 FROM diamol/base
 
 EXPOSE 80
-CMD ["/web/server"]
+CMD ["/app/server"]
 
-WORKDIR /web
+WORKDIR /app
 COPY ./src/index.html .
 COPY ./src/config.toml .
 COPY --from=builder /server .

@@ -13,7 +13,10 @@ import org.springframework.web.client.RestTemplate;
 public class ConfigController {
 
     private static final Logger log = LoggerFactory.getLogger(ConfigController.class);
-  
+
+    @Value("${release}")
+	private String release;
+
     @Value("${environment}")
 	private String environment;
 
@@ -23,6 +26,6 @@ public class ConfigController {
     @RequestMapping("/config")
     public Config get() {
         log.debug("** GET /config called"); 
-        return new Config(environment, apodUrl);
+        return new Config(release, environment, apodUrl);
     }
 }

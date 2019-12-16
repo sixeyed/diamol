@@ -42,14 +42,14 @@ type AccessLog struct {
 func getConfig() Configuration {
 	viper.SetEnvPrefix("IG")
 	viper.AutomaticEnv()
-	viper.SetConfigName("config")
-	viper.AddConfigPath("/config-override")
-	viper.AddConfigPath(".")
 	
-	config := Configuration{}
-	_ = viper.ReadInConfig()	
-	_ = viper.Unmarshal(&config)
+	viper.SetConfigFile("./config.toml")
+	viper.MergeInConfig()
+	viper.SetConfigFile("./config-override/config.toml")
+	viper.MergeInConfig()
 
+	config := Configuration{}	
+	viper.Unmarshal(&config)
 	return config
 }
 

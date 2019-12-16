@@ -2,16 +2,26 @@ package iotd;
 
 public class Config {
 
+    private String release;
     private String environment;
     private String apodUrl;
 
     public Config() {}
 
-    public Config(String environment, String apodUrl) {
+    public Config(String release, String environment, String apodUrl) {
+        setRelease(release);
         setEnvironment(environment);
         setApodUrl(apodUrl);
     }
 
+    public String getRelease() {
+    	return release;
+    }
+    
+    public void setRelease(String release) {
+        this.release = release;
+    }
+    
     public String getEnvironment() {
     	return environment;
     }
