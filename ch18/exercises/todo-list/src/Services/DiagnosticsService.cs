@@ -26,6 +26,7 @@ namespace ToDoList.Services
                     OSDescription = RuntimeInformation.OSDescription,
                     FrameworkDescription = RuntimeInformation.FrameworkDescription,
                     HostName = Dns.GetHostName(),
+                    Release = _configuration["Release"],
                     Environment = _configuration["Environment"]
                 };
             }

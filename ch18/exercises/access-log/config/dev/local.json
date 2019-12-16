@@ -1,0 +1,6 @@
+{
+  "environment": "DEV",
+  "metrics": {
+    "enabled": false
+  }
+}

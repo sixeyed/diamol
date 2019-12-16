@@ -10,6 +10,8 @@ namespace ToDoList.Model
 
         public string FrameworkDescription { get; set; }
 
+        public string Release { get; set; }
+
         public string Environment { get; set; }
     }
 }

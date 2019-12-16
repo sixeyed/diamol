@@ -15,8 +15,7 @@ namespace ToDoList
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((builderContext, config) =>
                 {
-                    config.AddJsonFile("config/config.json", optional: true)
-                          .AddJsonFile("config/secrets.json", optional: true);
+                    config.AddJsonFile("config-override/local.json", optional: true);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

@@ -15,6 +15,7 @@ import (
 )
 
 type Configuration struct {
+	Release string
 	Environment string
 	Metrics Metrics
     Apis map[string]Api `mapstructure:"apis"`
@@ -42,8 +43,7 @@ func getConfig() Configuration {
 	viper.SetEnvPrefix("IG")
 	viper.AutomaticEnv()
 	viper.SetConfigName("config")
-	viper.AddConfigPath("/secrets")
-	viper.AddConfigPath("/config")
+	viper.AddConfigPath("/config-override")
 	viper.AddConfigPath(".")
 	
 	config := Configuration{}
@@ -51,6 +51,11 @@ func getConfig() Configuration {
 	_ = viper.Unmarshal(&config)
 
 	return config
+}
+
+func ConfigHandler(w http.ResponseWriter, req *http.Request) {
+	config := getConfig()
+	json.NewEncoder(w).Encode(config)
 }
 
 func main() {
@@ -69,6 +74,7 @@ func main() {
 
 	rand.Seed(time.Now().UnixNano())
 
+	configHandler := http.HandlerFunc(ConfigHandler)
 	indexHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		//random failures:
 		if (rand.Intn(10) > 8) {
@@ -113,5 +119,6 @@ func main() {
 		http.Handle("/", indexHandler)
 	}
 	
+	http.Handle("/config", configHandler)
 	http.ListenAndServe(":80", nil)
 }
