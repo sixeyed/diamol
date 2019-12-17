@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  accesslog:
+    image: diamol/ch18-access-log
+    ports:
+      - "8030:80"
+    networks:
+      - iotd-net
+
+  iotd:
+    image: diamol/ch18-image-of-the-day
+    ports:
+      - "8020:80"
+    networks:
+      - iotd-net
+
+  image-gallery:
+    image: diamol/ch18-image-gallery
+    ports:
+      - "8010:80"
+    depends_on:
+      - accesslog
+      - iotd
+    networks:
+      - iotd-net
+
+networks:
+  iotd-net:

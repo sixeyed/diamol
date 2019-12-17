@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"	
-	"math/rand"
 	"net/http"
 	"time"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -72,28 +71,20 @@ func main() {
 	}
 	client := &http.Client{Transport: tr}
 
-	rand.Seed(time.Now().UnixNano())
-
 	configHandler := http.HandlerFunc(ConfigHandler)
 	indexHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		//random failures:
-		if (rand.Intn(10) > 8) {
-			w.WriteHeader(http.StatusInternalServerError)
-			w.Write([]byte("Failed"))
-		} else {
-			response,_ := client.Get(imageApiUrl)
-			defer response.Body.Close()
-			data,_ := ioutil.ReadAll(response.Body)
-			image := Image{}
-			json.Unmarshal([]byte(data), &image)	
-			tmpl.Execute(w, image)
-			log := AccessLog{
-				ClientIP: r.RemoteAddr,
-			}
-			jsonLog,_ := json.Marshal(log)
-			response,_ = client.Post(logApiUrl, "application/json", bytes.NewBuffer(jsonLog))
-			defer response.Body.Close()
+		response,_ := client.Get(imageApiUrl)
+		defer response.Body.Close()
+		data,_ := ioutil.ReadAll(response.Body)
+		image := Image{}
+		json.Unmarshal([]byte(data), &image)	
+		tmpl.Execute(w, image)
+		log := AccessLog{
+			ClientIP: r.RemoteAddr,
 		}
+		jsonLog,_ := json.Marshal(log)
+		response,_ = client.Post(logApiUrl, "application/json", bytes.NewBuffer(jsonLog))
+		defer response.Body.Close()
 	})
 
 	if (config.Metrics.Enabled) {			

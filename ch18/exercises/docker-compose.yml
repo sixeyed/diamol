@@ -1,0 +1,53 @@
+version: "3.7"
+
+services:
+  accesslog:
+    image: diamol/ch18-access-log
+    ports:
+      - "8030:80"
+    environment:
+      NODE_CONFIG: '{"metrics": {"enabled":"true"}}'
+    secrets:
+      - source: access-log-config
+        target: /app/config-override/local.json
+    networks:
+      - iotd-net
+
+  iotd:
+    image: diamol/ch18-image-of-the-day
+    ports:
+      - "8020:80"
+    environment:
+      CONFIG_SOURCE_PATH: "/config-override/application.properties"
+      IOTD_MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health,prometheus"
+    secrets:
+      - source: iotd-config
+        target: /config-override/application.properties
+    networks:
+      - iotd-net
+
+  image-gallery:
+    image: diamol/ch18-image-gallery
+    ports:
+      - "8010:80"
+    environment:
+      IG_METRICS.ENABLED: "TRUE"
+    secrets:
+      - source: image-gallery-config
+        target: /app/config-override/config.toml
+    depends_on:
+      - accesslog
+      - iotd
+    networks:
+      - iotd-net
+
+networks:
+  iotd-net:
+
+secrets:
+  access-log-config:
+    file: access-log/config/dev/local.json
+  iotd-config:
+    file: image-of-the-day/config/dev/application.properties
+  image-gallery-config:
+    file: image-gallery/config/dev/config.toml

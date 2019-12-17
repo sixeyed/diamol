@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  accesslog:
+    image: diamol/ch18-access-log
+    ports:
+      - "8030:80"
+    environment:
+      NODE_CONFIG: '{"release": "20.01"}'
+    volumes:
+      - ./config/access-log/test:/app/config-override
+    networks:
+      - iotd-net
+
+  iotd:
+    image: diamol/ch18-image-of-the-day
+    ports:
+      - "8020:80"
+    environment:
+      CONFIG_SOURCE_PATH: "/app/config-override/application.properties"
+      IOTD_RELEASE: "20.01"
+    volumes:
+      - ./config/image-of-the-day/test:/app/config-override
+    networks:
+      - iotd-net
+
+  image-gallery:
+    image: diamol/ch18-image-gallery
+    ports:
+      - "8010:80"
+    environment:
+      IG_RELEASE: "20.01"
+    volumes:
+      - ./config/image-gallery/test:/app/config-override
+    depends_on:
+      - accesslog
+      - iotd
+    networks:
+      - iotd-net
+
+networks:
+  iotd-net:

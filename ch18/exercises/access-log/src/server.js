@@ -12,18 +12,18 @@ process.env["NODE_CONFIG_DIR"] =
   "/config-override/";
 const conf = require("config");
 
+const accessCounter = new prom.Counter({
+  name: "access_log_total",
+  help: "Access Log - total log requests"
+});
+
+const clientIpGauge = new prom.Gauge({
+  name: "access_client_ip_current",
+  help: "Access Log - current unique IP addresses"
+});
+
 const metricsConf = conf.get("metrics");
 if (metricsConf.enabled) {
-  const accessCounter = new prom.Counter({
-    name: "access_log_total",
-    help: "Access Log - total log requests"
-  });
-
-  const clientIpGauge = new prom.Gauge({
-    name: "access_client_ip_current",
-    help: "Access Log - current unique IP addresses"
-  });
-
   const defaultLabels = { hostname: os.hostname() };
   prom.register.setDefaultLabels(defaultLabels);
   prom.collectDefaultMetrics();

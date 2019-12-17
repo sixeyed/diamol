@@ -20,12 +20,15 @@ public class ConfigController {
     @Value("${environment}")
 	private String environment;
 
+    @Value("${management.endpoints.web.exposure.include}")
+    private String managementEndpoints;
+
     @Value("${apod.url}")
 	private String apodUrl;
     
     @RequestMapping("/config")
     public Config get() {
         log.debug("** GET /config called"); 
-        return new Config(release, environment, apodUrl);
+        return new Config(release, environment, managementEndpoints, apodUrl);
     }
 }

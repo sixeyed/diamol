@@ -4,13 +4,15 @@ public class Config {
 
     private String release;
     private String environment;
+    private String managementEndpoints;
     private String apodUrl;
 
     public Config() {}
 
-    public Config(String release, String environment, String apodUrl) {
+    public Config(String release, String environment, String managementEndpoints, String apodUrl) {
         setRelease(release);
         setEnvironment(environment);
+        setManagementEndpoints(managementEndpoints);
         setApodUrl(apodUrl);
     }
 
@@ -28,6 +30,14 @@ public class Config {
     
     public void setEnvironment(String environment) {
         this.environment = environment;
+    }
+    
+    public String getManagementEndpoints() {
+    	return managementEndpoints;
+    }
+    
+    public void setManagementEndpoints(String managementEndpoints) {
+        this.managementEndpoints = managementEndpoints;
     }
 
     public String getApodUrl() {
