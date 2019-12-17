@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  accesslog:
+    image: diamol/ch18-access-log
+    networks:
+      - iotd-net
+    logging:
+      driver: "fluentd"
+      options:
+        tag: "{{.ImageName}}-{{.Name}}-{{.ID}}"
+
+  iotd:
+    image: diamol/ch18-image-of-the-day
+    networks:
+      - iotd-net
+    logging:
+      driver: "fluentd"
+      options:
+        tag: "{{.ImageName}}-{{.Name}}-{{.ID}}"
+
+  image-gallery:
+    image: diamol/ch18-image-gallery
+    ports:
+      - "8010:80"
+    depends_on:
+      - accesslog
+      - iotd
+    networks:
+      - iotd-net
+    logging:
+      driver: "fluentd"
+      options:
+        tag: "{{.ImageName}}-{{.Name}}-{{.ID}}"
+
+networks:
+  iotd-net:
