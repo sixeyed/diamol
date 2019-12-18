@@ -1,14 +1,14 @@
 FROM diamol/base as download
-ARG ELASTIC_VERSION="7.5.0"
+ARG ELASTIC_VERSION="6.8.5"
 
-# https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-7.5.0-no-jdk-linux-x86_64.tar.gz
+# https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-6.8.5.tar.gz
 
-RUN wget "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-${ELASTIC_VERSION}-no-jdk-linux-x86_64.tar.gz"
-RUN tar -xzf "elasticsearch-oss-${ELASTIC_VERSION}-no-jdk-linux-x86_64.tar.gz"
+RUN wget "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-${ELASTIC_VERSION}.tar.gz"
+RUN tar -xzf "elasticsearch-oss-${ELASTIC_VERSION}.tar.gz"
 
 # elasticsearch
 FROM diamol/openjdk
-ARG ELASTIC_VERSION="7.5.0"
+ARG ELASTIC_VERSION="6.8.5"
 
 EXPOSE 9200 9300
 ENV ES_HOME="/usr/share/elasticsearch" \
