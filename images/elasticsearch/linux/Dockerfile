@@ -4,7 +4,7 @@ ARG ELASTIC_VERSION="7.5.0"
 # https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-7.5.0-no-jdk-linux-x86_64.tar.gz
 
 RUN wget "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-${ELASTIC_VERSION}-no-jdk-linux-x86_64.tar.gz"
-RUN tar -xzf "elasticsearch-oss-${ELASTIC_VERSION}-linux-x86_64.tar.gz"
+RUN tar -xzf "elasticsearch-oss-${ELASTIC_VERSION}-no-jdk-linux-x86_64.tar.gz"
 
 # elasticsearch
 FROM diamol/openjdk
