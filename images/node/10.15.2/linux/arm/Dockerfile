@@ -1,0 +1,1 @@
+FROM node:10.15.2-stretch-slim

@@ -1,1 +1,1 @@
-FROM node:10.15.2-stretch-slim
+FROM node:10.15.2-alpine
