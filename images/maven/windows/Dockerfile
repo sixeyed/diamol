@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 as installer
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ARG MAVEN_VERSION="3.6.1"
+ARG MAVEN_VERSION="3.6.3"
 
 RUN Write-Host "Downloading Maven version: $env:MAVEN_VERSION"; `
     Invoke-WebRequest -OutFile maven.zip "http://apache.mirror.anlx.net/maven/maven-3/$($env:MAVEN_VERSION)/binaries/apache-maven-$($env:MAVEN_VERSION)-bin.zip"; `
