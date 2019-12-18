@@ -8,7 +8,7 @@ COPY . .
 RUN mvn package
 
 # app
-FROM openjdk:11-jdk
+FROM diamol/openjdk:jdk
 
 WORKDIR /app
 COPY truth.txt .
