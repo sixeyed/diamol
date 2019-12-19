@@ -12,7 +12,7 @@ RUN Write-Host "Downloading Apache version: $env:HTTPD_VERSION"; `
     Expand-Archive httpd.zip -DestinationPath C:\ ;
 
 # Apache
-FROM mcr.microsoft.com/windows/nanoserver:1809
+FROM diamol/base
 
 EXPOSE 80 443
 WORKDIR C:\Apache24

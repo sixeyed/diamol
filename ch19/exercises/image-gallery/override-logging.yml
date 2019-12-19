@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  iotd:
+    image: diamol/ch18-image-of-the-day
+    environment:
+      IOTD_LOGGING_LEVEL_ROOT: WARN
+      IOTD_LOGGING_LEVEL_IOTD: DEBUG

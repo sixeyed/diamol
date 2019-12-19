@@ -2,7 +2,9 @@ version: "3"
 
 services:
   fluentd:
-    build: .
+    image: diamol/fluentd
+    environment:
+      FLUENTD_CONF: elasticsearch.conf
     volumes:
       - ./conf:/fluentd/etc
     ports:
@@ -10,13 +12,11 @@ services:
       - "24224:24224/udp"
 
   elasticsearch:
-    image: elasticsearch:7.5.0
-    environment:
-      - "discovery.type=single-node"
+    image: diamol/elasticsearch
     ports:
       - "9200:9200"
 
   kibana:
-    image: kibana:7.5.0
+    image: diamol/kibana
     ports:
       - "5601:5601"

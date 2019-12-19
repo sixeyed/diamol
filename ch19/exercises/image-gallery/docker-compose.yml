@@ -8,7 +8,7 @@ services:
     logging:
       driver: "fluentd"
       options:
-        tag: "{{.ImageName}}-{{.Name}}-{{.ID}}"
+        tag: "gallery.access-log.{{.ImageName}}"
 
   iotd:
     image: diamol/ch18-image-of-the-day
@@ -17,7 +17,7 @@ services:
     logging:
       driver: "fluentd"
       options:
-        tag: "{{.ImageName}}-{{.Name}}-{{.ID}}"
+        tag: "gallery.iotd.{{.ImageName}}"
 
   image-gallery:
     image: diamol/ch18-image-gallery
@@ -31,7 +31,7 @@ services:
     logging:
       driver: "fluentd"
       options:
-        tag: "{{.ImageName}}-{{.Name}}-{{.ID}}"
+        tag: "gallery.image-gallery.{{.ImageName}}"
 
 networks:
   iotd-net:
