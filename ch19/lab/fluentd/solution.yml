@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  fluentd:
+    image: diamol/fluentd
+    environment:
+      FLUENTD_CONF: solution.conf

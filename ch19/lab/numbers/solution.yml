@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    logging:
+      driver: "fluentd"
+      options:
+        tag: "numbers.api.{{.ImageName}}"
+
+  numbers-web:
+    logging:
+      driver: "fluentd"
+      options:
+        tag: "numbers.web.{{.ImageName}}"
