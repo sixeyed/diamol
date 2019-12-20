@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  whoami:
+    image: diamol/ch16-whoami
+    networks:
+      - ch20
+
+networks:
+  ch20:
+    external:
+      name: ch20

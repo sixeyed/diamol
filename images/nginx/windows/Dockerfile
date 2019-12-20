@@ -1,0 +1,22 @@
+# escape=`
+FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+ARG NGINX_VERSION="1.17.6"
+
+RUN Write-Host "Downloading Nginx version: $env:NGINX_VERSION"; `
+    Invoke-WebRequest -OutFile nginx.zip -UseBasicParsing "http://nginx.org/download/nginx-$($env:NGINX_VERSION).zip"; `
+    Expand-Archive nginx.zip -DestinationPath C:\ ; `
+    Rename-Item "C:\nginx-$($env:NGINX_VERSION)" C:\nginx;
+
+# NGINX - requires server core because the binary is 32/64 bit and doesn't run in nano
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
+
+ARG NGINX_VERSION="1.17.6"
+ENV NGINX_HOME="C:\nginx"
+
+EXPOSE 80 443
+WORKDIR ${NGINX_HOME}
+ENTRYPOINT ["nginx.exe"]
+
+COPY --from=installer ${NGINX_HOME}\ .

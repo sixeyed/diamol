@@ -1,0 +1,5 @@
+version: "3.7"
+
+services:
+  nginx:
+    command: -c /conf/numbers.conf

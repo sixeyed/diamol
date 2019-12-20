@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    image: diamol/ch14-numbers-api:v5
+    environment:
+      - Broken=false
+    networks:
+      - ch20
+
+networks:
+  ch20:
+    external:
+      name: ch20

@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  accesslog:
+    image: diamol/ch04-access-log
+    networks:
+      - ch20
+
+  iotd:
+    image: diamol/ch04-image-of-the-day
+    networks:
+      - ch20
+
+  image-gallery:
+    image: diamol/ch04-image-gallery
+    depends_on:
+      - accesslog
+      - iotd
+    networks:
+      - ch20
+
+networks:
+  ch20:
+    external:
+      name: ch20

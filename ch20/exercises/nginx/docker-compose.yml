@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: diamol/nginx
+    command: -c /conf/whoami.conf
+    volumes:
+      - type: bind
+        source: ./conf
+        target: C:\conf
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - ch20
+
+networks:
+  ch20:
+    external:
+      name: ch20
