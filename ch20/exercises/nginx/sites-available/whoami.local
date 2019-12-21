@@ -1,0 +1,9 @@
+server {
+    server_name whoami.local;
+
+    location / {
+        proxy_pass             http://whoami;
+        proxy_set_header       Host $host;
+        add_header             X-Host $hostname;         
+    }
+}

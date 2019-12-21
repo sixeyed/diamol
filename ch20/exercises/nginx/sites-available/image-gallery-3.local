@@ -1,0 +1,35 @@
+server {
+    server_name image-gallery.local;
+    listen 80;
+	return 301 https://$server_name$request_uri;
+}
+
+server {
+	server_name  image-gallery.local;
+	listen 443 ssl;
+
+	ssl_certificate        /etc/nginx/certs/server-cert.pem;
+	ssl_certificate_key    /etc/nginx/certs/server-key.pem;
+	ssl_session_cache      shared:SSL:10m;
+	ssl_session_timeout    20m;
+	ssl_protocols          TLSv1 TLSv1.1 TLSv1.2;
+
+	ssl_prefer_server_ciphers on;
+	ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
+	add_header  Strict-Transport-Security "max-age=31536000" always;
+
+    location = /api/image {
+        proxy_pass             http://iotd/image;
+        proxy_set_header       Host $host;
+        add_header             X-Proxy $hostname;         
+        add_header             X-Upstream $upstream_addr;
+    }
+
+    location / {
+        proxy_pass             http://image-gallery;
+        proxy_set_header       Host $host;
+        add_header             X-Proxy $hostname;         
+        add_header             X-Upstream $upstream_addr;
+    }        
+}

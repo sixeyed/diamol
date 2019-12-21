@@ -1,0 +1,10 @@
+server {
+    server_name image-gallery.local;
+
+    location / {
+        proxy_pass             http://image-gallery;
+        proxy_set_header       Host $host;
+        add_header             X-Proxy $hostname;         
+        add_header             X-Upstream $upstream_addr;
+    }
+}

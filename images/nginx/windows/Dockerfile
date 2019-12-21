@@ -13,10 +13,11 @@ RUN Write-Host "Downloading Nginx version: $env:NGINX_VERSION"; `
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 ARG NGINX_VERSION="1.17.6"
-ENV NGINX_HOME="C:\nginx"
+ENV NGINX_HOME="C:\etc\nginx"
 
 EXPOSE 80 443
 WORKDIR ${NGINX_HOME}
 ENTRYPOINT ["nginx.exe"]
 
 COPY --from=installer ${NGINX_HOME}\ .
+COPY nginx.conf ${NGINX_HOME}\

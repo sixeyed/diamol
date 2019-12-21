@@ -3,11 +3,15 @@ version: "3.7"
 services:
   nginx:
     image: diamol/nginx
-    command: -c /conf/whoami.conf
     volumes:
       - type: bind
-        source: ./conf
-        target: C:\conf
+        source: ./sites-enabled
+        target: /etc/nginx/sites-enabled
+      #   target: C:\etc\nginx\sites-enabled
+      - type: bind
+        source: ./certs
+        target: /etc/nginx/certs
+    #   target: C:\etc\nginx\certs
     ports:
       - "80:80"
       - "443:443"
