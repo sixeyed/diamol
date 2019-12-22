@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  iotd:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.image-gallery-api.rule=(Host(`image-gallery.local`) && PathPrefix(`/api`))"
+      - "traefik.http.middlewares.image-gallery-api-stripprefix.stripprefix.prefixes=/api,/api/"
+      - "traefik.http.routers.image-gallery-api.middlewares=image-gallery-api-stripprefix@docker"
+
+  image-gallery:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.image-gallery.rule=Host(`image-gallery.local`)"
+      - "traefik.http.services.image-gallery.loadbalancer.server.port=80"
+
+networks:
+  ch20:
+    external:
+      name: ch20

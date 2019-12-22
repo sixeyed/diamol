@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  whoami:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.local`)"
+      - "traefik.http.services.whoami.loadBalancer.sticky=true"
+      - "traefik.http.services.whoami.loadbalancer.sticky.cookie.name=whoami_cookie"
+      - "traefik.http.services.whoami.loadbalancer.sticky.cookie.httpOnly=true"

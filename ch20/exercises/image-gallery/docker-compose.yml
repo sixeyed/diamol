@@ -8,6 +8,8 @@ services:
 
   iotd:
     image: diamol/ch04-image-of-the-day
+    ports:
+      - "8010:80"
     networks:
       - ch20
 

@@ -1,0 +1,20 @@
+server {
+    server_name pi.local;
+    listen 80;
+
+    expires $expires;
+    gzip  on;    
+    gzip_proxied any;
+
+    location / {
+        proxy_pass             http://pi;
+        proxy_set_header       Host $host;
+        proxy_cache            LONG;
+        proxy_cache_valid      200  6h;
+        proxy_cache_use_stale  error timeout invalid_header updating
+                               http_500 http_502 http_503 http_504;
+        add_header             X-Cache $upstream_cache_status;
+        add_header             X-Proxy $hostname;         
+        add_header             X-Upstream $upstream_addr;
+    }        
+}

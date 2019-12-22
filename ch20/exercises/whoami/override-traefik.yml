@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  whoami:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.local`)"

@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  pi:
+    image: diamol/ch20-pi
+    ports:
+      - "8031:80"
+    networks:
+      - ch20
+
+networks:
+  ch20:
+    external:
+      name: ch20

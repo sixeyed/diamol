@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  traefik:
+    image: diamol/traefik
+    command: 
+      - "--api.insecure=true"
+      - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=ch20"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web-secure.address=:443"
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    networks:
+      - ch20
+
+networks:
+  ch20:
+    external:
+      name: ch20

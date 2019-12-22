@@ -19,5 +19,6 @@ EXPOSE 80 443
 WORKDIR ${NGINX_HOME}
 ENTRYPOINT ["nginx.exe"]
 
+RUN mkdir -p /data/nginx/cache/long; mkdir -p /data/nginx/cache/short
 COPY --from=installer ${NGINX_HOME}\ .
 COPY nginx.conf ${NGINX_HOME}\

@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  iotd:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.image-gallery-api.rule=(Host(`image-gallery.local`) && PathPrefix(`/api`))"
+      - "traefik.http.routers.image-gallery-api.middlewares=image-gallery-api-redirect@docker"
+      - "traefik.http.middlewares.image-gallery-api-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.image-gallery-api-secure.rule=(Host(`image-gallery.local`) && PathPrefix(`/api`))"
+      - "traefik.http.routers.image-gallery-api-secure.entrypoints=web-secure"
+      - "traefik.http.routers.image-gallery-api-secure.tls=true"
+      - "traefik.http.middlewares.image-gallery-api-secure-stripprefix.stripprefix.prefixes=/api,/api/"
+      - "traefik.http.routers.image-gallery-api-secure.middlewares=image-gallery-api-secure-stripprefix@docker"
+
+  image-gallery:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.image-gallery.rule=Host(`image-gallery.local`)"
+      - "traefik.http.routers.image-gallery.middlewares=image-gallery-redirect@docker"
+      - "traefik.http.middlewares.image-gallery-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.image-gallery-secure.rule=Host(`image-gallery.local`)"
+      - "traefik.http.routers.image-gallery-secure.entrypoints=web-secure"
+      - "traefik.http.routers.image-gallery-secure.tls=true"
+      - "traefik.http.services.image-gallery.loadbalancer.server.port=80"
+
+networks:
+  ch20:
+    external:
+      name: ch20

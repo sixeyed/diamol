@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: diamol/nginx
+    volumes:
+      - type: bind
+        source: ./sites-enabled
+        target: /etc/nginx/sites-enabled
+      #   target: C:\etc\nginx\sites-enabled
+    ports:
+      - "80:80"
+    networks:
+      - ch20
+
+networks:
+  ch20:
+    external:
+      name: ch20
