@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  nginx:
+    volumes:
+      - type: bind
+        source: ./sites-enabled
+        target: /etc/nginx/sites-enabled
+      - type: bind
+        source: ./certs
+        target: /etc/nginx/certs
