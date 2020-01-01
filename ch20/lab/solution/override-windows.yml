@@ -6,6 +6,3 @@ services:
       - type: bind
         source: ./sites-enabled
         target: C:\etc\nginx\sites-enabled
-      - type: bind
-        source: ./certs
-        target: C:\etc\nginx\certs
