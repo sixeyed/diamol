@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  audit-handler:
+    image: diamol/ch21-audit-handler
+    networks:
+      - app-net

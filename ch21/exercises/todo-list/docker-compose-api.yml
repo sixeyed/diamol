@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  todo-api:
+    image: diamol/ch21-todo-api
+    ports:
+      - 8081:80
+    networks:
+      - app-net

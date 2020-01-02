@@ -1,0 +1,46 @@
+﻿@page "/list"
+
+@using ToDoList.Model
+@using ToDoList.Services
+
+@inject ToDoService ToDoService
+
+<h1>TODO List</h1>
+
+<p>There is much still to do.</p>
+
+<p>But there's always room to <a href="/new">add more</a>.</p>
+
+@if (todos == null)
+{
+<p><em>Loading...</em></p>
+}
+else
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Date Added</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in todos)
+            {
+        <tr>
+            <td>@todo.Item</td>
+            <td>@todo.DateAdded.ToLongDateString()</td>
+        </tr>
+            }
+    </tbody>
+</table>
+}
+
+@code {
+    ToDo[] todos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        todos = await ToDoService.GetToDosAsync();
+    }
+}

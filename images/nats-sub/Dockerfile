@@ -9,7 +9,8 @@ RUN go build -o /nats-sub
 
 # app
 FROM diamol/base
+ENTRYPOINT ["/app/nats-sub", "-s", "nats://message-queue:4222"]
 
-CMD ["nats-sub"]
+WORKDIR /app
 COPY --from=builder /nats-sub .
 RUN chmod +x nats-sub
