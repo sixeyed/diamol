@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
        REGISTRY = "registry.local:5000"
-       UAT_ENGINE = "pwd-domain:80"
-       PROD_ENGINE = "pwd-domain:80"
+       UAT_ENGINE = "ip172-18-0-62-bo9pj8nad2eg008a76e0-2376.direct.labs.play-with-docker.com:80"
+       PROD_ENGINE = "ip172-18-0-62-bo9pj8nad2eg008a76e0-2376.direct.labs.play-with-docker.com:80"
     }
     stages {
         stage('Verify') {
