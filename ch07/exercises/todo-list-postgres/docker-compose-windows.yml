@@ -20,11 +20,13 @@ services:
       - app-net
     secrets:
       - source: postgres-connection
-        target: /app/config/secrets.json
+        target: C:\app\config\
 
 networks:
   app-net:
+    external:
+      name: nat
 
 secrets:
   postgres-connection:
-    file: ./config/secrets.json
+    file: ./config/
