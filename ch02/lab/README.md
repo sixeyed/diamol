@@ -30,7 +30,10 @@ index.html
 ```
 docker container cp index.html 86b:/usr/local/apache2/htdocs/index.html
 ```
-> The format of the `cp` command is `[source path] [target path]`. The container can be the source or the target, and you prefix the container file path with the container ID (`86b` here). You can use the same file path format with forward-slashes on Linux or Windows in the `cp` command.
+
+The format of the `cp` command is `[source path] [target path]`. The container can be the source or the target, and you prefix the container file path with the container ID (`86b` here). You can use the same file path format with forward-slashes on Linux or Windows in the `cp` command.
+
+> If you're using Windows containers on Windows 10 you may get the error _filesystem operations against a running Hyper-V container are not supported_, which means you'll need to stop the container with `docker container stop <id>` before you run the `docker container cp` command, and then start the container again afterwards with `docker container start <id>`.
 
 4. Browse to the published port on http://localhost:8088 - you'll see your new content:
 
