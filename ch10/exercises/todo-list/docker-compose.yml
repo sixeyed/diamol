@@ -12,5 +12,3 @@ services:
 
 networks:
   app-net:
-    external:
-      name: nat

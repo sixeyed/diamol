@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  todo-web:
+    ports:
+      - "${TODO_WEB_PORT}:80"
+    environment:
+      - Database:Provider=Postgres
+    env_file:
+      - ./config/logging.information.env
+    networks:
+      - app-net
+
+  todo-db:
+    image: diamol/postgres:11.5
+    ports:
+      - "${TODO_DB_PORT}:5432"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    name: todo-test
+
+secrets:
+  todo-db-connection:
+    file: ./config/
