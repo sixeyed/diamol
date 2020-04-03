@@ -8,8 +8,16 @@ def pipelines = [
 	[name: 'diamol/ch04-image-gallery', scriptPath: 'ch04/exercises/image-gallery/Jenkinsfile'],
 	[name: 'diamol/ch04-image-of-the-day', scriptPath: 'ch04/exercises/image-of-the-day/Jenkinsfile'],
 	[name: 'diamol/ch04-multi-stage', scriptPath: 'ch04/exercises/multi-stage/Jenkinsfile'],
-	[name: 'diamol/ch04-lab', scriptPath: 'ch04/lab/Jenkinsfile'], 
-	[name: 'diamol/ch04-lab-optimized', scriptPath: 'ch04/lab/Jenkinsfile.optimized']   
+	[name: 'diamol/ch04-lab', scriptPath: 'ch04/lab/Jenkinsfile'],
+	[name: 'diamol/ch04-lab-optimized', scriptPath: 'ch04/lab/Jenkinsfile.optimized'],
+	[name: 'diamol/apache', scriptPath: 'images/apache/Jenkinsfile'],
+	[name: 'diamol/base', scriptPath: 'images/base/Jenkinsfile'],
+	[name: 'diamol/cert-generator', scriptPath: 'images/cert-generator/Jenkinsfile'],
+	[name: 'diamol/dotnet-aspnet', scriptPath: 'images/dotnet/aspnet/Jenkinsfile'],
+	[name: 'diamol/dotnet-runtime', scriptPath: 'images/dotnet/runtime/Jenkinsfile'],
+	[name: 'diamol/dotnet-sdk', scriptPath: 'images/dotnet/sdk/Jenkinsfile'],
+	[name: 'diamol/elasticsearch', scriptPath: 'images/elasticsearch/Jenkinsfile'],
+	[name: 'diamol/fluentd', scriptPath: 'images/fluentd/Jenkinsfile'],
 ]
 
 for(p in pipelines) {
