@@ -3,7 +3,13 @@ def pipelines = [
     [name: 'diamol/ch02-hello-diamol-web', scriptPath: 'ch02/exercises/hello-diamol-web/Jenkinsfile'],
     [name: 'diamol/ch03-web-ping', scriptPath: 'ch03/exercises/web-ping/Jenkinsfile'],
     [name: 'diamol/ch03-web-ping-optimized', scriptPath: 'ch03/exercises/web-ping-optimized/Jenkinsfile'],
-    [name: 'diamol/ch03-lab', scriptPath: 'ch03/lab/Jenkinsfile']    
+    [name: 'diamol/ch03-lab', scriptPath: 'ch03/lab/Jenkinsfile'],
+	[name: 'diamol/ch04-access-log', scriptPath: 'ch04/exercises/access-log/Jenkinsfile'],
+	[name: 'diamol/ch04-image-gallery', scriptPath: 'ch04/exercises/image-gallery/Jenkinsfile'],
+	[name: 'diamol/ch04-image-of-the-day', scriptPath: 'ch04/exercises/image-of-the-day/Jenkinsfile'],
+	[name: 'diamol/ch04-multi-stage', scriptPath: 'ch04/exercises/multi-stage/Jenkinsfile'],
+	[name: 'diamol/ch04-lab', scriptPath: 'ch04/lab/Jenkinsfile'], 
+	[name: 'diamol/ch04-lab-optimized', scriptPath: 'ch04/lab/Jenkinsfile.optimized']   
 ]
 
 for(p in pipelines) {
@@ -21,6 +27,7 @@ for(p in pipelines) {
 	                  	cloneOptions {
 	                  	  shallow(true)
 	                  	  depth(1)
+						  noTags(true)
 	                  	}
 	                  }
 	                }
