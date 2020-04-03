@@ -18,6 +18,11 @@ def pipelines = [
 	[name: 'diamol/dotnet-sdk', scriptPath: 'images/dotnet/sdk/Jenkinsfile'],
 	[name: 'diamol/elasticsearch', scriptPath: 'images/elasticsearch/Jenkinsfile'],
 	[name: 'diamol/fluentd', scriptPath: 'images/fluentd/Jenkinsfile'],
+	[name: 'diamol/gogs', scriptPath: 'images/gogs/Jenkinsfile'],
+	[name: 'diamol/golang', scriptPath: 'images/golang/Jenkinsfile'],
+	[name: 'diamol/grafana', scriptPath: 'images/grafana/Jenkinsfile'],
+	[name: 'diamol/jenkins', scriptPath: 'images/jenkins/Jenkinsfile'],
+	[name: 'diamol/kibana', scriptPath: 'images/kibana/Jenkinsfile']
 ]
 
 for(p in pipelines) {
