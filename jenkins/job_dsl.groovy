@@ -22,7 +22,11 @@ def pipelines = [
 	[name: 'diamol/golang', scriptPath: 'images/golang/Jenkinsfile'],
 	[name: 'diamol/grafana', scriptPath: 'images/grafana/Jenkinsfile'],
 	[name: 'diamol/jenkins', scriptPath: 'images/jenkins/Jenkinsfile'],
-	[name: 'diamol/kibana', scriptPath: 'images/kibana/Jenkinsfile']
+	[name: 'diamol/kibana', scriptPath: 'images/kibana/Jenkinsfile'],
+	[name: 'diamol/maven', scriptPath: 'images/maven/Jenkinsfile'],
+	[name: 'diamol/nats', scriptPath: 'images/nats/Jenkinsfile'],
+	[name: 'diamol/nats-sub', scriptPath: 'images/nats-sub/Jenkinsfile'],
+	[name: 'diamol/nginx', scriptPath: 'images/nginx/Jenkinsfile']
 ]
 
 for(p in pipelines) {
