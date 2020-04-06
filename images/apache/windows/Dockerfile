@@ -3,8 +3,8 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # VC++ redistributables
-RUN Invoke-WebRequest -OutFile VC_redist.x64.exe 'aka.ms/vs/16/release/VC_redist.x64.exe'; `
-    Start-Process .\VC_redist.x64.exe -ArgumentList '/install /passive /norestart' -Wait; 
+RUN Invoke-WebRequest -OutFile VC_redist.x64.exe 'aka.ms/vs/16/release/VC_redist.x64.exe'
+RUN Start-Process .\VC_redist.x64.exe -ArgumentList '/install /passive /norestart' -Wait
 
 ARG HTTPD_VERSION="2.4.43"
 RUN Write-Host "Downloading Apache version: $env:HTTPD_VERSION"; `
