@@ -13,12 +13,10 @@ FROM diamol/dotnet-aspnet
 WORKDIR /app
 ENTRYPOINT ["dotnet", "ToDoList.dll"]
 
-# for Windows use --build-arg DATA_DIRECTORY=C:\data
-ARG DATA_DIRECTORY="/data"
-VOLUME $DATA_DIRECTORY
+# set in the base image - `/data` for Linux, `C:\data` for Windows
+VOLUME $SQLITE_DATA_DIRECTORY
 
- # for Windows use --build-arg USER=ContainerAdministrator
-ARG USER='root'
-USER $USER
+# set in the base image - `root` for Linux, `ContainerAdministrator` for Windows
+USER $SQLITE_USER
 
 COPY --from=builder /out/ .
