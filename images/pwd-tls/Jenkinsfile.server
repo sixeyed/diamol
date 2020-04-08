@@ -1,0 +1,8 @@
+library identifier: 'diamol-jenkins-library@master', 
+        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/sixeyed/diamol-jenkins-library.git'])
+
+multiArchBuild linuxContext: 'images/pwd-tls', 
+               windowsContext: 'images/pwd-tls',
+               dockerfile: 'Dockerfile.server',
+               repoName: 'diamol/pwd-tls',
+               tag: 'server'

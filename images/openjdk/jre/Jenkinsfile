@@ -3,5 +3,4 @@ library identifier: 'diamol-jenkins-library@master',
 
 multiArchBuild linuxContext: 'images/openjdk/jre', 
                linuxArmContext: 'images/openjdk/jre/linux/arm', 
-               windowsContext: 'images/openjdk/jre/windows',
-               repoName: 'diamol/openjdk'
+               windowsContext: 'images/openjdk/jre/windows'

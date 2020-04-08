@@ -1,0 +1,7 @@
+library identifier: 'diamol-jenkins-library@master', 
+        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/sixeyed/diamol-jenkins-library.git'])
+
+multiArchBuild linuxContext: 'images/postgres/11.6/linux',  
+               windowsContext: 'images/postgres/11.6/windows',
+               repoName: 'diamol/postgres',
+               tag: '11.6'

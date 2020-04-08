@@ -30,7 +30,12 @@ def pipelines = [
 	[name: 'diamol/node', scriptPath: 'images/node/10.16.0/Jenkinsfile'],
 	[name: 'diamol/node-15', scriptPath: 'images/node/10.15.2/Jenkinsfile'],
 	[name: 'diamol/openjdk', scriptPath: 'images/openjdk/jre/Jenkinsfile'],
-	[name: 'diamol/openjdk-jdk', scriptPath: 'images/openjdk/jdk/Jenkinsfile']
+	[name: 'diamol/openjdk-jdk', scriptPath: 'images/openjdk/jdk/Jenkinsfile'],
+	[name: 'diamol/postgres-115', scriptPath: 'images/postgres/11.5/Jenkinsfile'],
+	[name: 'diamol/postgres-116', scriptPath: 'images/postgres/11.6/Jenkinsfile'],
+	[name: 'diamol/prometheus', scriptPath: 'images/prometheus/Jenkinsfile'],
+	[name: 'diamol/pwd-tls-client', scriptPath: 'images/pwd-tls/Jenkinsfile.client'],
+	[name: 'diamol/pwd-tls-server', scriptPath: 'images/pwd-tls/Jenkinsfile.server']
 ]
 
 for(p in pipelines) {
