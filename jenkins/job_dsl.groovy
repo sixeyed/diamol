@@ -28,7 +28,9 @@ def pipelines = [
 	[name: 'diamol/nats-sub', scriptPath: 'images/nats-sub/Jenkinsfile'],
 	[name: 'diamol/nginx', scriptPath: 'images/nginx/Jenkinsfile'],
 	[name: 'diamol/node', scriptPath: 'images/node/10.16.0/Jenkinsfile'],
-	[name: 'diamol/node-15', scriptPath: 'images/node/10.15.2/Jenkinsfile']
+	[name: 'diamol/node-15', scriptPath: 'images/node/10.15.2/Jenkinsfile'],
+	[name: 'diamol/openjdk', scriptPath: 'images/openjdk/jre/Jenkinsfile'],
+	[name: 'diamol/openjdk-jdk', scriptPath: 'images/openjdk/jdk/Jenkinsfile']
 ]
 
 for(p in pipelines) {

@@ -3,5 +3,5 @@ library identifier: 'diamol-jenkins-library@master',
 
 multiArchBuild linuxContext: 'images/node/10.15.2/linux', 
                windowsContext: 'images/node/10.15.2/windows',
-               repoName: 'node',
+               repoName: 'diamol/node',
                tag: '10.15.2'
