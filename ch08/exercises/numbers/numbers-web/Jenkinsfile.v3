@@ -1,0 +1,8 @@
+library identifier: 'diamol-jenkins-library@master', 
+        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/sixeyed/diamol-jenkins-library.git'])
+
+multiArchBuild linuxContext: 'ch08/exercises/numbers/numbers-web', 
+               windowsContext: 'ch08/exercises/numbers/numbers-web',
+               dockerfile: 'Dockerfile.v3',
+               repoName: 'diamol/ch08-numbers-web',
+               tag: 'v3'
