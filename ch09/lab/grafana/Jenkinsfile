@@ -1,0 +1,5 @@
+library identifier: 'diamol-jenkins-library@master', 
+        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/sixeyed/diamol-jenkins-library.git'])
+
+multiArchBuild linuxContext: 'ch09/lab/grafana', 
+               windowsContext: 'ch09/lab/grafana'
