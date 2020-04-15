@@ -1,0 +1,8 @@
+library identifier: 'diamol-jenkins-library@master', 
+        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/sixeyed/diamol-jenkins-library.git'])
+
+multiArchBuild linuxContext: 'ch15/exercises/timecheck', 
+               windowsContext: 'ch15/exercises/timecheck',
+               dockerfile: 'Dockerfile-3.0',
+               repoName: 'diamol/ch15-timecheck',
+               tag: '3.0'

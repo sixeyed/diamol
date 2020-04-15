@@ -1,0 +1,7 @@
+library identifier: 'diamol-jenkins-library@master', 
+        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/sixeyed/diamol-jenkins-library.git'])
+
+multiArchBuild linuxContext: 'ch14/exercises/numbers/v5', 
+               windowsContext: 'ch14/exercises/numbers/v5',
+               dockerfile: 'numbers-api/Dockerfile.v5',
+               tag: 'v5'
