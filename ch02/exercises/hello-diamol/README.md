@@ -1,5 +1,5 @@
 
-0. Build and pash the arch images
+0. Build and push the arch images
 
 1. Enable experimental in `~/.docker/config.json`:
 
@@ -9,7 +9,7 @@
 }
 ```
 
-2. Create the manifest list (multi-rach name followed by individual image names):
+2. Create the manifest list (multi-arch name followed by individual image names):
 
 ```
 docker manifest create `
