@@ -1,8 +1,6 @@
 # [Learn Docker in a Month of Lunches](https://www.manning.com/books/learn-docker-in-a-month-of-lunches)
 
-This is the source code for my Manning book _Learn Docker in a Month of Lunches_.
-
-> It's a work in progress but you can get all the completed chapters using [Manning's Early Access Program](https://www.manning.com/books/learn-docker-in-a-month-of-lunches).
+This is the source code for my Manning book _[Learn Docker in a Month of Lunches](https://www.manning.com/books/learn-docker-in-a-month-of-lunches)_.
 
 ## Elevator Pitch
 
