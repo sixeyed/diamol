@@ -19,6 +19,12 @@ public class Image {
     }
     
     public void setUrl(String url) {
+        // if it's a YouTube link need to format the URL to get the thumbnail:
+        // https://www.youtube.com/embed/ts0Ek3nLHew?rel=0 -> 
+        // https://img.youtube.com/vi/ts0Ek3nLHew/0.jpg
+        if (url.startsWith("https://www.youtube.com/embed/")) {
+            url = "https://img.youtube.com/vi/" + url.substring(30, url.length()-6) + "/0.jpg";
+        }
         this.url = url;
     }
 
