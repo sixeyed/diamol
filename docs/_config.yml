@@ -1,0 +1,10 @@
+title: Learn Docker in a Month of Lunches
+description: Learn Docker in a Month of Lunches
+logo: /img/cover.png
+google_analytics: UA-66499982-5
+theme: jekyll-theme-minimal
+
+permalink: /:slug/
+
+plugins:
+  - jekyll-redirect-from
