@@ -1,12 +1,16 @@
 # Learn Docker in a Month of Lunches
 
-Welcome to the home page for the book _Learn Docker in a Month of Lunches_ by [@EltonStoneman](https://twitter.com/EltonStoneman).
+Welcome to the book _Learn Docker in a Month of Lunches_ by [@EltonStoneman](https://twitter.com/EltonStoneman).
 
-* The source for exercises is on GitHub [sixeyed/diamol](https://github.com/sixeyed/diamol)
 * You can buy the book on [Amazon](https://amzn.to/3gZHQL5)
 * Or get the digital copy from [Manning](https://www.manning.com/books/learn-docker-in-a-month-of-lunches)
+* The source for exercises is on GitHub [sixeyed/diamol](https://github.com/sixeyed/diamol)
 
-You can also [join the Slack channel](https://join.slack.com/t/sixeyedworkspace/shared_invite/zt-gwq2x5y8-8FobcNL45Q1_uHPkMM32YQ).
+You can also:
+
+* Join the [Slack channel](https://join.slack.com/t/sixeyedworkspace/shared_invite/zt-gwq2x5y8-8FobcNL45Q1_uHPkMM32YQ)
+* Watch on YouTube at [diamol.net/stream](https://diamol.net/stream)
+* Win a copy at [diamol.net/giveaway](https://diamol.net/giveaway)
 
 ## Elevator Pitch
 
@@ -20,9 +24,6 @@ There's no excessive theory or niche-use cases - just a quick-and-easy guide to 
 
 I'm streaming the book live in September 2020 with a chapter every weekday, and I have copies to give away every week.
 
-### Week 1 - Understanding Docker containers and images
-
-* [Week 1 book giveaway](https://kingsumo.com/g/2y5wzq/learn-docker-in-a-month-of-lunches-week-1-giveaway-x5)
 * [Day 1 - Chapters 1 & 2](https://youtu.be/QTnVztPl2Uw)
 
 ## A Note About Tech Accessibility
