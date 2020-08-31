@@ -8,7 +8,7 @@ Welcome to the book _Learn Docker in a Month of Lunches_ by [@EltonStoneman](htt
 
 You can also:
 
-* Join the [Slack channel](https://join.slack.com/t/sixeyedworkspace/shared_invite/zt-gwq2x5y8-8FobcNL45Q1_uHPkMM32YQ)
+* Join the [Slack channel](https://join.slack.com/t/diamol/shared_invite/zt-h3cm98vo-IRbtYMw4U0dZwbY_mLlddg)
 * Watch on YouTube at [diamol.net/stream](https://diamol.net/stream)
 * Win a copy at [diamol.net/giveaway](https://diamol.net/giveaway)
 
