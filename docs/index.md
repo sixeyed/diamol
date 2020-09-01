@@ -24,7 +24,8 @@ There's no excessive theory or niche-use cases - just a quick-and-easy guide to 
 
 I'm streaming the book live in September 2020 with a chapter every weekday, and I have copies to give away every week.
 
-* [Day 1 - Chapters 1 & 2](https://youtu.be/QTnVztPl2Uw)
+* [01: Understanding Docker and running Hello, World](https://youtu.be/QTnVztPl2Uw)
+* [02: Building your own Docker images](https://youtu.be/tMIrQ-XWZz8)
 
 ## A Note About Tech Accessibility
 
