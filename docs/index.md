@@ -26,6 +26,9 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 
 * [01: Understanding Docker and running Hello, World](https://youtu.be/QTnVztPl2Uw)
 * [02: Building your own Docker images](https://youtu.be/tMIrQ-XWZz8)
+* [03: Packaging apps from source code into Docker images](https://youtu.be/tMIrQ-XWZz8)
+
+> You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
 
 ## A Note About Tech Accessibility
 
