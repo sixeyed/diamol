@@ -12,6 +12,10 @@ You can also:
 * Watch on YouTube at [diamol.net/stream](https://diamol.net/stream)
 * Win a copy at [diamol.net/giveaway](https://diamol.net/giveaway)
 
+And when you've learned Docker, your next step is Kubernetes :)
+
+* [Learn Kubernetes in a Month of Lunches](https://www.manning.com/books/learn-kubernetes-in-a-month-of-lunches)
+
 ## Elevator Pitch
 
 Go from zero to production readiness with Docker in 20 bite-sized lessons! _Learn Docker in a Month of Lunches_ is an accessible task-focused guide to Docker on Linux, Windows, or Mac systems. 
@@ -27,6 +31,7 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 * [01: Understanding Docker and running Hello, World](https://youtu.be/QTnVztPl2Uw)
 * [02: Building your own Docker images](https://youtu.be/tMIrQ-XWZz8)
 * [03: Packaging apps from source code into Docker images](https://youtu.be/51okXVJvSNw)
+* [04: Sharing images with Docker Hub and other registries](https://youtu.be/F1aMrAqUjQk)
 
 > You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
 
