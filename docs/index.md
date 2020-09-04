@@ -26,14 +26,34 @@ There's no excessive theory or niche-use cases - just a quick-and-easy guide to 
 
 ## Live Stream & Giveaways
 
-I'm streaming the book live in September 2020 with a chapter every weekday, and I have copies to give away every week.
+I'm streaming the book live in September 2020 with a chapter every weekday, and I have [copies to give away every week](https://diamol.net/giveaway). The live sessions are all recorded so you can watch them again.
+
+### Week 1 - Understanding Docker containers and images
 
 * [01: Understanding Docker and running Hello, World](https://youtu.be/QTnVztPl2Uw)
 * [02: Building your own Docker images](https://youtu.be/tMIrQ-XWZz8)
 * [03: Packaging apps from source code into Docker images](https://youtu.be/51okXVJvSNw)
 * [04: Sharing images with Docker Hub and other registries](https://youtu.be/F1aMrAqUjQk)
+* [05: Using Docker volumes for persistent storage](https://youtu.be/aEqxUnZuh8A)
 
 > You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
+
+## About Me
+
+I'm a freelance consultant and trainer, specializing Docker, Kubernetes and Microsoft Azure. 
+
+I spent most of my career as a consultant, designing and building large enterprise applications. Then I discovered the container revolution in 2014, joined Docker and worked with the team for three fast and furious years. 
+
+Now I help people break up those old enterprise apps and build new cloud-native apps - and run them all in Docker and Kubernetes. I speak and run workshops at conferences around the world (pandemics permitting), write books and video courses and I help organizations at every stage in their container journey. 
+
+I'm an 11-time [Microsoft MVP](https://mvp.microsoft.com/en-us/PublicProfile/4028368) and a [Docker Captain](https://www.docker.com/captains/elton-stoneman).
+
+You'll find my other content here:
+
+* [Pluralsight video courses](https://www.pluralsight.com/authors/elton-stoneman)
+* [YouTube channel](https://www.youtube.com/c/EltonStoneman)
+* [Blog](https://blog.sixeyed.com)
+* [`sixeyed` on GitHub](https://github.com/sixeyed)
 
 ## A Note About Tech Accessibility
 
