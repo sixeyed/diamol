@@ -3,7 +3,7 @@
 Welcome to the book _Learn Docker in a Month of Lunches_ by [@EltonStoneman](https://twitter.com/EltonStoneman).
 
 * You can buy the book on [Amazon](https://amzn.to/3gZHQL5)
-* Or get the digital copy from [Manning](https://www.manning.com/books/learn-docker-in-a-month-of-lunches)
+* Or from [Manning](https://www.manning.com/books/learn-docker-in-a-month-of-lunches) - _and get 40% off with the discount code `stonemanpc`_
 * The source for exercises is on GitHub [sixeyed/diamol](https://github.com/sixeyed/diamol)
 
 You can also:
