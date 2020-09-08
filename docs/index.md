@@ -39,6 +39,7 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 ### Week 2 - Running distributed applications in containers
 
 * [06: Running multi-container apps with Docker Compose](https://youtu.be/3bs4HDBRPgk)
+* [06: Supporting reliability with health checks and dependency checks](https://youtu.be/5WeH7BWuV14)
 
 > You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
 
