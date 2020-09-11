@@ -3,7 +3,7 @@
 Welcome to the book _Learn Docker in a Month of Lunches_ by [@EltonStoneman](https://twitter.com/EltonStoneman).
 
 * You can buy the book on [Amazon](https://amzn.to/3gZHQL5)
-* Or from [Manning](https://www.manning.com/books/learn-docker-in-a-month-of-lunches) - _and get 40% off with the discount code `stonemanpc`_
+* Or from [Manning](https://www.manning.com/books/learn-docker-in-a-month-of-lunches?utm_source=affiliate&utm_medium=affiliate&a_aid=elton&a_bid=5890141b) - _and get 40% off with the discount code `stonemanpc`_
 * The source for exercises is on GitHub [sixeyed/diamol](https://github.com/sixeyed/diamol)
 
 You can also:
@@ -14,7 +14,7 @@ You can also:
 
 And when you've learned Docker, your next step is Kubernetes :)
 
-* [Learn Kubernetes in a Month of Lunches](https://www.manning.com/books/learn-kubernetes-in-a-month-of-lunches)
+* [Learn Kubernetes in a Month of Lunches](https://www.manning.com/books/learn-kubernetes-in-a-month-of-lunches?utm_source=affiliate&utm_medium=affiliate&a_aid=elton&a_bid=a506ee0d) - _and get 40% off with the discount code `stonemanpc`_
 
 ## Elevator Pitch
 
@@ -42,6 +42,7 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 * [07: Supporting reliability with health checks and dependency checks](https://youtu.be/5WeH7BWuV14)
 * [08: Adding observability with containerized monitoring](https://youtu.be/6BcoR79AOas)
 * [09: Running multiple environments with Docker Compose](https://youtu.be/VXvsy7mpdQI)
+* [10: Building and testing applications with Docker and Docker Compose](https://youtu.be/lO-Lwwy04zs)
 
 > You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
 
