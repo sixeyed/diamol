@@ -44,6 +44,10 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 * [09: Running multiple environments with Docker Compose](https://youtu.be/VXvsy7mpdQI)
 * [10: Building and testing applications with Docker and Docker Compose](https://youtu.be/lO-Lwwy04zs)
 
+### Week 3 - Running at scale with a container orchestrator 
+
+* [11: Understanding orchestration: Docker Swarm and Kubernetes](https://youtu.be/zvjr8gmZjkE)
+
 > You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
 
 ## About Me
