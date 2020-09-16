@@ -3,6 +3,7 @@ version: "3.7"
 services:
   numbers-api:
     healthcheck:
+      test: ["CMD", "dotnet", "Utilities.HttpCheck.dll", "-u", "http://localhost/health", "-t", "500"]
       interval: 2s
       timeout: 3s
       retries: 2
