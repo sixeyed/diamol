@@ -49,6 +49,7 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 * [11: Understanding orchestration: Docker Swarm and Kubernetes](https://youtu.be/zvjr8gmZjkE)
 * [12: Deploying distributed apps as stacks in Docker Swarm](https://youtu.be/JUEDHPNCs0U)
 * [13: Automating releases with upgrades and rollbacks](https://youtu.be/XWUfb08qDYg)
+* [14: Configuring Docker for secure remote access and CI/CD](https://youtu.be/0ixfI7T25zY)
 
 > You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
 
