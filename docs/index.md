@@ -52,6 +52,10 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 * [14: Configuring Docker for secure remote access and CI/CD](https://youtu.be/0ixfI7T25zY)
 * [15: Building Docker images that run anywhere: Linux, Windows, Intel & Arm](https://youtu.be/8TOFoCzie7o)
 
+### Week 3 - Getting your containers ready for production
+
+* [16: Optimizing your Docker images for size, speed and security](https://youtu.be/22-4YwqbTtM)
+
 > You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
 
 ## About Me
