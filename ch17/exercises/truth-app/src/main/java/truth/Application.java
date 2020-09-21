@@ -1,4 +1,4 @@
-package iotd;
+package truth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
