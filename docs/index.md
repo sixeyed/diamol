@@ -28,6 +28,8 @@ There's no excessive theory or niche-use cases - just a quick-and-easy guide to 
 
 I'm streaming the book live in September 2020 with a chapter every weekday, and I have [copies to give away every week](https://diamol.net/giveaway). The live sessions are all recorded so you can watch them again.
 
+> You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
+
 ### Week 1 - Understanding Docker containers and images
 
 * [01: Understanding Docker and running Hello, World](https://youtu.be/QTnVztPl2Uw)
@@ -55,12 +57,11 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 ### Week 3 - Getting your containers ready for production
 
 * [16: Optimizing your Docker images for size, speed and security](https://youtu.be/22-4YwqbTtM)
-
-> You can find all the videos in the [Learn Docker in a Month of Lunches playlist](https://www.youtube.com/playlist?list=PLXl_isu8qxvmDOAnUkG5x16LzBzGzY_Ww).
+* [17: Application configuration management in containers](https://youtu.be/68luKeqXS3g)
 
 ## About Me
 
-I'm a freelance consultant and trainer, specializing Docker, Kubernetes and Microsoft Azure. 
+I'm a freelance consultant and trainer, specializing in Docker, Kubernetes and Microsoft Azure. 
 
 I spent most of my career as a consultant, designing and building large enterprise applications. Then I discovered the container revolution in 2014, joined Docker and worked with the team for three fast and furious years. 
 
