@@ -8,8 +8,8 @@ Welcome to the book _Learn Docker in a Month of Lunches_ by [@EltonStoneman](htt
 
 You can also:
 
-* Join the [Slack channel](https://join.slack.com/t/diamol/shared_invite/zt-h3cm98vo-IRbtYMw4U0dZwbY_mLlddg)
 * Watch on YouTube at [diamol.net/stream](https://diamol.net/stream)
+* Join the [Slack channel](https://join.slack.com/t/diamol/shared_invite/zt-h3cm98vo-IRbtYMw4U0dZwbY_mLlddg)
 * Win a copy at [diamol.net/giveaway](https://diamol.net/giveaway)
 
 And when you've learned Docker, your next step is Kubernetes :)
@@ -54,10 +54,11 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 * [14: Configuring Docker for secure remote access and CI/CD](https://youtu.be/0ixfI7T25zY)
 * [15: Building Docker images that run anywhere: Linux, Windows, Intel & Arm](https://youtu.be/8TOFoCzie7o)
 
-### Week 3 - Getting your containers ready for production
+### Week 4 - Getting your containers ready for production
 
 * [16: Optimizing your Docker images for size, speed and security](https://youtu.be/22-4YwqbTtM)
 * [17: Application configuration management in containers](https://youtu.be/68luKeqXS3g)
+* [18: Writing and managing application logs with Docker](https://youtu.be/_9SWydfySsQ)
 
 ## About Me
 
