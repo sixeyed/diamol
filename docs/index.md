@@ -60,6 +60,7 @@ I'm streaming the book live in September 2020 with a chapter every weekday, and 
 * [17: Application configuration management in containers](https://youtu.be/68luKeqXS3g)
 * [18: Writing and managing application logs with Docker](https://youtu.be/_9SWydfySsQ)
 * [19: Controlling HTTP traffic to containers with a reverse proxy](https://youtu.be/gEQWud2jwoA)
+* [20: Asynchronous communication with a message queue](https://youtu.be/b2HeubvZMaU)
 
 ## About Me
 
