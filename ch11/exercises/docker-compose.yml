@@ -10,5 +10,7 @@ services:
     image: ${REGISTRY:-docker.io}/diamol/ch11-numbers-web:v3-build-${BUILD_NUMBER:-local}
     environment:
       - RngApi__Url=http://numbers-api/rng
+    depends_on:
+     - numbers-api
     networks:
       - app-net
