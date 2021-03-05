@@ -6,7 +6,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN Invoke-WebRequest -OutFile VC_redist.x64.exe 'aka.ms/vs/16/release/VC_redist.x64.exe'
 RUN Start-Process .\VC_redist.x64.exe -ArgumentList '/install /passive /norestart' -Wait
 
-ARG HTTPD_VERSION="2.4.43"
+ARG HTTPD_VERSION="2.4.46"
 RUN Write-Host "Downloading Apache version: $env:HTTPD_VERSION"; `
     Invoke-WebRequest -OutFile httpd.zip "https://fossies.org/windows/www/httpd-$($env:HTTPD_VERSION)-win64-VS16.zip"; `
     Expand-Archive httpd.zip -DestinationPath C:\ ;

@@ -95,7 +95,7 @@ for(p in pipelines) {
 	        }
 	    }
 	    triggers {
-	        cron('H H(1-8) * * *')
+	        cron('@weekly')
 	    }
 	}
 }
