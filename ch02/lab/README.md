@@ -14,7 +14,7 @@
 - on Linux use the `ls` command:
 
 ```
-> docker container exec 86b  ls /usr/local/apache2/htdocs
+> docker container exec 86b ls /usr/local/apache2/htdocs
 index.html
 ```
 
