@@ -3,7 +3,7 @@
 The to-do app for this lab already has Prometheus support built in. You can check it by running:
 
 ```
-docker container dun -d -p 8050:80 diamol/ch09-todo-list
+docker container run -d -p 8050:80 diamol/ch09-todo-list
 ```
 
 Then browse to http://localhost:8050 and enter some tasks to do.
