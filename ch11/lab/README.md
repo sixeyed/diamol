@@ -16,6 +16,21 @@ services:
         BUILD_NUMBER: ${BUILD_NUMBER:-0}
 ```
 
+- modify `docker-compose.yml` with this content:
+
+```
+version: "3.7"
+
+services:
+  todo-web:
+    image: ${REGISTRY:-docker.io}/diamol/ch11-todo-list:v3-build-${BUILD_NUMBER:-local}
+    networks:
+      - app-net
+
+networks:
+  app-net:
+```
+
 ## Jenkins job
 
 - log into Jenkins
