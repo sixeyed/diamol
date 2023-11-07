@@ -1,6 +1,6 @@
-FROM alpine:3.12 AS installer
+FROM alpine:3.15 AS installer
 
-ARG JENKINS_VERSION="2.263.4"
+ARG JENKINS_VERSION="2.361.1"
 
 RUN apk add --no-cache \
     curl \
@@ -9,30 +9,30 @@ RUN apk add --no-cache \
 RUN curl -SL -o jenkins.war http://mirrors.jenkins.io/war-stable/$JENKINS_VERSION/jenkins.war
 
 # OpenJDK
-# from https://github.com/docker-library/openjdk/blob/ec1553cccfb87c5f53a38555771fa6d13cebfcba/8/jre/alpine/Dockerfile
-FROM alpine:3.12 as openjdk
+# from https://github.com/corretto/corretto-docker/blob/137b6ef028776de9f49e638a072a9e478fc60257/11/jdk/alpine/3.15/Dockerfile
+FROM alpine:3.15 as openjdk
+
+ARG version=11.0.21.9.1
+
+# Please note that the THIRD-PARTY-LICENSE could be out of date if the base image has been updated recently.
+# The Corretto team will update this file but you may see a few days' delay.
+RUN wget -O /THIRD-PARTY-LICENSES-20200824.tar.gz https://corretto.aws/downloads/resources/licenses/alpine/THIRD-PARTY-LICENSES-20200824.tar.gz && \
+    echo "82f3e50e71b2aee21321b2b33de372feed5befad6ef2196ddec92311bc09becb  /THIRD-PARTY-LICENSES-20200824.tar.gz" | sha256sum -c - && \
+    tar x -ovzf THIRD-PARTY-LICENSES-20200824.tar.gz && \
+    rm -rf THIRD-PARTY-LICENSES-20200824.tar.gz && \
+    wget -O /etc/apk/keys/amazoncorretto.rsa.pub https://apk.corretto.aws/amazoncorretto.rsa.pub && \
+    SHA_SUM="6cfdf08be09f32ca298e2d5bd4a359ee2b275765c09b56d514624bf831eafb91" && \
+    echo "${SHA_SUM}  /etc/apk/keys/amazoncorretto.rsa.pub" | sha256sum -c - && \
+    echo "https://apk.corretto.aws" >> /etc/apk/repositories && \
+    apk add --no-cache amazon-corretto-11=$version-r0 && \
+    rm -rf /usr/lib/jvm/java-11-amazon-corretto/lib/src.zip
+
 
 ENV LANG C.UTF-8
 
-# add a simple script that can auto-detect the appropriate JAVA_HOME value
-# based on whether the JDK or only the JRE is installed
-RUN { \
-		echo '#!/bin/sh'; \
-		echo 'set -e'; \
-		echo; \
-		echo 'dirname "$(dirname "$(readlink -f "$(which javac || which java)")")"'; \
-	} > /usr/local/bin/docker-java-home \
-	&& chmod +x /usr/local/bin/docker-java-home
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/jre
-ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm
+ENV PATH=$PATH:/usr/lib/jvm/default-jvm/bin
 
-ENV JAVA_VERSION 8u275
-ENV JAVA_ALPINE_VERSION 8.275.01-r0
-
-RUN set -x \
-	&& apk add --no-cache \
-		openjdk8-jre="$JAVA_ALPINE_VERSION" \
-	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
 # Jenkins
 FROM openjdk
@@ -50,7 +50,7 @@ RUN apk add --no-cache \
 RUN apk add --no-cache \
     docker-compose
 
-ARG JENKINS_VERSION="2.263.4"
+ARG JENKINS_VERSION="2.361.1"
 ENV JENKINS_VERSION=${JENKINS_VERSION} \
     JENKINS_HOME="/data"
 
