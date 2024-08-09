@@ -1,6 +1,6 @@
 FROM alpine:3.12 AS installer
 
-ARG JENKINS_VERSION="2.263.4"
+ARG JENKINS_VERSION="2.387.3"
 
 RUN apk add --no-cache \
     curl \
@@ -23,15 +23,14 @@ RUN { \
 		echo 'dirname "$(dirname "$(readlink -f "$(which javac || which java)")")"'; \
 	} > /usr/local/bin/docker-java-home \
 	&& chmod +x /usr/local/bin/docker-java-home
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/jre
-ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk
+ENV PATH $PATH:/usr/lib/jvm/java-11-openjdk/jre/bin:/usr/lib/jvm/java-11-openjdk/bin
 
-ENV JAVA_VERSION 8u275
-ENV JAVA_ALPINE_VERSION 8.275.01-r0
+ENV JAVA_ALPINE_VERSION 11.0.9_p11-r0
 
 RUN set -x \
 	&& apk add --no-cache \
-		openjdk8-jre="$JAVA_ALPINE_VERSION" \
+		openjdk11-jre="$JAVA_ALPINE_VERSION" \
 	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
 # Jenkins
@@ -50,7 +49,7 @@ RUN apk add --no-cache \
 RUN apk add --no-cache \
     docker-compose
 
-ARG JENKINS_VERSION="2.263.4"
+ARG JENKINS_VERSION="2.387.3"
 ENV JENKINS_VERSION=${JENKINS_VERSION} \
     JENKINS_HOME="/data"
 
