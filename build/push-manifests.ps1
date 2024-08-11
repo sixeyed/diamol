@@ -1,4 +1,5 @@
 param(
+    [string]$Filter,
     [switch]$Images=$true,
     [switch]$Chapters=$false
 )
@@ -10,7 +11,12 @@ try {
     }
     $composeFile="compose-${collection}.yml"
 
-    $imageList=$(yq e '.services.[].image' $composeFile)
+    $allImages=$(yq e '.services.[].image' $composeFile)
+    $imageList = $allImages
+    if ($Filter) {
+        $imageList = $allImages | where {$_.Contains($Filter)}
+    }
+    
     foreach ($image in $imageList)
     {    
         # TODO - add other OS & archs

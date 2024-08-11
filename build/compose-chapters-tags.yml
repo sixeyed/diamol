@@ -5,3 +5,9 @@ services:
 
   ch02-hello-diamol-web:
     image: diamol/ch02-hello-diamol-web:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch03-web-ping:
+    image: diamol/ch03-web-ping:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch03-lab:
+    image: diamol/ch03-lab:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

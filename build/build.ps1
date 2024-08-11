@@ -16,7 +16,7 @@ try {
     $compose="compose-$collection"
     $composeFile="${compose}.yml"
     $osFile="${compose}-$($env:DOCKER_BUILD_OS).yml"
-    $tagsFile="${compose}-$($env:DOCKER_BUILD_OS)-tags.yml"
+    $tagsFile="${compose}-tags.yml"
 
     docker compose `
         -f $composeFile `

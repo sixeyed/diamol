@@ -3,7 +3,7 @@
 1. Run the web container from the chapter exercises:
 
 ```
-> docker container run --detach --publish 8088:80 diamol/ch02-hello-diamol-web
+> docker container run --detach --publish 8088:80 diamol/ch02-hello-diamol-web:2e
 86b20cd8e846d7ea8cf29d08d8c22118f925cca818ab28765d218c7585dbc52d
 ```
 

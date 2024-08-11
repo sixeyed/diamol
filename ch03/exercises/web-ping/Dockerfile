@@ -1,4 +1,4 @@
-FROM diamol/node
+FROM diamol/node:2e
 
 ENV TARGET="blog.sixeyed.com"
 ENV METHOD="HEAD"
