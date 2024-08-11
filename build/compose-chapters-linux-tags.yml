@@ -1,0 +1,4 @@
+services:
+
+  ch02-hello-diamol:
+    image: diamol/ch02-hello-diamol:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

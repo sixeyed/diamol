@@ -1,0 +1,6 @@
+services:
+  base:
+    image: diamol/base:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  node:
+    image: diamol/node:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

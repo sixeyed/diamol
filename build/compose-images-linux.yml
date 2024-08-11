@@ -1,0 +1,14 @@
+services:
+  base:
+    image: diamol/base:2e
+    build:
+      context: ../images/base/linux
+      args:
+        ALPINE_VERSION: "3.20"
+
+  node:
+    image: diamol/node:2e
+    build:
+      context: ../images/node/linux
+      args:
+        NODE_VERSION: "22"

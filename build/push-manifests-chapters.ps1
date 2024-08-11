@@ -1,5 +1,5 @@
 try {
-    $images=$(yq e '.services.[].image' compose-images-linux.yml)
+    $images=$(yq e '.services.[].image' compose-chapters-linux.yml)
     foreach ($image in $images)
     {    
         # TODO - add other OS & archs
