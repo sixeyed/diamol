@@ -1,0 +1,7 @@
+services:
+  base:
+    image: diamol/base:2e
+    build:
+      context: base/linux
+      args:
+        ALPINE_VERSION: "3.20"

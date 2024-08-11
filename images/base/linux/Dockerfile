@@ -1,3 +1,4 @@
-FROM alpine:3.9
+ARG ALPINE_VERSION
+FROM alpine:${ALPINE_VERSION}
 
 RUN apk add --no-cache curl
