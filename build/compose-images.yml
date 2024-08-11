@@ -1,0 +1,9 @@
+services:
+  base:
+    image: diamol/base:2e
+
+  node:
+    image: diamol/node:2e
+
+  apache:
+    image: diamol/apache:2e

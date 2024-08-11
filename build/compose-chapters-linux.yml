@@ -1,6 +1,9 @@
 services:
 
   ch02-hello-diamol:
-    image: diamol/ch02-hello-diamol:2e
     build:
       context: ../ch02/exercises/hello-diamol/linux
+
+  ch02-hello-diamol-web:
+    build:
+      context: ../ch02/exercises/hello-diamol-web

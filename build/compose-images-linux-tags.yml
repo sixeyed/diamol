@@ -4,3 +4,6 @@ services:
 
   node:
     image: diamol/node:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  apache:
+    image: diamol/apache:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
