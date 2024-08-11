@@ -2,12 +2,46 @@ services:
 
   ch02-hello-diamol:
     image: diamol/ch02-hello-diamol:2e
+    build:
+      context: ../ch02/exercises/hello-diamol/linux
 
   ch02-hello-diamol-web:
     image: diamol/ch02-hello-diamol-web:2e
+    build:
+      context: ../ch02/exercises/hello-diamol-web
 
   ch03-web-ping:
     image: diamol/ch03-web-ping:2e
+    build:
+      context: ../ch03/exercises/web-ping
 
   ch03-lab:
     image: diamol/ch03-lab:2e
+    build:
+      context: ../ch03/lab
+
+  ch04-access-log:
+    image: diamol/ch04-access-log:2e
+    build:
+      context: ../ch04/exercises/access-log
+
+  ch04-image-gallery:
+    image: diamol/ch04-image-gallery:2e
+    build:
+      context: ../ch04/exercises/image-gallery
+
+  ch04-image-of-the-day:
+    image: diamol/ch04-image-of-the-day:2e
+    build:
+      context: ../ch04/exercises/image-of-the-day
+
+  ch04-lab:
+    image: diamol/ch04-lab:2e
+    build:
+      context: ../ch04/lab
+
+  ch04-lab-optimized:
+    image: diamol/ch04-lab:2e-optimized
+    build:
+      context: ../ch04/lab
+      dockerfile: Dockerfile.optimized

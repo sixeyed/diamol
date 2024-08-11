@@ -1,5 +1,8 @@
 package iotd;
 
+import java.util.*; 
+import java.util.stream.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,9 +34,14 @@ public class ImageController {
         Image img = cacheService.getImage();
         if (img == null) {
             RestTemplate restTemplate = new RestTemplate();
-            ApodImage result = restTemplate.getForObject(apodUrl+apodKey, ApodImage.class);
-            log.info("Fetched new APOD image from NASA"); 
-            img = new Image(result.getUrl(), result.getTitle(), result.getCopyright());            
+            ApodImage[] result = restTemplate.getForObject(apodUrl+apodKey, ApodImage[].class);
+            log.info("Fetched new APOD images from NASA");
+            ApodImage match = Arrays.stream(result)
+                                    .filter(x -> "image".equals(x.getMediaType()))
+                                    .findFirst()
+                                    .get();
+
+            img = new Image(match.getUrl(), match.getTitle(), match.getCopyright());            
             cacheService.putImage(img);
         }
         else {

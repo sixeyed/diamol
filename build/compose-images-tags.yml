@@ -7,3 +7,12 @@ services:
 
   apache:
     image: diamol/apache:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  maven:
+    image: diamol/maven:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  openjdk:
+    image: diamol/openjdk:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  golang:
+    image: diamol/golang:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

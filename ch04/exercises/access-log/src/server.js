@@ -7,7 +7,7 @@ function stats(req, res, next) {
     logs: logCount
   };
   res.send(data);
-  next();
+  return next();
 }
 
 function respond(req, res, next) {
@@ -15,7 +15,7 @@ function respond(req, res, next) {
   log.Logger.info('Access log, client IP: %s', req.body.clientIp);
   logCount++;
   res.send(201, 'Created');
-  next();
+  return next();
 }
 
 var logCount = 0;

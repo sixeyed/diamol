@@ -7,3 +7,12 @@ services:
 
   apache:
     image: diamol/apache:2e
+
+  maven:
+    image: diamol/maven:2e
+
+  openjdk:
+    image: diamol/openjdk:2e
+
+  golang:
+    image: diamol/golang:2e

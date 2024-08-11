@@ -1,8 +1,8 @@
-FROM diamol/golang 
+FROM diamol/golang:2e
 
-WORKDIR web
+WORKDIR /web
 COPY index.html .
-COPY main.go .
+COPY go.mod main.go /web/
 
 RUN go build -o /web/server
 RUN chmod +x /web/server

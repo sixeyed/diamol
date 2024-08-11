@@ -9,10 +9,28 @@ services:
     build:
       context: ../images/node/linux
       args:
-        NODE_VERSION: "22"  
+        NODE_VERSION: "22"
 
   apache:
     build:
       context: ../images/apache/linux
       args:
         HTTPD_VERSION: "2.4.62"
+
+  maven:
+    build:
+      context: ../images/maven/linux
+      args:
+        MAVEN_BASE_IMAGE: maven:3.9.8-eclipse-temurin-22-alpine
+
+  openjdk:
+    build:
+      context: ../images/openjdk/linux
+      args:
+        OPENJDK_BASE_IMAGE: eclipse-temurin:22-jre-alpine
+
+  golang:
+    build:
+      context: ../images/golang/linux
+      args:
+        GOLANG_VERSION: "1.22"

@@ -11,3 +11,18 @@ services:
 
   ch03-lab:
     image: diamol/ch03-lab:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch04-access-log:
+    image: diamol/ch04-access-log:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch04-image-gallery:
+    image: diamol/ch04-image-gallery:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch04-image-of-the-day:
+    image: diamol/ch04-image-of-the-day:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch04-lab:
+    image: diamol/ch04-lab:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch04-lab-optimized:
+    image: diamol/ch04-lab:2e-optimized-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

@@ -1,1 +1,0 @@
-FROM arm32v7/openjdk:11-jdk
