@@ -1,5 +1,5 @@
 param(
-    [string]$Filter,
+    [string]$Filter=$null,
     [switch]$Images=$true,
     [switch]$Chapters=$false
 )
@@ -21,7 +21,8 @@ try {
     {    
         # TODO - add other OS & archs
         docker manifest create --amend $image `
-            "$($image)-linux-arm64"
+            "$($image)-linux-arm64"`
+            "$($image)-linux-amd64"
         
         docker manifest push $image
         docker pull $image

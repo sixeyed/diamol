@@ -1,5 +1,5 @@
 param(
-    [string]$Filter,
+    [string]$Filter=$null,
     [switch]$Images=$true,
     [switch]$Chapters=$false
 )
@@ -22,18 +22,18 @@ try {
         -f $composeFile `
         -f $osFile `
         -f $tagsFile `
-        build --pull $Filter
+        build --pull #$Filter
 
     docker compose `
         -f $composeFile `
         -f $osFile `
         -f $tagsFile `
-        push $Filter
+        push #$Filter
     
     docker compose `
         -f $composeFile `
         -f $osFile `
-        build $Filter
+        build #$Filter
 }
 
 finally {
