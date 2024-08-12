@@ -16,3 +16,6 @@ services:
 
   golang:
     image: diamol/golang:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  registry:
+    image: diamol/registry:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

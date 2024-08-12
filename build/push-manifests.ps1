@@ -24,6 +24,7 @@ try {
             "$($image)-linux-arm64"
         
         docker manifest push $image
+        docker pull $image
     }
 }
 

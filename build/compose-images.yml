@@ -16,3 +16,8 @@ services:
 
   golang:
     image: diamol/golang:2e
+
+  registry:
+    image: diamol/registry:2e
+    build:
+      context: ../images/registry
