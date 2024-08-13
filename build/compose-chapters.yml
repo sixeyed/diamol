@@ -45,3 +45,13 @@ services:
     build:
       context: ../ch04/lab
       dockerfile: Dockerfile.optimized
+
+  ch05-golden-dotnet-sdk:
+    image: diamol/ch05-golden-dotnet-sdk:2e
+    build:
+      context: ../ch05/exercises/dotnet-sdk
+
+  ch05-golden-aspnet:
+    image: diamol/ch05-golden-aspnet:2e
+    build:
+      context: ../ch05/exercises/aspnet-runtime

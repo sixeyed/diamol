@@ -26,3 +26,9 @@ services:
 
   ch04-lab-optimized:
     image: diamol/ch04-lab:2e-optimized-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch05-golden-dotnet-sdk:
+    image: diamol/ch05-golden-dotnet-sdk:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch05-golden-aspnet:
+    image: diamol/ch05-golden-aspnet:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

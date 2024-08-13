@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0.100
+FROM mcr.microsoft.com/dotnet/sdk:8.0.400
 
 LABEL framework="dotnet"
-LABEL version="3.0"
-LABEL description=".NET Core 3.0 SDK"
+LABEL version="8.0"
+LABEL description=".NET 8.0 SDK"
 LABEL owner="golden-images@sixeyed.com"
 
 WORKDIR src
