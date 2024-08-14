@@ -2,7 +2,7 @@
 
 [Registry v2 API docs](https://github.com/opencontainers/distribution-spec/blob/v1.0.1/spec.md)
 
-> If you're using PowerShell on Windows, the `curl` command is an alias for `Invoke-WebRequest`, which has different behaviour from the real cURL. Recent versions of Windows 10 have cURL available as `curl.exe`, so I'd recommend using that instead (just add `.exe` to the commands below).
+> If you're using PowerShell on Windows, the `curl` command is an alias for `Invoke-WebRequest`, which has different behaviour from the real cURL. Recent versions of Windows have cURL available as `curl.exe`, so I'd recommend using that instead (just add `.exe` to the commands below).
 
 ## Push
 

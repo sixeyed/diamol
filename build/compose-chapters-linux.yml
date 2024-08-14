@@ -1,0 +1,4 @@
+services:
+  ch06-random-number:
+    build:
+      context: ../ch06/exercises/random-number/linux
