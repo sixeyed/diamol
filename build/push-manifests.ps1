@@ -14,11 +14,19 @@ try {
     $allImages=$(yq e '.services.[].image' $composeFile)
     $imageList = $allImages
     if ($Filter) {
-        $imageList = $allImages | where {$_.Contains($Filter)}
+        if (!$Filter.StartsWith('diamol')) {
+            $Filter = "diamol/$Filter"
+        }
+        if (!$Filter.Contains(':')) {
+            $Filter = "${Filter}:2e"
+        }
+        $imageList = $allImages | where {$_ -eq $Filter}
     }
     
     foreach ($image in $imageList)
-    {    
+    {   
+        docker manifest rm $image
+
         # TODO - add other OS & archs
         docker manifest create --amend $image `
             "$($image)-linux-arm64"

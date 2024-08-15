@@ -1,4 +1,4 @@
-FROM diamol/ch06-todo-list
+FROM diamol/ch06-todo-list:2e
 
-COPY ./todo-list.db /init-data/
+COPY ./init-data/* /init-data/
 COPY ./appsettings.json /app/
