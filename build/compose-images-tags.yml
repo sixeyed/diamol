@@ -1,18 +1,18 @@
 services:
   base:
-    image: diamol/base:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+    image: diamol/base:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
 
   node:
-    image: diamol/node:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+    image: diamol/node:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
 
   apache:
-    image: diamol/apache:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+    image: diamol/apache:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
 
   maven:
-    image: diamol/maven:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+    image: diamol/maven:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
 
   openjdk:
-    image: diamol/openjdk:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+    image: diamol/openjdk:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
 
   golang:
-    image: diamol/golang:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+    image: diamol/golang:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

@@ -9,6 +9,12 @@ try {
     $env:DOCKER_BUILD_OS = $info.Server.Os.ToLower()
     $env:DOCKER_BUILD_CPU = $info.Server.Arch.ToLower()
 
+    $env:OS_VERSION_TAG=''
+    if ($env:DOCKER_BUILD_OS -eq 'windows') {
+        # TODO - determine
+        $env:OS_VERSION_TAG='-ltsc2022'
+    }
+
     $collection='images'
     if ($Chapters) {
         $collection='chapters'
@@ -22,18 +28,18 @@ try {
         -f $composeFile `
         -f $osFile `
         -f $tagsFile `
-        build --pull #$Filter
+        build --pull $Filter
 
     docker compose `
         -f $composeFile `
         -f $osFile `
         -f $tagsFile `
-        push #$Filter
+        push $Filter
     
     docker compose `
         -f $composeFile `
         -f $osFile `
-        build #$Filter
+        build $Filter
 }
 
 finally {

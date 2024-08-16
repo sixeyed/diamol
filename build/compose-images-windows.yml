@@ -1,0 +1,6 @@
+services:
+  base:
+    build:
+      context: ../images/base/windows
+      args:
+        WINDOWS_VERSION: "ltsc2022"
