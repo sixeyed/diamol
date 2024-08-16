@@ -1,9 +1,9 @@
-FROM diamol/golang AS builder
-COPY main.go .
+FROM diamol/golang:2e AS builder
+COPY go.mod main.go /go/
 RUN go build -o /gols
 
 # app
-FROM diamol/base
+FROM diamol/base:2e
 
 ENTRYPOINT ["/gols"]
 CMD ["/init"]

@@ -16,3 +16,17 @@ services:
 
   golang:
     image: diamol/golang:2e
+
+  registry:
+    image: diamol/registry:2e
+    build:
+      context: ../images/registry
+
+  dotnet-sdk:
+    image: diamol/dotnet-sdk:2e
+
+  dotnet-runtime:
+    image: diamol/dotnet-runtime:2e
+
+  dotnet-aspnet:
+    image: diamol/dotnet-aspnet:2e

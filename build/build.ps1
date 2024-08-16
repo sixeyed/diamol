@@ -35,11 +35,6 @@ try {
         -f $osFile `
         -f $tagsFile `
         push $Filter
-    
-    docker compose `
-        -f $composeFile `
-        -f $osFile `
-        build $Filter
 }
 
 finally {

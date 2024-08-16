@@ -11,7 +11,7 @@ docker container rm -f $(docker container ls -aq)
 Now run a container with the lab's to-do list image:
 
 ```
-docker container run -d -p 8015:80 diamol/ch06-lab
+docker container run -d -p 8015:8080 diamol/ch06-lab:2e
 ```
 
 Browse to http://localhost:8015/list  - it should look like this:
@@ -35,7 +35,13 @@ To put that together, we'll run a container which uses:
 - a read-only bind mount to load the new config file into the container
 - a read-write volume mount as the target for the database file
 
-Which is this set of paths on Windows:
+First make sure you're in the lab folder:
+
+```
+cd ./ch06/lab
+```
+
+Which is this set of paths for Windows Server containers:
 
 ```
 $configSource="$(pwd)/solution".ToLower()
@@ -43,7 +49,7 @@ $configTarget='c:\app\config'
 $dataTarget='c:\new-data'
 ```
 
-And this on Linux:
+And this for Linux containers:
 
 ```
 configSource="$(pwd)/solution"
@@ -54,7 +60,7 @@ dataTarget='/new-data'
 And now you can run the container:
 
 ```
-docker container run -d -p 8016:80 --mount type=bind,source=$configSource,target=$configTarget,readonly --volume ch06-lab:$dataTarget diamol/ch06-lab
+docker container run -d -p 8016:8080 --mount type=bind,source=$configSource,target=$configTarget,readonly --volume ch06-lab:$dataTarget diamol/ch06-lab:2e
 ```
 
 And browse to http://localhost:8016/list

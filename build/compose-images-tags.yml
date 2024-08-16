@@ -16,3 +16,15 @@ services:
 
   golang:
     image: diamol/golang:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  registry:
+    image: diamol/registry:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  dotnet-sdk:
+    image: diamol/dotnet-sdk:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  dotnet-runtime:
+    image: diamol/dotnet-runtime:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  dotnet-aspnet:
+    image: diamol/dotnet-aspnet:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

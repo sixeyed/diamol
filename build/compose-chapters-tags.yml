@@ -26,3 +26,27 @@ services:
 
   ch04-lab-optimized:
     image: diamol/ch04-lab:2e-optimized-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch05-golden-dotnet-sdk:
+    image: diamol/ch05-golden-dotnet-sdk:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch05-golden-aspnet:
+    image: diamol/ch05-golden-aspnet:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch06-random-number:
+    image: diamol/ch06-random-number:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch06-file-display:
+    image: diamol/ch06-file-display:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch06-todo-list:
+    image: diamol/ch06-todo-list:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+    
+  ch06-todo-list-v2:
+    image: diamol/ch06-todo-list:2e-v2-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch06-bind-mount:
+    image: diamol/ch06-bind-mount:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch06-lab:
+    image: diamol/ch06-lab:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

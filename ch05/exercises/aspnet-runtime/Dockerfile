@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 
 LABEL framework="dotnet"
-LABEL version="3.0"
-LABEL description=".NET Core 3.0 Runtime"
+LABEL version="8.0"
+LABEL description="ASP.NET 8.0 Runtime"
 LABEL owner="golden-images@sixeyed.com"
 
 EXPOSE 80
