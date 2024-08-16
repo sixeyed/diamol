@@ -1,5 +1,5 @@
 {
     "dotnet.defaultSolution": "disable",
-    "workbench.colorTheme": "Default Light+",
+    "workbench.colorTheme": "Solarized Dark",
     "terminal.integrated.fontSize": 12
 }

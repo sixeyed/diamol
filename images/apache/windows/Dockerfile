@@ -1,18 +1,20 @@
 # escape=`
-FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
+ARG WINDOWS_VERSION
+FROM mcr.microsoft.com/windows/servercore:${WINDOWS_VERSION} AS installer
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # VC++ redistributables
-RUN Invoke-WebRequest -OutFile VC_redist.x64.exe 'aka.ms/vs/16/release/VC_redist.x64.exe'
+RUN Invoke-WebRequest -OutFile VC_redist.x64.exe 'https://aka.ms/vs/17/release/VC_redist.x64.exe'
 RUN Start-Process .\VC_redist.x64.exe -ArgumentList '/install /passive /norestart' -Wait
 
-ARG HTTPD_VERSION="2.4.46"
+ARG HTTPD_VERSION
+ARG HTTPD_BUILD
 RUN Write-Host "Downloading Apache version: $env:HTTPD_VERSION"; `
-    Invoke-WebRequest -OutFile httpd.zip "https://fossies.org/windows/www/httpd-$($env:HTTPD_VERSION)-win64-VS16.zip"; `
+    curl.exe -sSL -o httpd.zip "https://www.apachelounge.com/download/VS17/binaries//httpd-$($env:HTTPD_VERSION)-$($env:HTTPD_BUILD)-win64-VS17.zip"; `
     Expand-Archive httpd.zip -DestinationPath C:\ ;
 
 # Apache
-FROM diamol/base
+FROM diamol/base:2e
 
 EXPOSE 80 443
 WORKDIR C:\Apache24

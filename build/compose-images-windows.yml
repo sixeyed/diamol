@@ -3,4 +3,36 @@ services:
     build:
       context: ../images/base/windows
       args:
-        WINDOWS_VERSION: "ltsc2022"
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+
+  node:
+    build:
+      context: ../images/node/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+
+  apache:
+    build:
+      context: ../images/apache/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        HTTPD_BUILD: ${HTTPD_BUILD}
+
+  maven:
+    build:
+      context: ../images/maven/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+
+  openjdk:
+    build:
+      context: ../images/openjdk/windows
+
+  golang:
+    build:
+      context: ../images/golang/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        GIT_VERSION: ${GIT_VERSION}
+        GIT_WINDOWS_RELEASE_NUMBER: ${GIT_WINDOWS_RELEASE_NUMBER}
+        GIT_WINDOWS_DOWNLOAD_SHA256: ${GIT_WINDOWS_DOWNLOAD_SHA256}

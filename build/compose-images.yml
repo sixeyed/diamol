@@ -4,18 +4,36 @@ services:
 
   node:
     image: diamol/node:2e
+    build:
+      args:
+        NODE_VERSION: ${NODE_VERSION}
 
   apache:
     image: diamol/apache:2e
+    build:
+      args:
+        HTTPD_VERSION: ${HTTPD_VERSION}
 
   maven:
     image: diamol/maven:2e
+    build:
+      args:
+        MAVEN_VERSION: ${MAVEN_VERSION}
+        OPENJDK_DISTRO: ${OPENJDK_DISTRO}
+        OPENJDK_VERSION: ${OPENJDK_VERSION}
 
   openjdk:
     image: diamol/openjdk:2e
+    build:
+      args:
+        OPENJDK_DISTRO: ${OPENJDK_DISTRO}
+        OPENJDK_VERSION: ${OPENJDK_VERSION}
 
   golang:
     image: diamol/golang:2e
+    build:
+      args:
+        GOLANG_VERSION: ${GOLANG_VERSION}
 
   registry:
     image: diamol/registry:2e

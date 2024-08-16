@@ -11,8 +11,14 @@ try {
 
     $env:OS_VERSION_TAG=''
     if ($env:DOCKER_BUILD_OS -eq 'windows') {
-        # TODO - determine
-        $env:OS_VERSION_TAG='-ltsc2022'
+        $env:WINDOWS_VERSION='ltsc2022'
+        $winver=(Get-Item "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion").GetValue('DisplayVersion')
+        if ($winver -eq '22H2') {
+            $env:WINDOWS_VERSION='ltsc2019'
+        }
+        # TODO - others
+        
+        $env:OS_VERSION_TAG="-$env:WINDOWS_VERSION"
     }
 
     $collection='images'
