@@ -291,3 +291,5 @@ __pycache__/
 # Docker Compose Viz
 .cache/
 ch20/exercises/c.txt
+
+.DS_Store

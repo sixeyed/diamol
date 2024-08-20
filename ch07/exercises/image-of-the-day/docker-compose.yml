@@ -1,21 +1,19 @@
-version: '3.7'
-
 services:
 
   accesslog:
-    image: diamol/ch04-access-log
+    image: diamol/ch04-access-log:2e
     networks:
       - app-net
 
   iotd:
-    image: diamol/ch04-image-of-the-day
+    image: diamol/ch04-image-of-the-day:2e
     ports:
       - "80"
     networks:
       - app-net
 
   image-gallery:
-    image: diamol/ch04-image-gallery
+    image: diamol/ch04-image-gallery:2e
     ports:
       - "8010:80" 
     depends_on:
@@ -26,5 +24,5 @@ services:
 
 networks:
   app-net:
-    external:
-      name: nat
+    name: nat
+    external: true
