@@ -28,3 +28,6 @@ services:
 
   dotnet-aspnet:
     image: diamol/dotnet-aspnet:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  postgres-12:
+    image: diamol/postgres:2e-12-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

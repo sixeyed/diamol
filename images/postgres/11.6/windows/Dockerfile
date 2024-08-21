@@ -20,6 +20,10 @@ ARG EDB_VER=11.6-1
 ENV EDB_VER $EDB_VER
 ENV EDB_REPO https://get.enterprisedb.com/postgresql
 
+
+https://get.enterprisedb.com/postgresql/postgresql-12.20-1-windows-x64.exe
+
+
 ### Download EnterpriseDB and remove cruft
 RUN $URL1 = $('{0}/postgresql-{1}-windows-x64-binaries.zip' -f $env:EDB_REPO,$env:EDB_VER) ; \
     Invoke-WebRequest -Uri $URL1 -OutFile 'C:\\EnterpriseDB.zip' ; \

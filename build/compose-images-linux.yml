@@ -29,20 +29,20 @@ services:
     build:
       context: ../images/golang/linux
 
-  dotnet-sdk:
-    build:
-      context: ../images/dotnet/sdk/linux
-      args:
-        DOTNET_VERSION: "8.0"
-
   dotnet-runtime:
     build:
       context: ../images/dotnet/runtime/linux
-      args:
-        DOTNET_VERSION: "8.0"
+
+  dotnet-sdk:
+    build:
+      context: ../images/dotnet/sdk/linux
 
   dotnet-aspnet:
     build:
       context: ../images/dotnet/aspnet/linux
+
+  postgres-12:
+    build:
+      context: ../images/postgres/12/linux
       args:
-        DOTNET_VERSION: "8.0"
+        POSTGRES_VERSION: ${POSTGRES_VERSION}

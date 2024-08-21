@@ -36,3 +36,28 @@ services:
         GIT_VERSION: ${GIT_VERSION}
         GIT_WINDOWS_RELEASE_NUMBER: ${GIT_WINDOWS_RELEASE_NUMBER}
         GIT_WINDOWS_DOWNLOAD_SHA256: ${GIT_WINDOWS_DOWNLOAD_SHA256}
+
+  dotnet-runtime:
+    build:
+      context: ../images/dotnet/runtime/windows
+      args:
+        WINDOWS_VERSION_CODE: ${WINDOWS_VERSION_CODE}
+
+  dotnet-sdk:
+    build:
+      context: ../images/dotnet/sdk/windows
+      args:
+        WINDOWS_VERSION_CODE: ${WINDOWS_VERSION_CODE}
+
+  dotnet-aspnet:
+    build:
+      context: ../images/dotnet/aspnet/windows
+      args:
+        WINDOWS_VERSION_CODE: ${WINDOWS_VERSION_CODE}
+
+  postgres-12:
+    build:
+      context: ../images/postgres/12/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        ENTERPRISE_DB_VERSION: ${ENTERPRISE_DB_VERSION}

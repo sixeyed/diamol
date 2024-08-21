@@ -40,14 +40,14 @@ services:
     build:
       context: ../images/registry
 
-  dotnet-sdk:
-    image: diamol/dotnet-sdk:2e
+  dotnet-runtime:
+    image: diamol/dotnet-runtime:2e
     build:
       args:
         DOTNET_VERSION: ${DOTNET_VERSION}
 
-  dotnet-runtime:
-    image: diamol/dotnet-runtime:2e
+  dotnet-sdk:
+    image: diamol/dotnet-sdk:2e
     build:
       args:
         DOTNET_VERSION: ${DOTNET_VERSION}
@@ -57,3 +57,9 @@ services:
     build:
       args:
         DOTNET_VERSION: ${DOTNET_VERSION}
+
+  postgres-12:
+    image: diamol/postgres:2e-12
+    build:
+      args:
+        POSTGRES_VERSION: ${POSTGRES_VERSION}
