@@ -15,6 +15,8 @@ try {
         $winver=(Get-Item "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion").GetValue('DisplayVersion')
         if ($winver -eq '22H2') {
             $env:WINDOWS_VERSION='ltsc2019'
+        } elseif ($winver -eq '23H2') {
+            $env:WINDOWS_VERSION='ltsc2022'
         }
         # TODO - others
         

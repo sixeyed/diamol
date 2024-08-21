@@ -6,8 +6,8 @@ WORKDIR ${GOPATH}/src/github.com/docker
 RUN git clone https://github.com/docker/distribution.git
 
 WORKDIR ${GOPATH}/src/github.com/docker/distribution
-RUN git checkout "v2.6.2" && \
-    go build -o /out/registry ./cmd/registry
+RUN git checkout "v2.6.2"
+RUN go build -o /out/registry ./cmd/registry
 
 # Registry
 FROM diamol/base:2e
