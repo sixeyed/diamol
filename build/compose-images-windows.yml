@@ -44,15 +44,20 @@ services:
         WINDOWS_VERSION_CODE: ${WINDOWS_VERSION_CODE}
 
   dotnet-sdk:
-    image: diamol/dotnet-sdk:2e
     build:
       context: ../images/dotnet/sdk/windows
       args:
         WINDOWS_VERSION_CODE: ${WINDOWS_VERSION_CODE}
 
   dotnet-aspnet:
-    image: diamol/dotnet-aspnet:2e
     build:
       context: ../images/dotnet/aspnet/windows
       args:
         WINDOWS_VERSION_CODE: ${WINDOWS_VERSION_CODE}
+
+  postgres-12:
+    build:
+      context: ../images/postgres/12/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        ENTERPRISE_DB_VERSION: ${ENTERPRISE_DB_VERSION}

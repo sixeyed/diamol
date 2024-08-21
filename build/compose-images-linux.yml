@@ -40,3 +40,9 @@ services:
   dotnet-aspnet:
     build:
       context: ../images/dotnet/aspnet/linux
+
+  postgres-12:
+    build:
+      context: ../images/postgres/12/linux
+      args:
+        POSTGRES_VERSION: ${POSTGRES_VERSION}
