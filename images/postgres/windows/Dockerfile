@@ -45,6 +45,7 @@ COPY --from=prepare /pgsql /pgsql
 
 ARG POSTGRES_VERSION
 ENV POSTGRES_VERSION ${POSTGRES_VERSION}
+ENV POSTGRES_PASSWORD=postgres
 
 #### In order to set system PATH, ContainerAdministrator must be used
 USER ContainerAdministrator

@@ -20,7 +20,7 @@
 @code {
     private ToDo todo = new ToDo
     {
-        DateAdded = DateTime.Today
+        DateAdded = DateTime.UtcNow
     };
 
     private async Task HandleValidSubmit()

@@ -2,11 +2,9 @@
 # It runs a Postgres container and sets the web app to use Postgres.
 # It also sets the containers to restart, and uses a bind mount for the database files.
 # This variation is for Windows, which needs a "C:\" source for the bind mount.
-version: "3.7"
-
 services:
   todo-db:
-    image: diamol/postgres:11.5
+    image: diamol/postgres:2e-12
     restart: unless-stopped
     environment:
       - PGDATA=/var/lib/postgresql/data
@@ -18,12 +16,14 @@ services:
       - app-net
 
   todo-web:
-    image: diamol/ch06-todo-list
+    image: diamol/ch06-todo-list:2e
     restart: unless-stopped
     ports:
-      - "8050:80"
+      - "8050:8080"
     environment:
       - Database:Provider=Postgres
+    networks:
+      - app-net
     depends_on:
       - todo-db
     secrets:
@@ -36,5 +36,6 @@ secrets:
 
 networks:
   app-net:
-    external:
-      name: nat
+    name: nat
+    external: true
+      
