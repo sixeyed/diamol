@@ -57,7 +57,14 @@ services:
 
   postgres-12:
     build:
-      context: ../images/postgres/12/windows
+      context: ../images/postgres/windows
       args:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
-        ENTERPRISE_DB_DOWNLOAD_FILE_ID: ${ENTERPRISE_DB_DOWNLOAD_FILE_ID}
+        ENTERPRISE_DB_DOWNLOAD_FILE_ID: ${ENTERPRISE_DB_12_DOWNLOAD_FILE_ID}
+
+  postgres-13:
+    build:
+      context: ../images/postgres/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        ENTERPRISE_DB_DOWNLOAD_FILE_ID: ${ENTERPRISE_DB_13_DOWNLOAD_FILE_ID}

@@ -43,6 +43,8 @@ services:
 
   postgres-12:
     build:
-      context: ../images/postgres/12/linux
-      args:
-        POSTGRES_VERSION: ${POSTGRES_VERSION}
+      context: ../images/postgres/linux
+
+  postgres-13:
+    build:
+      context: ../images/postgres/linux

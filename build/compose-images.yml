@@ -62,4 +62,10 @@ services:
     image: diamol/postgres:2e-12
     build:
       args:
-        POSTGRES_VERSION: ${POSTGRES_VERSION}
+        POSTGRES_VERSION: ${POSTGRES_12_VERSION}
+
+  postgres-13:
+    image: diamol/postgres:2e-13
+    build:
+      args:
+        POSTGRES_VERSION: ${POSTGRES_13_VERSION}

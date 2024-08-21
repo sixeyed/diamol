@@ -31,3 +31,6 @@ services:
 
   postgres-12:
     image: diamol/postgres:2e-12-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+  
+  postgres-13:
+    image: diamol/postgres:2e-13-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

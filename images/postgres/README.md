@@ -1,6 +1,6 @@
 # STATUS: IN-PROGRESS
 
-All Linux builds good. Windows build is custom, needs to be verified.
+All Linux builds good. Windows build is custom.
 
 ### Credits
 

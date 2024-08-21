@@ -43,6 +43,9 @@ RUN mkdir "C:\\docker-entrypoint-initdb.d"
 #### Copy over PostgreSQL
 COPY --from=prepare /pgsql /pgsql
 
+ARG POSTGRES_VERSION
+ENV POSTGRES_VERSION ${POSTGRES_VERSION}
+
 #### In order to set system PATH, ContainerAdministrator must be used
 USER ContainerAdministrator
 RUN setx /M PATH "C:\\pgsql\\bin;%PATH%"
