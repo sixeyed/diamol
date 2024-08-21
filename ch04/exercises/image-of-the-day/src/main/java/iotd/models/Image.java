@@ -1,4 +1,4 @@
-package iotd;
+package iotd.models;
 
 public class Image {
 
