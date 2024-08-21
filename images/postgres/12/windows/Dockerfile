@@ -1,5 +1,4 @@
 ARG WINDOWS_VERSION
-ARG ENTERPRISE_DB_VERSION
 
 ####
 #### Download and prepare PostgreSQL for Windows
@@ -11,12 +10,12 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN Invoke-WebRequest -OutFile C:\\VC_redist.x64.exe 'https://aka.ms/vs/17/release/VC_redist.x64.exe'
 RUN Start-Process C:\\VC_redist.x64.exe -ArgumentList '/install /passive /norestart' -Wait
 
-# Set the variables for EnterpriseDB
-ENV EDB_VER $ENTERPRISE_DB_VERSION
-ENV EDB_REPO https://get.enterprisedb.com/postgresql
+# downloads: https://www.enterprisedb.com/download-postgresql-binaries
+ARG ENTERPRISE_DB_DOWNLOAD_FILE_ID
 
 ### Download EnterpriseDB and remove cruft
-RUN $URL1 = $('{0}/postgresql-{1}-windows-x64-binaries.zip' -f $env:EDB_REPO,$env:EDB_VER) ; \
+RUN $URL1 = 'https://sbp.enterprisedb.com/getfile.jsp?fileid=' + $env:ENTERPRISE_DB_DOWNLOAD_FILE_ID ; \
+    echo "Downloading: $URL1" ; \
     Invoke-WebRequest -Uri $URL1 -OutFile 'C:\\EnterpriseDB.zip' ; \
     Expand-Archive 'C:\\EnterpriseDB.zip' -DestinationPath 'C:\\' ; \
     Remove-Item -Path 'C:\\EnterpriseDB.zip' ; \

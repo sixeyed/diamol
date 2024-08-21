@@ -60,4 +60,4 @@ services:
       context: ../images/postgres/12/windows
       args:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
-        ENTERPRISE_DB_VERSION: ${ENTERPRISE_DB_VERSION}
+        ENTERPRISE_DB_DOWNLOAD_FILE_ID: ${ENTERPRISE_DB_DOWNLOAD_FILE_ID}
