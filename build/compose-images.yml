@@ -40,11 +40,20 @@ services:
     build:
       context: ../images/registry
 
-  dotnet-sdk:
-    image: diamol/dotnet-sdk:2e
-
   dotnet-runtime:
     image: diamol/dotnet-runtime:2e
+    build:
+      args:
+        DOTNET_VERSION: ${DOTNET_VERSION}
+
+  dotnet-sdk:
+    image: diamol/dotnet-sdk:2e
+    build:
+      args:
+        DOTNET_VERSION: ${DOTNET_VERSION}
 
   dotnet-aspnet:
     image: diamol/dotnet-aspnet:2e
+    build:
+      args:
+        DOTNET_VERSION: ${DOTNET_VERSION}

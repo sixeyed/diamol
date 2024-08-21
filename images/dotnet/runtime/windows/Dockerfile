@@ -1,0 +1,3 @@
+ARG DOTNET_VERSION
+ARG WINDOWS_VERSION_CODE
+FROM mcr.microsoft.com/dotnet/runtime:${DOTNET_VERSION}-nanoserver-${WINDOWS_VERSION_CODE}
