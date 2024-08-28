@@ -4,16 +4,18 @@ The original app is packaged using this [Dockerfile](./Dockerfile). The solution
 
 ## Usage
 
-You can build the solution from my Dockerfile:
+You can build the solution from my Dockerfile in this folder:
 
 ```
-docker image build -t diamol/ch08-lab:solution -f Dockerfile.solution .
+cd ch08/lab
+
+docker image build -t diamol/ch08-lab:2e-solution -f Dockerfile.solution .
 ```
 
 And run the container interactively; the app will print out its (fake) memory allocations:
 
 ```
-docker container run diamol/ch08-lab:solution
+docker container run diamol/ch08-lab:2e-solution
 ```
 
 > Check the container list after a while to see the health, and inspect the container to see the health check output

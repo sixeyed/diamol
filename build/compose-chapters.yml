@@ -83,3 +83,50 @@ services:
     image: diamol/ch06-lab:2e
     build:
       context: ../ch06/lab/todo-list-v3
+
+  ch08-numbers-api:
+    image: diamol/ch08-numbers-api:2e
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-api/Dockerfile
+
+  ch08-numbers-api-v2:
+    image: diamol/ch08-numbers-api:2e-v2
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-api/Dockerfile.v2
+
+  ch08-numbers-api-v3:
+    image: diamol/ch08-numbers-api:2e-v3
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-api/Dockerfile.v3
+
+  ch08-numbers-web:
+    image: diamol/ch08-numbers-web:2e
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-web/Dockerfile
+
+  ch08-numbers-web-v2:
+    image: diamol/ch08-numbers-web:2e-v2
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-web/Dockerfile.v2
+
+  ch08-numbers-web-v3:
+    image: diamol/ch08-numbers-web:2e-v3
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-web/Dockerfile.v3
+
+  ch08-lab:
+    image: diamol/ch08-lab:2e
+    build:
+      context: ../ch08/lab
+
+  ch08-lab-solution:
+    image: diamol/ch08-lab:2e-solution
+    build:
+      context: ../ch08/lab
+      dockerfile: Dockerfile.solution

@@ -50,3 +50,27 @@ services:
 
   ch06-lab:
     image: diamol/ch06-lab:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch08-numbers-api:
+    image: diamol/ch08-numbers-api:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch08-numbers-api-v2:
+    image: diamol/ch08-numbers-api:2e-v2-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch08-numbers-api-v3:
+    image: diamol/ch08-numbers-api:2e-v3-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch08-numbers-web:
+    image: diamol/ch08-numbers-web:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch08-numbers-web-v2:
+    image: diamol/ch08-numbers-web:2e-v2-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch08-numbers-web-v3:
+    image: diamol/ch08-numbers-web:2e-v3-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch08-lab:
+    image: diamol/ch08-lab:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch08-lab-solution:
+    image: diamol/ch08-lab:2e-solution-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}

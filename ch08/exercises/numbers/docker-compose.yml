@@ -1,10 +1,8 @@
-version: "3.7"
-
 services:
   numbers-api:
-    image: diamol/ch08-numbers-api:v3
+    image: diamol/ch08-numbers-api:2e-v3
     ports:
-      - "8087:80"
+      - "8087:8080"
     healthcheck:
       interval: 5s
       timeout: 1s
@@ -14,12 +12,12 @@ services:
       - app-net
 
   numbers-web:
-    image: diamol/ch08-numbers-web:v3
+    image: diamol/ch08-numbers-web:2e-v3
     restart: on-failure
     environment:
-      - RngApi__Url=http://numbers-api/rng
+      - RngApi__Url=http://numbers-api:8080/rng
     ports:
-      - "8088:80"
+      - "8088:8080"
     healthcheck:
       test: ["CMD", "dotnet", "Utilities.HttpCheck.dll", "-t", "150"]
       interval: 5s
@@ -31,5 +29,6 @@ services:
 
 networks:
   app-net:
-    external:
-      name: nat
+    name: nat
+    external: true
+      
