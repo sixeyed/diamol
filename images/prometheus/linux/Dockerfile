@@ -1,4 +1,5 @@
-FROM prom/prometheus:v2.13.1
+ARG PROMETHEUS_VERSION
+FROM prom/prometheus:v${PROMETHEUS_VERSION}
 
 USER root
 ENTRYPOINT []

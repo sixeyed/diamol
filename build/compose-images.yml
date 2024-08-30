@@ -69,3 +69,9 @@ services:
     build:
       args:
         POSTGRES_VERSION: ${POSTGRES_13_VERSION}
+
+  prometheus:
+    image: diamol/prometheus:2e
+    build:
+      args:
+        PROMETHEUS_VERSION: ${PROMETHEUS_VERSION}

@@ -34,3 +34,6 @@ services:
   
   postgres-13:
     image: diamol/postgres:2e-13-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  prometheus:
+    image: diamol/prometheus:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

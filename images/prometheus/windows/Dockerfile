@@ -1,19 +1,22 @@
 # escape=`
-FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
+ARG WINDOWS_VERSION
+FROM mcr.microsoft.com/windows/servercore:${WINDOWS_VERSION} AS installer
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-ARG PROMETHEUS_VERSION="2.13.1"
-ARG PROMETHEUS_SHA256="44dd2834f753a527131da30a133de3ba35152356525a8ab7a24753770c593bfa"
+ARG PROMETHEUS_VERSION
+ARG PROMETHEUS_WINDOWS_DOWNLOAD_SHA256
 
 RUN Write-Host "Downloading Prometheus version: $env:PROMETHEUS_VERSION"; `
-    Invoke-WebRequest "https://github.com/prometheus/prometheus/releases/download/v$($env:PROMETHEUS_VERSION)/prometheus-$($env:PROMETHEUS_VERSION).windows-amd64.tar.gz" -OutFile 'prometheus.tar.gz' -UseBasicParsing; `
-    if ((Get-FileHash prometheus.tar.gz -Algorithm sha256).Hash.ToLower() -ne $env:PROMETHEUS_SHA256) {exit 1}
+    Invoke-WebRequest "https://github.com/prometheus/prometheus/releases/download/v$($env:PROMETHEUS_VERSION)/prometheus-$($env:PROMETHEUS_VERSION).windows-amd64.zip" -OutFile 'prometheus.tar.gz' -UseBasicParsing; `
+    if ((Get-FileHash prometheus.tar.gz -Algorithm sha256).Hash.ToLower() -ne $env:PROMETHEUS_WINDOWS_DOWNLOAD_SHA256) {exit 1}
+
 
 RUN tar xf prometheus.tar.gz; `
     Rename-Item -Path "C:\prometheus-$($env:PROMETHEUS_VERSION).windows-amd64" -NewName 'C:\prometheus'
 
 # Prometheus
-FROM mcr.microsoft.com/windows/nanoserver:1809
+ARG WINDOWS_VERSION
+FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION}
 
 COPY --from=installer /windows/system32/netapi32.dll /windows/system32/netapi32.dll
 COPY --from=installer /prometheus/prometheus.exe      /bin/prometheus.exe

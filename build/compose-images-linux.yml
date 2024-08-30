@@ -48,3 +48,8 @@ services:
   postgres-13:
     build:
       context: ../images/postgres/linux
+
+  prometheus:
+    image: diamol/prometheus:2e
+    build:
+      context: ../images/prometheus/linux
