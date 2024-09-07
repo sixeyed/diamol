@@ -53,3 +53,8 @@ services:
     image: diamol/prometheus:2e
     build:
       context: ../images/prometheus/linux
+
+  grafana:
+    image: diamol/grafana:2e
+    build:
+      context: ../images/grafana/linux

@@ -130,3 +130,28 @@ services:
     build:
       context: ../ch08/lab
       dockerfile: Dockerfile.solution
+
+  ch09-access-log:
+    image: diamol/ch09-access-log:2e
+    build:
+      context: ../ch09/exercises/access-log
+
+  ch09-image-gallery:
+    image: diamol/ch09-image-gallery:2e
+    build:
+      context: ../ch09/exercises/image-gallery
+
+  ch09-image-of-the-day:
+    image: diamol/ch09-image-of-the-day:2e
+    build:
+      context: ../ch09/exercises/image-of-the-day
+
+  ch09-prometheus:
+    image: diamol/ch09-prometheus:2e
+    build:
+      context: ../ch09/exercises/prometheus
+
+  ch09-grafana:
+    image: diamol/ch09-grafana:2e
+    build:
+      context: ../ch09/exercises/grafana

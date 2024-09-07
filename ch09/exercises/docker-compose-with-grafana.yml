@@ -1,22 +1,20 @@
-version: "3.7"
-
 services:
   accesslog:
-    image: diamol/ch09-access-log
+    image: diamol/ch09-access-log:2e
     ports:
       - "80"
     networks:
       - app-net
 
   iotd:
-    image: diamol/ch09-image-of-the-day
+    image: diamol/ch09-image-of-the-day:2e
     ports:
       - "8011:80"
     networks:
       - app-net
 
   image-gallery:
-    image: diamol/ch09-image-gallery
+    image: diamol/ch09-image-gallery:2e
     ports:
       - "8010:80"
     depends_on:
@@ -26,7 +24,7 @@ services:
       - app-net
 
   prometheus:
-    image: diamol/ch09-prometheus
+    image: diamol/ch09-prometheus:2e
     ports:
       - "9090:9090"
     environment:
@@ -35,7 +33,7 @@ services:
       - app-net
 
   grafana:
-    image: diamol/ch09-grafana
+    image: diamol/ch09-grafana:2e
     ports:
       - "3000:3000"
     depends_on:
@@ -45,5 +43,5 @@ services:
 
 networks:
   app-net:
-    external:
-      name: nat
+    name: nat
+    external: true

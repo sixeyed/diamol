@@ -49,8 +49,8 @@ server.use(restify.plugins.bodyParser());
 server.get("/stats", stats);
 server.post("/access-log", respond);
 
-server.get("/metrics", function(req, res, next) {
-  res.end(prom.register.metrics());
+server.get("/metrics", async function(req, res) {
+  res.end(await prom.register.metrics());
 });
 
 server.headersTimeout = 20;

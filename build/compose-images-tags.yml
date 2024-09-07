@@ -37,3 +37,6 @@ services:
 
   prometheus:
     image: diamol/prometheus:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  grafana:
+    image: diamol/grafana:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

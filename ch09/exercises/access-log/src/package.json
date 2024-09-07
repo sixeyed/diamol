@@ -4,8 +4,8 @@
   "main": "server.js",
   "author": "Elton Stoneman",
   "dependencies": {
-    "restify": "8.3.3",
+    "restify": "11.1.0",
     "winston": "3.2.1",
-    "prom-client": "11.5.3"
+    "prom-client": "15.1.3"
   }
 }

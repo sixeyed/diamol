@@ -75,3 +75,9 @@ services:
     build:
       args:
         PROMETHEUS_VERSION: ${PROMETHEUS_VERSION}
+
+  grafana:
+    image: diamol/grafana:2e
+    build:
+      args:
+        GRAFANA_VERSION: ${GRAFANA_VERSION}

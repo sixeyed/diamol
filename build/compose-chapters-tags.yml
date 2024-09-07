@@ -74,3 +74,18 @@ services:
 
   ch08-lab-solution:
     image: diamol/ch08-lab:2e-solution-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch09-access-log:
+    image: diamol/ch09-access-log:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch09-image-gallery:
+    image: diamol/ch09-image-gallery:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch09-image-of-the-day:
+    image: diamol/ch09-image-of-the-day:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch09-prometheus:
+    image: diamol/ch09-prometheus:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch09-grafana:
+    image: diamol/ch09-grafana:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
