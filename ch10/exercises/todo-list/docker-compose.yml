@@ -1,10 +1,8 @@
-version: "3.7"
-
 services:
   todo-web:
-    image: diamol/ch06-todo-list
+    image: diamol/ch06-todo-list:2e
     ports:
-      - 80
+      - 8080
     environment:
       - Database:Provider=Sqlite
     networks:

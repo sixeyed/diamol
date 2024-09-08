@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   numbers-api:
     healthcheck:
@@ -7,12 +5,12 @@ services:
       retries: 2
     restart: always
     ports:
-      - "8090:80"
+      - "8090:8080"
 
   numbers-web:
     restart: always
     ports:
-      - "80:80"
+      - "80:8080"
     healthcheck:
       interval: 10s
       retries: 2
