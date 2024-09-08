@@ -1,16 +1,14 @@
-version: "3.7"
-
 services:
   todo-web:
     ports:
-      - "8080:80"
+      - "8080:8080"
     environment:
       - Database:Provider=Postgres
     networks:
       - app-net
 
   todo-db:
-    image: diamol/postgres:11.5
+    image: diamol/postgres:2e-12
     environment:
       - PGDATA=/data
     ports:

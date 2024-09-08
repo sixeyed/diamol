@@ -1,6 +1,4 @@
-version: "3.7"
-
-x-labels: &logging
+x-logging: &logging
   logging:  
     options:
       max-size: '100m'
@@ -17,7 +15,7 @@ services:
 
   iotd:
     ports:
-      - 8080:80
+      - 8080:8080
     <<: *logging
     labels:
       <<: *labels
@@ -25,14 +23,14 @@ services:
 
   image-gallery:
     ports:
-      - 80:80
+      - 80:8080
     <<: *logging
     labels:
       <<: *labels
       public: web
 
   prometheus:
-    image: diamol/ch09-prometheus
+    image: diamol/ch09-prometheus:2e
     ports:
       - "9090:9090"
     environment:
@@ -44,7 +42,7 @@ services:
       <<: *labels
 
   grafana:
-    image: diamol/ch09-grafana
+    image: diamol/ch09-grafana:2e
     ports:
       - "3000:3000"
     depends_on:

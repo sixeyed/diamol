@@ -1,9 +1,7 @@
-version: "3.7"
-
 services:
   todo-web:
     ports:
-      - 8089:80
+      - 8089:8080
     environment:
       - Database:Provider=Sqlite
     env_file:

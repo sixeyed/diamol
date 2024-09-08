@@ -1,17 +1,15 @@
-version: "3.7"
-
 services:
   accesslog:
-    image: diamol/ch09-access-log
+    image: diamol/ch09-access-log:2e
     networks:
       - app-net
 
   iotd:
-    image: diamol/ch09-image-of-the-day
+    image: diamol/ch09-image-of-the-day:2e
     networks:
       - app-net
 
   image-gallery:
-    image: diamol/ch09-image-gallery
+    image: diamol/ch09-image-gallery:2e
     networks:
       - app-net
