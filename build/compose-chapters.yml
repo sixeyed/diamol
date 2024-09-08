@@ -155,3 +155,18 @@ services:
     image: diamol/ch09-grafana:2e
     build:
       context: ../ch09/exercises/grafana
+
+  ch09-todo-list:
+    image: diamol/ch09-todo-list:2e
+    build:
+      context: ../ch09/exercises/todo-list
+
+  ch09-lab-prometheus:
+    image: diamol/ch09-lab-prometheus:2e
+    build:
+      context: ../ch09/lab/prometheus
+
+  ch09-lab-grafana:
+    image: diamol/ch09-lab-grafana:2e
+    build:
+      context: ../ch09/lab/grafana

@@ -89,3 +89,6 @@ services:
 
   ch09-grafana:
     image: diamol/ch09-grafana:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  ch09-todo-list:
+    image: diamol/ch09-todo-list:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

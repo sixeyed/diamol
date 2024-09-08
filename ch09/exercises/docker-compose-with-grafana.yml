@@ -36,6 +36,8 @@ services:
     image: diamol/ch09-grafana:2e
     ports:
       - "3000:3000"
+    environment:
+      - GF_USERS_DEFAULT_THEME=light
     depends_on:
       - prometheus
     networks:

@@ -27,4 +27,9 @@ ENV GF_PATHS_CONFIG="C:\\grafana\\conf\\defaults.ini" `
     GF_PATHS_PLUGINS="C:\\grafana\\data\\plugins" `
     GF_PATHS_PROVISIONING="C:\\grafana\\conf\\provisioning"
 
+ENV GF_AUTH_ANONYMOUS_ENABLED=true `
+    GF_AUTH_ANONYMOUS_ORG_ROLE=Admin `
+    GF_AUTH_DISABLE_LOGIN_FORM=true `
+    GF_USERS_DEFAULT_THEME=light
+
 COPY --from=installer C:\grafana C:\grafana

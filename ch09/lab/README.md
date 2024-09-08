@@ -3,7 +3,7 @@
 The to-do app for this lab already has Prometheus support built in. You can check it by running:
 
 ```
-docker container dun -d -p 8050:80 diamol/ch09-todo-list
+docker container run -d -p 8050:8080 diamol/ch09-todo-list:2e
 ```
 
 Then browse to http://localhost:8050 and enter some tasks to do.
@@ -31,6 +31,8 @@ I built the dashboard by running a Grafana container when I had the Prometheus a
 
 ![Grafana dashboard for the to-do list app](./dashboard.png)
 
+(You would want to spend some time tidying up the graph labels).
+
 The PromQL queries are all straightforward - there's no need for aggregation or filtering:
 
 - `todo_tasks_created_total`
@@ -45,10 +47,10 @@ The [Dockerfile](./grafana/Dockerfile) for Grafana packages that dashboard along
 
 This [docker-compose.yml](docker-compose.yml) manifest starts the app with Prometheus and Grafana.
 
-Run it with:
+Run it from the lab folder with:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
-Then browse to http://localhost:8050, add some tasks and check the dashboard at http://localhost:3000.
+Then browse to http://localhost:8060, add some tasks and check the dashboard at http://localhost:3060.

@@ -2,23 +2,23 @@ version: "3.7"
 
 services:
   todo-list:
-    image: diamol/ch09-todo-list
+    image: diamol/ch09-todo-list:2e
     ports:
-      - "8050:80"
+      - "8060:8080"
     networks:
       - app-net
 
   prometheus:
-    image: diamol/ch09-lab-prometheus
+    image: diamol/ch09-lab-prometheus:2e
     ports:
-      - "9090:9090"
+      - "9060:9090"
     networks:
       - app-net
 
   grafana:
-    image: diamol/ch09-lab-grafana
+    image: diamol/ch09-lab-grafana:2e
     ports:
-      - "3000:3000"
+      - "3060:3000"
     depends_on:
       - prometheus
     networks:
