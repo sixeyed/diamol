@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   todo-web:
-    image: diamol/ch11-todo-list
+    image: ${REGISTRY:-docker.io}/diamol/ch11-todo-list
     networks:
       - app-net
 
