@@ -1,0 +1,11 @@
+update src for .net 8
+test build locally
+test with jenkins
+
+jenkins down & delete volume
+delete repo
+recreate repo 
+jenkins up - ss
+git push
+
+etc.

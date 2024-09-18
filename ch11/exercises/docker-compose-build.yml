@@ -1,5 +1,3 @@
-version: "3.7"
-
 x-args: &args
   args:
     BUILD_NUMBER: ${BUILD_NUMBER:-0}

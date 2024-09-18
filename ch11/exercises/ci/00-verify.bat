@@ -1,1 +1,1 @@
-docker version && docker-compose version
+docker version && docker compose version
