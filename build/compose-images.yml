@@ -81,3 +81,16 @@ services:
     build:
       args:
         GRAFANA_VERSION: ${GRAFANA_VERSION}
+
+  gogs:
+    image: diamol/gogs:2e
+    build:
+      args:
+        GOGS_VERSION: ${GOGS_VERSION}
+
+  jenkins:
+    image: diamol/jenkins:2e
+    build:
+      args:
+        JENKINS_VERSION: ${JENKINS_VERSION}
+        JENKINS_JDK_VERSION: ${JENKINS_JDK_VERSION}

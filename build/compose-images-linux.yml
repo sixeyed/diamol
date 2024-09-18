@@ -58,3 +58,13 @@ services:
     image: diamol/grafana:2e
     build:
       context: ../images/grafana/linux
+
+  gogs:
+    image: diamol/gogs:2e
+    build:
+      context: ../images/gogs/linux
+
+  jenkins:
+    image: diamol/jenkins:2e
+    build:
+      context: ../images/jenkins/linux
