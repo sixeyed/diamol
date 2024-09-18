@@ -13,7 +13,8 @@ RUN apk add --no-cache \
     openssh-client \
     ttf-dejavu \
     unzip \
-    docker-cli
+    docker-cli \
+    docker-cli-compose
 
 ARG JENKINS_VERSION="2.263.4"
 ENV JENKINS_VERSION=${JENKINS_VERSION} \

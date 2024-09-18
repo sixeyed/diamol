@@ -23,7 +23,7 @@ FROM diamol/dotnet-aspnet:2e
 ARG BUILD_NUMBER=0
 ARG BUILD_TAG=local
 
-LABEL version="3.0"
+LABEL app_version="3.0"
 LABEL build_number=${BUILD_NUMBER}
 LABEL build_tag=${BUILD_TAG}
 
