@@ -1,4 +1,4 @@
-FROM diamol/dotnet-sdk AS builder
+FROM diamol/dotnet-sdk:2e AS builder
 
 WORKDIR /src
 COPY src/ToDoList.csproj .
@@ -8,7 +8,7 @@ COPY src/ .
 RUN dotnet publish -c Release -o /out ToDoList.csproj
 
 # app image
-FROM diamol/dotnet-aspnet
+FROM diamol/dotnet-aspnet:2e
 
 ARG BUILD_NUMBER=0
 LABEL build_number=${BUILD_NUMBER}

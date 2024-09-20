@@ -1,12 +1,23 @@
 # DIAMOL Chapter 11 Lab - Sample Solution
 
+## Run the build infrastructure
+
+Makew sure you have Jenkins, Gogs and the registry astill running from this chapter:
+
+```
+cd ch11/exercises/infrastructure
+
+docker compose -f docker-compose.yml -f docker-compose-linux.yml up -d
+
+# OR on Windows
+# docker compose -f docker-compose.yml -f docker-compose-windows.yml up -d
+```
+
 ## Build override file
 
 - create `docker-compose-build.yml` with this content:
 
 ```
-version: "3.7"
-
 services:
   todo-web:
     build:
@@ -18,13 +29,15 @@ services:
 
 ## Jenkins job
 
-- log into Jenkins
+- log into Jenkins with credentials `diamol`/`diamol`
 
-- New Item, copy from `diamol`
+- from the Dashboard click _New Item_
 
-- change script path to ch11/lab/Jenkinsfile
+- give the build a name and in the _Copy from_  box enter `diamol`
 
-- click Build Now
+- in the pipeline definition change script path to `ch11/lab/Jenkinsfile`
+
+- click _Save_ and then _Build Now_
 
 - check that the image has been pushed to the registry:
 
