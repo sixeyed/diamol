@@ -33,14 +33,18 @@ services:
 
 - from the Dashboard click _New Item_
 
-- give the build a name and in the _Copy from_  box enter `diamol`
+- give the build a name and in the _Copy from_  box enter `diamol`:
 
-- in the pipeline definition change script path to `ch11/lab/Jenkinsfile`
+![](img/jenkins-new-item.png)
 
-- click _Save_ and then _Build Now_
+- in the pipeline definition change script path to `ch11/lab/Jenkinsfile`:
 
-- check that the image has been pushed to the registry:
+![](img/jenkins-pipeline.png)
 
-```
-curl http://registry.local:5000/v2/diamol/ch11-todo-list/tags/list
-```
+- click _Save_ and then _Build Now_. Check the console logs if your build fails, eventually it should pass:
+
+![](img/jenkins-build-ok.png)
+
+- check that the image has been pushed to the registry at http://registry.local:5010/v2/diamol/ch11-todo-list/tags/list
+
+![](img/registry.png)
