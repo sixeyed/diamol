@@ -7,7 +7,7 @@
 ## Push
 
 ```
-docker image push registry.local:5000/gallery/ui
+docker image push --all-tags registry.local:5000/gallery/ui
 ```
 
 > Pushes all tags for the repo
