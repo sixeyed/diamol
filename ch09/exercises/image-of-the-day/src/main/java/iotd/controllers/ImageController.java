@@ -1,5 +1,8 @@
 package iotd;
 
+import java.util.*; 
+import java.util.stream.*;
+
 import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.MeterRegistry;
 
@@ -38,12 +41,17 @@ public class ImageController {
         Image img = cacheService.getImage();
         if (img == null) {
             RestTemplate restTemplate = new RestTemplate();
-            ApodImage result = restTemplate.getForObject(apodUrl+apodKey, ApodImage.class);
+            ApodImage[] result = restTemplate.getForObject(apodUrl+apodKey, ApodImage[].class);
+            log.info("Fetched new APOD images from NASA");
+            ApodImage match = Arrays.stream(result)
+                                    .filter(x -> "image".equals(x.getMediaType()))
+                                    .findFirst()
+                                    .get();
 
             log.info("Fetched new APOD image from NASA"); 
             registry.counter("iotd_api_image_load", "status", "success").increment();
 
-            img = new Image(result.getUrl(), result.getTitle(), result.getCopyright());            
+            img = new Image(match.getUrl(), match.getTitle(), match.getCopyright());          
             cacheService.putImage(img);
         }
         else {

@@ -1,10 +1,14 @@
 package iotd;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ApodImage {
 
     private String url;
     private String title;
     private String copyright;
+    @JsonProperty("media_type")
+    private String mediaType;
 
     public String getUrl() {
     	return url;
@@ -29,4 +33,11 @@ public class ApodImage {
     public void setCopyright(String copyright) {
         this.copyright = copyright;
     }
-}
+
+    public String getMediaType() {
+    	return mediaType;
+    }
+    
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }}

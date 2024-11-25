@@ -1,5 +1,8 @@
 ARG DOTNET_VERSION
 FROM mcr.microsoft.com/dotnet/aspnet:${DOTNET_VERSION}-alpine
-EXPOSE 80
+
+RUN apk --no-cache add curl
+
+EXPOSE 8080
 ENV SQLITE_DATA_DIRECTORY="/data" \
     SQLITE_USER='root'

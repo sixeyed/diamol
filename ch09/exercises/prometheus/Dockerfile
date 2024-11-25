@@ -1,3 +1,3 @@
-FROM diamol/prometheus:2.13.1
+FROM diamol/prometheus:2e
 
 COPY prometheus.yml /etc/prometheus/prometheus.yml

@@ -1,5 +1,5 @@
-module diamol/image-gallery
+module diamol/ch09-image-gallery
 
-go 1.13
+go 1.22
 
-require github.com/prometheus/client_golang v1.2.1
+require github.com/prometheus/client_golang v1.20.3

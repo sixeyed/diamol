@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-       REGISTRY = "registry.local:5000"
+       REGISTRY = "registry.local:5010"
     }
     stages {
         stage('Verify') {

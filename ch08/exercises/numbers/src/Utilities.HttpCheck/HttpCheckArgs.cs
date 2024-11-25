@@ -4,7 +4,7 @@ namespace Utilities.HttpCheck
 {
     public class HttpCheckArgs
     {
-        [ArgShortcut("u"), ArgDefaultValue("http://localhost")]
+        [ArgShortcut("u"), ArgDefaultValue("http://localhost:8080")]
         public string Url { get; set; }
 
         [ArgShortcut("t"), ArgDefaultValue(300)]

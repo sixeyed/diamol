@@ -1,5 +1,4 @@
-FROM gogs/gogs:0.11.91
+ARG GOGS_VERSION
+FROM gogs/gogs:${GOGS_VERSION}
 
-ENV GOGS_CUSTOM=""
-
-COPY app.ini ./custom/conf/app.ini
+COPY app.ini /data/gogs/conf/app.ini

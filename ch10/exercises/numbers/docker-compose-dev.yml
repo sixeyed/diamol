@@ -1,9 +1,7 @@
-version: "3.7"
-
 services:
   numbers-api:
     ports:
-      - "8087:80"
+      - "8087:8080"
     healthcheck:
       disable: true
 
@@ -12,7 +10,7 @@ services:
       - dotnet
       - Numbers.Web.dll
     ports:
-      - "8088:80"
+      - "8088:8080"
 
 networks:
   app-net:

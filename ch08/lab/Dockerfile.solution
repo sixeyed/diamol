@@ -1,4 +1,4 @@
-FROM diamol/node
+FROM diamol/node:2e
 
 ENV MAX_ALLOCATION_MB=4096 \
     LOOP_ALLOCATION_MB=512 \

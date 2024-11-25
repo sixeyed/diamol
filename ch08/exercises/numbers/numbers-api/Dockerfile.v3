@@ -1,4 +1,4 @@
-FROM diamol/dotnet-sdk AS builder
+FROM diamol/dotnet-sdk:2e AS builder
 
 WORKDIR /src
 COPY src/Numbers.Api/Numbers.Api.csproj .
@@ -8,7 +8,7 @@ COPY src/Numbers.Api/ .
 RUN dotnet publish -c Release -o /out Numbers.Api.csproj
 
 # http check utility
-FROM diamol/dotnet-sdk AS http-check-builder
+FROM diamol/dotnet-sdk:2e AS http-check-builder
 
 WORKDIR /src
 COPY src/Utilities.HttpCheck/Utilities.HttpCheck.csproj .
@@ -18,10 +18,10 @@ COPY src/Utilities.HttpCheck/ .
 RUN dotnet publish -c Release -o /out Utilities.HttpCheck.csproj
 
 # app image
-FROM diamol/dotnet-aspnet
+FROM diamol/dotnet-aspnet:2e
 
 ENTRYPOINT ["dotnet", "Numbers.Api.dll"]
-HEALTHCHECK CMD ["dotnet", "Utilities.HttpCheck.dll", "-u", "http://localhost/health"]
+HEALTHCHECK CMD ["dotnet", "Utilities.HttpCheck.dll", "-u", "http://localhost:8080/health"]
 
 WORKDIR /app
 COPY --from=http-check-builder /out/ .

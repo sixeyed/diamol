@@ -7,7 +7,7 @@ uc = Jenkins.instance.updateCenter
 
 pm.doCheckUpdatesServer()
 
-["git", "workflow-aggregator"].each {
+["git", "workflow-aggregator", "pipeline-stage-view"].each {
     if (! pm.getPlugin(it)) {
     deployment = uc.getPlugin(it).deploy(true)
     deployment.get()

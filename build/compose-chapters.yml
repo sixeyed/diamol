@@ -83,3 +83,90 @@ services:
     image: diamol/ch06-lab:2e
     build:
       context: ../ch06/lab/todo-list-v3
+
+  ch08-numbers-api:
+    image: diamol/ch08-numbers-api:2e
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-api/Dockerfile
+
+  ch08-numbers-api-v2:
+    image: diamol/ch08-numbers-api:2e-v2
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-api/Dockerfile.v2
+
+  ch08-numbers-api-v3:
+    image: diamol/ch08-numbers-api:2e-v3
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-api/Dockerfile.v3
+
+  ch08-numbers-web:
+    image: diamol/ch08-numbers-web:2e
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-web/Dockerfile
+
+  ch08-numbers-web-v2:
+    image: diamol/ch08-numbers-web:2e-v2
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-web/Dockerfile.v2
+
+  ch08-numbers-web-v3:
+    image: diamol/ch08-numbers-web:2e-v3
+    build:
+      context: ../ch08/exercises/numbers
+      dockerfile: numbers-web/Dockerfile.v3
+
+  ch08-lab:
+    image: diamol/ch08-lab:2e
+    build:
+      context: ../ch08/lab
+
+  ch08-lab-solution:
+    image: diamol/ch08-lab:2e-solution
+    build:
+      context: ../ch08/lab
+      dockerfile: Dockerfile.solution
+
+  ch09-access-log:
+    image: diamol/ch09-access-log:2e
+    build:
+      context: ../ch09/exercises/access-log
+
+  ch09-image-gallery:
+    image: diamol/ch09-image-gallery:2e
+    build:
+      context: ../ch09/exercises/image-gallery
+
+  ch09-image-of-the-day:
+    image: diamol/ch09-image-of-the-day:2e
+    build:
+      context: ../ch09/exercises/image-of-the-day
+
+  ch09-prometheus:
+    image: diamol/ch09-prometheus:2e
+    build:
+      context: ../ch09/exercises/prometheus
+
+  ch09-grafana:
+    image: diamol/ch09-grafana:2e
+    build:
+      context: ../ch09/exercises/grafana
+
+  ch09-todo-list:
+    image: diamol/ch09-todo-list:2e
+    build:
+      context: ../ch09/exercises/todo-list
+
+  ch09-lab-prometheus:
+    image: diamol/ch09-lab-prometheus:2e
+    build:
+      context: ../ch09/lab/prometheus
+
+  ch09-lab-grafana:
+    image: diamol/ch09-lab-grafana:2e
+    build:
+      context: ../ch09/lab/grafana

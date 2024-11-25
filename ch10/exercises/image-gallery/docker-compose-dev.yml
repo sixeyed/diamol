@@ -1,13 +1,11 @@
-version: "3.7"
-
 services:
   iotd:
     ports:
-      - 8020:80
+      - 8020:8080
 
   image-gallery:
     ports:
-      - 8010:80
+      - 8010:8080
 
 networks:
   app-net:
