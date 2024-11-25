@@ -1,0 +1,3 @@
+# v2 just supplies different config
+FROM diamol/ch12-timecheck:1.0
+ENV Application__Version="2.0"

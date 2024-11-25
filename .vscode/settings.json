@@ -1,5 +1,5 @@
 {
     "dotnet.defaultSolution": "disable",
-    "workbench.colorTheme": "Visual Studio Light",
+    "workbench.colorTheme": "Default High Contrast Light",
     "terminal.integrated.fontSize": 12
 }
