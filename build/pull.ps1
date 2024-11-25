@@ -4,7 +4,6 @@ param(
     [switch]$Chapters=$false
 )
 
-try {
     $info = docker version -f json | ConvertFrom-Json
     $env:DOCKER_BUILD_OS = $info.Server.Os.ToLower()
     $env:DOCKER_BUILD_CPU = $info.Server.Arch.ToLower()
@@ -38,15 +37,4 @@ try {
         -f $composeFile `
         -f $osFile `
         -f $tagsFile `
-        build --pull #$Filter
-
-    docker compose `
-        -f $composeFile `
-        -f $osFile `
-        -f $tagsFile `
-        push #$Filter
-}
-
-finally {
-    popd
-}
+        pull #$Filter
