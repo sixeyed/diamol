@@ -1,0 +1,6 @@
+ARG MSSQL_VERSION
+FROM mcr.microsoft.com/mssql/server:${MSSQL_VERSION}-latest
+
+ARG MSSQL_SA_PASSWORD=sql!!s3rv3r
+ENV ACCEPT_EULA=Y \
+    MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}

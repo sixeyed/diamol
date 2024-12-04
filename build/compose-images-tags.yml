@@ -46,3 +46,6 @@ services:
 
   jenkins:
     image: diamol/jenkins:2e-${DOCKER_BUILD_OS}-${DOCKER_BUILD_CPU}
+
+  mssql:
+    image: diamol/mssql:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

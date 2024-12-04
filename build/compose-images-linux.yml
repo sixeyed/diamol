@@ -68,3 +68,9 @@ services:
     image: diamol/jenkins:2e
     build:
       context: ../images/jenkins/linux
+
+  mssql:
+    build:
+      context: ../images/mssql/linux
+      args:
+        MSSQL_VERSION: ${MSSQL_VERSION}

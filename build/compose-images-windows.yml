@@ -68,3 +68,12 @@ services:
       args:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
         ENTERPRISE_DB_DOWNLOAD_FILE_ID: ${ENTERPRISE_DB_13_DOWNLOAD_FILE_ID}
+
+  mssql:
+    build:
+      context: ../images/mssql/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        MSSQL_DOWNLOAD_URL: ${MSSQL_DOWNLOAD_URL}
+        MSSQL_VERSION_CODE: ${MSSQL_VERSION_CODE}
+        MSSQL_INSTANCE_NAME: ${MSSQL_INSTANCE_NAME}

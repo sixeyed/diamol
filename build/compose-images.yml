@@ -94,3 +94,6 @@ services:
       args:
         JENKINS_VERSION: ${JENKINS_VERSION}
         JENKINS_JDK_VERSION: ${JENKINS_JDK_VERSION}
+
+  mssql:
+    image: diamol/mssql:2e
