@@ -1,0 +1,14 @@
+services:
+  ch05-golden-dotnet-sdk:
+    image: diamol/ch05-golden-dotnet-sdk:2e
+    build:
+      dockerfile: Dockerfile.windows
+
+  ch05-golden-aspnet:
+    image: diamol/ch05-golden-aspnet:2e
+    build:
+      dockerfile: Dockerfile.windows
+
+  ch06-random-number:
+    build:
+      context: ../ch06/exercises/random-number/windows

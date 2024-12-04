@@ -1,0 +1,12 @@
+FROM diamol/golang:2e AS builder
+
+COPY go.mod main.go /go/
+RUN go build -o /hello
+
+# app
+FROM alpine:3.20
+
+CMD ["/app/hello"]
+
+WORKDIR /app
+COPY --from=builder /hello .
