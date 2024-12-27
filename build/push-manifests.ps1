@@ -32,7 +32,8 @@ try {
             "$($image)-linux-arm64" `
             "$($image)-linux-amd64" `
             "$($image)-windows-ltsc2019-amd64" `
-            "$($image)-windows-ltsc2022-amd64"
+            "$($image)-windows-ltsc2022-amd64"`
+            "$($image)-windows-ltsc2025-amd64"
         
         docker manifest push $image
         docker pull $image

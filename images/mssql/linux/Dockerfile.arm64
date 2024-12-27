@@ -1,0 +1,7 @@
+FROM mcr.microsoft.com/azure-sql-edge
+
+#TODO - test 
+
+ARG MSSQL_SA_PASSWORD=sql!!s3rv3r
+ENV ACCEPT_EULA=Y \
+    MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
