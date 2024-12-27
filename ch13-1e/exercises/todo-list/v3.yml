@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  todo-web:
+    image: diamol/ch06-todo-list
+    ports:
+      - 8080:80
+    configs:
+      - source: todo-list-config
+        target: /app/config/config.json
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 100M
+    networks:
+      - app-net
+
+  todo-db:
+    image: diamol/postgres:11.5
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 500M
+    networks:
+      - app-net
+
+configs:
+  todo-list-config:
+    external: true
+
+networks:
+  app-net:

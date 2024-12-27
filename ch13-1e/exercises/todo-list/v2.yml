@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  todo-web:
+    image: diamol/ch06-todo-list
+    ports:
+      - 8080:80
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 100M
