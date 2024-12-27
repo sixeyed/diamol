@@ -73,4 +73,6 @@ services:
     build:
       context: ../images/mssql/linux
       args:
+        ALPINE_VERSION: ${ALPINE_VERSION}
         MSSQL_VERSION: ${MSSQL_VERSION}
+        SQLPACKAGE_DOWNLOAD_URL: ${SQLPACKAGE_LINUX_DOWNLOAD_URL}

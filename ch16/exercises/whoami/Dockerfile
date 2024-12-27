@@ -1,4 +1,4 @@
-FROM diamol/dotnet-sdk as builder
+FROM diamol/dotnet-sdk:2e AS builder
 
 WORKDIR /src
 COPY src/whoami.csproj .
@@ -8,11 +8,11 @@ COPY src /src
 RUN dotnet publish -c Release -o /out whoami.csproj
 
 # app image
-FROM  diamol/dotnet-aspnet
+FROM  diamol/dotnet-aspnet:2e
 
 EXPOSE 80
 
-WORKDIR /reference-data-api
+WORKDIR /whoami
 ENTRYPOINT ["dotnet", "whoami.dll"]
 
 COPY --from=builder /out/ .
