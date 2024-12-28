@@ -1,0 +1,82 @@
+﻿@using NerdDinner.Helpers
+@model NerdDinner.Models.Dinner
+
+@{
+    ViewBag.Title = string.Format("{0} - Nerd Dinner", Model.Title);
+}
+
+<h2>@Model.Title</h2>
+
+<fieldset>
+	<legend></legend>
+
+	<div id="dinnerDiv" style="float: right;">
+		<div id="share">
+			<strong>Share: </strong><a href="http://twitter.com/home/?source=nerddinner&status=Nerd+Dinner%3A+@Model.Title.Truncate(40)+on+@Model.EventDate.ToString("MMM dd")+-+RSVP%3A+http%3A%2F%2Fnrddnr.com/@Model.DinnerID"  
+		title="Tweet this" target="_blank">
+				<img src="~/Images/icon-twitter.png" alt="Twitter" border="0" />
+			</a><a href="http://www.facebook.com/share.php?u=http%3A%2F%2Fnrddnr.com/@Model.DinnerID"  
+		title="Add to Facebook" target="_blank">
+				<img src="~/Images/icon-facebook.png" alt="Facebook" border="0" />
+			</a><a href="@string.Format("http://www.google.com/reader/link?url=http%3A%2F%2Fnrddnr.com/{0}&title=Nerd+Dinner%3A+{1}+on+{2}&snippet{3}+%3Cbr+%2F%3E%0D%0A%3Cbr+%2F%3E%3Cbr+%2F%3E%3Cstrong%3EWhere%3F%3C%2Fstrong%3E%3Cbr+%2F%3E{4}%3C%2Fstrong%3E%3Cbr+%2F%3E%3Cbr+%2F%3E%0D%0A%09%09%09%3Cstrong%3EWhen%3F%3C%2Fstrong%3E%3Cbr+%2F%3E%3Cstrong%3E{2}%3C%2Fstrong%3E%3Cbr+%2F%3E%3Ca+href%3D%22http%3A%2F%2Fnrddnr.com/{0}%22++title%3D%22RSVP+here%21%22+%3ERSVP+here%21%3C%2Fa%3E&srcURL=http%3A%2F%2Fnrddnr.com/{0}&srcTitle=Twtvite", Model.DinnerID, Model.Title, Model.EventDate.ToString("MMM dd, yyyy"), Model.Description, Model.Address)"  title="Add to Google Buzz" target="_blank">
+				<img src="~/Images/icon-google.png" alt="Google Buzz" border="0" />
+			</a>
+			<input name="share_link" type="text" value="http://nrddnr.com/@Model.DinnerID" class="widget" onclick="this.select()" size="15"/>
+		</div>
+		<p>
+			<strong>When:</strong>
+			<abbr class="dtstart" title="@Model.EventDate.ToString("s")">
+				@Model.EventDate.ToString("MMM dd, yyyy")
+				<strong>@@</strong>
+				@Model.EventDate.ToShortTimeString()
+			</abbr>
+		</p>
+		<p>
+			<strong>Where:</strong> <span class="location adr"><span class="extended-address">@Model.Address</span>,
+			<span class="country-name">@Model.Country</span>
+				<abbr class="geo" title="@Model.Location.Latitude;@Model.Location.Longitude" style="display: none;">
+					Geolocation for hCalendar</abbr>
+			</span>
+		</p>
+		<p>
+			<strong>Description:</strong> <span class="description">@Model.Description</span>
+			<span style="display: none;">
+				@Html.ActionLink("URL for hCalendar", "iCal", "Services", new { id = Model.DinnerID }, new { @class = "url" })
+			</span>
+		</p>
+		<p>
+			<strong>Organizer:</strong> <span class="organizer"><span class="vcard"><span class="fn nickname">@Model.HostedBy</span>
+				<span class="tel">@Model.ContactPhone</span> </span></span>
+		</p>
+		@Html.Partial("_RSVPStatus")
+		<p id="whoscoming">
+			<strong>Who's Coming:</strong>
+			@if (Model.RSVPs.Count == 0)
+			{
+				<text>No one has registered.</text>
+			}
+		</p>
+		@if (Model.RSVPs.Count > 0)
+		{
+			<div id="whoscomingDiv">
+				<ul class="attendees">
+					@{  var RSVPs = Model.RSVPs.Reverse(); }
+					@foreach (var RSVP in RSVPs)
+					{ 
+						<li class="attendee"><span class="vcard"><span class="fn nickname">@(RSVP.AttendeeName.StartsWith("@") ? RSVP.AttendeeName : RSVP.AttendeeName.Replace("@", " at "))</span>
+						</span></li>
+					}
+				</ul>
+			</div>
+		}
+	</div>
+	<div id="mapDiv" style="float: left;">
+		@Html.DisplayFor(model => model.Location)
+		@Html.DisplayFor(model => model.LocationDetail)
+	</div>
+
+</fieldset>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.DinnerID }) |
+	@Html.ActionLink("Back to List", "Index")
+</p>

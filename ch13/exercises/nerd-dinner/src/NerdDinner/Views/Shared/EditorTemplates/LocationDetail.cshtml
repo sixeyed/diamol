@@ -1,0 +1,22 @@
+﻿@inherits System.Web.Mvc.WebViewPage<NerdDinner.Models.LocationDetail>
+@using System.Globalization;
+<div id="theMap" style="position: relative; width: 400px; height: 400px; border: solid 1px #bbd1ec;">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var latitude = @Html.Raw((Model.Location != null) ? Model.Location.Latitude : 0);
+        var longitude = @Html.Raw((Model.Location != null) ? Model.Location.Longitude : 0);
+
+        if ((latitude != 0) && (longitude != 0)){
+            NerdDinner.LoadMap(latitude, longitude);
+            NerdDinner.LoadPin(new Microsoft.Maps.Location(latitude, longitude), "@Model.Id", "@Model.Title", "@Model.Address", true);
+
+            NerdDinner._map.setView({zoom:14});
+        }
+        else {
+            NerdDinner.LoadMap(null, null);
+        }
+    });
+</script>
+(drag the pin in the map if it doesn't look right) *

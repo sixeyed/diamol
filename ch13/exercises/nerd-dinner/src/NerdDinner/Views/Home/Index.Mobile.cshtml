@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Nerd Dinner Mobile";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+<p>
+    <img alt="nerddinner" src="@Url.Content("~/Content/Img/Mobile/logo_medium_trans.png")" runat="server" /></p>
+<p>
+    Find a Nerd Dinner near you!</p>
+@using (Html.BeginForm("SearchByPlaceNameOrZip", "Search", FormMethod.Post))
+{
+    <div data-role="fieldcontain">
+        <input type="search" name="Location" id="Location" value="" />
+    </div>    
+    <input id="search" type="submit" value="Search" />
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        NerdDinner.ipInfoDbKey = '@System.Configuration.ConfigurationManager.AppSettings["ipInfoDbKey"]';
+        NerdDinner.BingMapsKey = '@System.Configuration.ConfigurationManager.AppSettings["BingMapsKey"]';
+        yepnope({
+            test: Modernizr.geolocation,
+            yep: '@Url.Content("~/Scripts/geo.js")',
+            nope: '@Url.Content("~/Scripts/geo-polyfill.js")',
+            callback: function (url, result, key) {
+                getCurrentLocation();
+            }
+        });
+
+        $('#search').click(function () { if ($('#Location').val().length == 0) { alert('Please provide a location to search near'); return false; } });
+    });
+</script>

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/yepnope")
+
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script type="text/javascript" src="~/Scripts/NerdDinner.js"></script>
+
+    <script type="text/javascript">
+        NerdDinner.ipInfoDbKey = '@System.Configuration.ConfigurationManager.AppSettings["ipInfoDbKey"]';
+        NerdDinner.BingMapsKey = '@System.Configuration.ConfigurationManager.AppSettings["BingMapsKey"]';
+    </script>
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                    <a href="~/" title="Nerd Dinner">
+                        <img src="~/Images/Logo.png" style="border: none;" /></a>
+                </p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("Find Dinner", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Host Dinner", "Create", "Dinners")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                Code by <a href="http://www.hanselman.com">Hanselman</a>, <a href="http://weblogs.asp.net/scottgu">Guthrie</a>, <a href="http://weblogs.asp.net/jgalloway">Galloway</a>, <a href="http://mourfield.com">Mourfield</a>,<a href="http://www.johnvpetersen.com"> Petersen</a>  and <a href="http://blog.nerdbank.net/">Arnott</a>. JavaScript
+            by <a href="http://encosia.com">Dave Ward</a>. ASP.NET MVC by <a href="http://www.haacked.com">Haack</a> and friends. Style by <a href="http://michaeldorian.com/">Michael Dorian Bach</a>.<br />
+                Source Code at <a href="http://nerddinner.codeplex.com">http://nerddinner.codeplex.com</a>.
+            Free Sample Book Chapter and code walkthrough at <a href="http://tinyurl.com/aspnetmvc">http://tinyurl.com/aspnetmvc</a>.
+                <br />
+                Version: @HttpContext.Current.Application["Version"]
+            </div>
+        </div>
+    </footer>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

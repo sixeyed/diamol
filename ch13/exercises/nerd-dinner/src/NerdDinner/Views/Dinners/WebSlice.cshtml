@@ -1,0 +1,35 @@
+﻿@model IEnumerable<NerdDinner.Models.Dinner>              
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body style="margin: 0">
+    <div class="hslice" id="webslice" style="width: 320px">
+        <div class="entry-content">
+            <center><h2 class="entry-title">@ViewData["Title"]</h2></center>
+            <div>
+                <ul>
+                    @foreach (var dinner in Model)
+                    { 
+                    <li style="list-style-type: none;">
+                        @Html.ActionLink(dinner.Title, "Details", new { id = dinner.DinnerID })
+                        on <strong>
+                            @dinner.EventDate.ToString("yyyy-MMM-dd")
+                            @dinner.EventDate.ToString("HH:mm tt")</strong> at
+                        @string.Format("{0} {1}", dinner.Address, dinner.Country)
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <a rel="Bookmark" href="http://www.nerddinner.com" style="display:none;"></a>
+    </div>
+</body>
+</html>

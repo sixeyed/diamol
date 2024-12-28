@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width">
+
+    @Styles.Render("~/Content/jquerymobile")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquerymobile")
+    @Scripts.Render("~/bundles/yepnope")
+
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script type="text/javascript" src="~/Scripts/NerdDinner.js"></script>
+
+    <script type="text/javascript">
+        NerdDinner.ipInfoDbKey = '@System.Configuration.ConfigurationManager.AppSettings["ipInfoDbKey"]';
+        NerdDinner.BingMapsKey = '@System.Configuration.ConfigurationManager.AppSettings["BingMapsKey"]';
+    </script>
+</head>
+<body>
+    <div data-role="page" data-theme="b">
+        <div data-role="header">
+            <h1>@ViewBag.Title</h1>
+        </div>
+        <div data-role="content">
+            @RenderBody()
+        </div>
+        <div data-role="footer">
+        </div>
+    </div>
+</body>
+</html>

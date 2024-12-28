@@ -1,0 +1,41 @@
+services:
+  db:
+    image: diamol/ch13-nerd-dinner-db:2e
+    build:
+      context: ..
+      dockerfile: docker/db/Dockerfile
+    environment:
+      MSSQL_SA_PASSWORD: 'N**3rdDinner!'
+    healthcheck:
+      test: ["CMD", "powershell", "Test-Path", "/init.done"]
+      start_period: 30s
+      timeout: 2s
+    networks:
+      - nd-net
+
+  web:
+    image: diamol/ch13-nerd-dinner-web:2e
+    build:
+      context: ..
+      dockerfile: docker/web/Dockerfile
+    environment:
+      ENV_DB_CONNECTION_STRING: 'Server=db;Database=NerdDinner;User Id=sa;Password=N**3rdDinner!;'
+      ENV_IPINFODB_KEY: 'D24AF94804D0E85A4441F2853877A0FA'
+      ENV_BINGMAPS_KEY: 'AmgZoLs4ejgUkPwyHLbye0RSxHG7___nEm0hIlm_Gh_Kz5dLryuIxI6_3GMGr06L'
+    ports:
+     - 8083:80
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "powershell", "iwr", "-useb", "http://localhost"]
+      start_period: 20s
+      timeout: 20s
+    networks:
+      - nd-net
+
+networks:
+  nd-net:
+
+# ipinfodb2@sixeyed.com
+# p5"4ou&^%T(@

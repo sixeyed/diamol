@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Nerd Dinner";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>
+    <h3>Find a Dinner</h3>
+    <div id="theMap" style="position: relative; width: 580px; height: 400px;">
+    </div>
+</article>
+
+<aside>
+    <div>
+        <div id="searchBox">
+            <div class="search-text">
+                Enter your location or <strong>@Html.ActionLink("View All Upcoming Dinners", "Index", "Dinners")</strong>.</div>
+            @Html.TextBox("SearchLocation")
+            <input id="search" type="submit" value="Search" />
+        </div>        
+    </div>
+    <div class='hslice' id='2'>
+        <h3>Popular Dinners</h3>
+        <ul class="entry-content" id="dinnerList" data-bind="foreach: dinners">
+            <li class="dinnerItem">
+                <a data-bind="attr: { href: Url }, text: Title"></a>
+                <br />
+                <strong data-bind="dateString: EventDate, datePattern: 'mmm d'"></strong><span data-bind="rsvpMessage: RSVPCount"></span>
+            </li>
+        </ul>
+        <a rel='feedurl' href='/Dinners/WebSlicePopular' style='display: none;'></a>
+    </div>
+</aside>
+
+@section Scripts {
+    <script type="text/javascript">
+        $().ready(function () {
+            yepnope({
+                test: Modernizr.geolocation,
+                yep: '@Url.Content("~/Scripts/geo.js")',
+                nope: '@Url.Content("~/Scripts/geo-polyfill.js")',
+                callback: function (url, result, key) {
+                    OnNavigation();
+                }
+            });
+
+            $("#search").click(ValidateAndFindDinners);
+
+            $("#SearchLocation").keypress(function (evt) {
+                if (evt.which == 13) {
+                    ValidateAndFindDinners();
+                }
+            });
+        });
+
+        function OnNavigation() {
+            NerdDinner.LoadMap(null, null);
+            NerdDinner.FindMostPopularDinners(8);
+
+            getCurrentLocation();
+        }
+
+        function ValidateAndFindDinners() {
+            var where = $('#SearchLocation').val().trim();
+
+            if (where.length < 1)
+                return;
+
+            NerdDinner.FindDinnersGivenLocation(where);
+        }
+    </script>
+}

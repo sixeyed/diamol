@@ -1,0 +1,133 @@
+﻿@model NerdDinner.Models.Dinner
+
+@{
+    ViewBag.Title = "Host a Nerd Dinner";
+}
+
+<h2>Host a Dinner</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken() 
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+
+        <div id="dinnerDiv" style="float: right;">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EventDate)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.EventDate)
+                @Html.ValidationMessageFor(model => model.EventDate)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HostedBy)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HostedBy)
+                @Html.ValidationMessageFor(model => model.HostedBy)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ContactPhone)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ContactPhone)
+                @Html.ValidationMessageFor(model => model.ContactPhone)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Address)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Address)
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Country)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Country)
+                @Html.ValidationMessageFor(model => model.Country)
+            </div>
+        </div>
+        <div id="mapDiv" style="float: left;">
+            @Html.EditorFor(model => model.Location)
+            @Html.EditorFor(model => model.LocationDetail)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function () {
+            onMapLoaded();
+        });
+
+        function onMapLoaded() {
+            $("#Address").blur(function (evt) {
+                //If it's time to look for an address, 
+                // clear out the Lat and Lon
+                $("#Latitude").val("0");
+                $("#Longitude").val("0");
+                var address = jQuery.trim($("#Address").val());
+                if (address.length < 1)
+                    return;
+                NerdDinner.FindAddressOnMap(address);
+            });
+
+            var latitude = 0;
+            var longitude = 0;
+
+            @if(Model.Location != null){
+                <text>
+                latitude = @Model.Location.Latitude;
+                longitude = @Model.Location.Longitude;
+                </text>
+            }
+                
+            if ((latitude == 0) || (longitude == 0))
+                NerdDinner.LoadMap();
+            else
+                NerdDinner.LoadMap(latitude, longitude, mapLoaded);
+        }
+
+        function mapLoaded() {
+            NerdDinner.LoadPin(NerdDinner._map.GetCenter(), '@Model.Description', true);
+            NerdDinner._map.SetZoomLevel(14);
+        } 
+
+        //]]>
+    </script>
+
+}

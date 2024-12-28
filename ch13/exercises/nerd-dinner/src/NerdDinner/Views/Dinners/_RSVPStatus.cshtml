@@ -1,0 +1,48 @@
+﻿@model NerdDinner.Models.Dinner
+<script type="text/javascript">
+
+	function AnimateRSVPMessage() {
+		$("#rsvpmsg").animate({ fontSize: "1.5em" }, 400);
+	}
+
+</script>
+<div id="rsvpmsg">
+	@if (Request.IsAuthenticated)
+	{
+		if (Model.IsHostedBy(Context.User.Identity.Name))
+		{ 
+
+		<p>
+			You are the host for this event!
+		</p>
+
+		}
+		else if (Model.IsUserRegistered(Context.User.Identity.Name))
+		{
+	
+		<p>
+			You are registered for this event!
+		</p>
+	
+		@Ajax.ActionLink("Cancel your RSVP",
+							 "CancelAjax", "RSVP",
+							 new { id = Model.DinnerID },
+							 new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "rsvpmsg", OnSuccess = "AnimateRSVPMessage" })    
+	
+		}
+		else
+		{ 
+
+		@Ajax.ActionLink("RSVP for this event",
+							 "RegisterAjax", "RSVP",
+							 new { id = Model.DinnerID },
+							 new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "rsvpmsg", OnSuccess = "AnimateRSVPMessage" })
+		}
+	}
+	else
+	{
+		@Html.ActionLink("RSVP for this event",
+							 "Register", "RSVP",
+							 new { id = Model.DinnerID }, null)
+	}
+</div>

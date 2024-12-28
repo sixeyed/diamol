@@ -1,0 +1,6 @@
+﻿@model System.Data.Spatial.DbGeography
+@if (Model != null) {
+  @Html.Hidden("", Model.Latitude + "," + Model.Longitude, new { @class = "editor-for-dbgeography" })
+} else {
+  @Html.Hidden("", "", new { @class = "editor-for-dbgeography" }) 
+}
