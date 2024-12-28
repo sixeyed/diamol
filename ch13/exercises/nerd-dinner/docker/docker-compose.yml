@@ -20,10 +20,10 @@ services:
       dockerfile: docker/web/Dockerfile
     environment:
       ENV_DB_CONNECTION_STRING: 'Server=db;Database=NerdDinner;User Id=sa;Password=N**3rdDinner!;'
-      ENV_IPINFODB_KEY: 'D24AF94804D0E85A4441F2853877A0FA'
-      ENV_BINGMAPS_KEY: 'AmgZoLs4ejgUkPwyHLbye0RSxHG7___nEm0hIlm_Gh_Kz5dLryuIxI6_3GMGr06L'
+      ENV_IPINFODB_KEY: 'see-README'
+      ENV_BINGMAPS_KEY: 'see-README'
     ports:
-     - 8083:80
+     - 8086:80
     depends_on:
       db:
         condition: service_healthy

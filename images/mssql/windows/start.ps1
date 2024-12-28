@@ -5,7 +5,7 @@ Start-Service $serviceName
 if ($env:MSSQL_SA_PASSWORD) {
     Write-Host 'Changing SA login credentials'
     $sqlcmd = "ALTER LOGIN sa with password='$env:MSSQL_SA_PASSWORD'; ALTER LOGIN sa ENABLE;"
-    Invoke-SqlCmd -Query $sqlcmd -ServerInstance ".\$($env:MSSQL_INSTANCE_NAME)"
+    Invoke-SqlCmd -Query $sqlcmd -ServerInstance ".\$($env:MSSQL_INSTANCE_NAME)" -TrustServerCertificate
 }
 else {
     Write-Host 'WARNING: SA password not supplied in $env:MSSQL_SA_PASSWORD; using default'

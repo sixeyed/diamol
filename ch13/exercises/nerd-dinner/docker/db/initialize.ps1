@@ -1,8 +1,6 @@
 param(
     [Parameter(Mandatory=$true)]
     [string] $sa_password,
-
-    [Parameter]
     [string] $db_name='NerdDinner'
 )
 

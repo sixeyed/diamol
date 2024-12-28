@@ -1,4 +1,4 @@
-FROM diamol/dotnet-sdk:2e-windows-ltsc2025-amd64 AS build
+FROM diamol/dotnet-sdk:2e AS build
 
 WORKDIR /src
 COPY src/NerdDinner.Database/ ./NerdDinner.Database
@@ -8,7 +8,7 @@ WORKDIR /src/NerdDinner.Database.Build
 RUN dotnet build NerdDinner.Database.Build.csproj -o /out
 
 
-FROM diamol/mssql:2e-windows-ltsc2025-amd64
+FROM diamol/mssql:2e
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
 WORKDIR /init
