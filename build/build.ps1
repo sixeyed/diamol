@@ -4,6 +4,8 @@ param(
     [switch]$Chapters=$false
 )
 
+$ErrorActionPreference = 'Continue'
+
 try {
     $info = docker version -f json | ConvertFrom-Json
     $env:DOCKER_BUILD_OS = $info.Server.Os.ToLower()
