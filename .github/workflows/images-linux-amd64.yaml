@@ -6,6 +6,7 @@ on:
       - "2e"
     paths:
       - "images/**"
+      - "build/**"
       - ".github/workflows/images-linux-amd64.yaml"
 
 jobs:
@@ -21,8 +22,14 @@ jobs:
 
       - uses: actions/checkout@master
 
-      - name: Build and push Linux AMD64 images
+      - name: Build and push base images
         working-directory: build
         shell: pwsh
         run: |
           ./build.ps1 -Images
+
+      - name: Build and push chapter images
+        working-directory: build
+        shell: pwsh
+        run: |
+          ./build.ps1 -Chapters
