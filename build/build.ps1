@@ -17,6 +17,8 @@ try {
         $env:WINDOWS_VERSION_CODE='1809'
         $winver=(Get-Item "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion").GetValue('DisplayVersion')
         echo "** winver: $winver **"
+        $version=[System.Environment]::OSVersion.Version.ToString()
+        echo "** version: $version **"
         if ($winver -eq '23H2') {
             $env:WINDOWS_VERSION = $env:WINDOWS_VERSION_CODE = 'ltsc2022'
         } elseif ($winver -eq '24H2') {
