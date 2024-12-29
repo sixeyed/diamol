@@ -22,9 +22,9 @@ try {
         echo "** version: $version **"
         if ($version -eq '10.0.22631.0' -or $version -eq '10.0.20348.0') {
             $env:WINDOWS_VERSION = $env:WINDOWS_VERSION_CODE = 'ltsc2022'
-        } elseif ($winver -eq '24H2') {
+        } elseif ($version -eq '10.0.26100.0') {
             $env:WINDOWS_VERSION = $env:WINDOWS_VERSION_CODE ='ltsc2025'
-        }        
+        }
         $env:OS_VERSION_TAG="-$env:WINDOWS_VERSION"
     }
 
@@ -46,6 +46,12 @@ try {
     $composeFile="${compose}.yml"
     $osFile="${compose}-$($env:DOCKER_BUILD_OS).yml"
     $tagsFile="${compose}-tags.yml"
+
+    # Windows dependency
+    if ($env:DOCKER_BUILD_OS -eq 'windows') {
+        docker compose -f $composeFile -f $osFile -f $tagsFile build --pull git-windows
+        docker compose -f $composeFile -f $osFile -f $tagsFile push git-windows
+    }
 
     docker compose `
         -f $composeFile `
