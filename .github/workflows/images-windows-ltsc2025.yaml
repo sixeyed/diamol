@@ -1,0 +1,25 @@
+name: Windows LTSC2025 image build
+
+on:
+  push:
+    branches:
+      - "2e"
+    paths:
+      - "images/**"
+      - "build/**"
+      - ".github/workflows/images-windows-ltsc2025.yaml"
+
+jobs:
+  images-windows-ltsc2025:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@master
+      - name: Build and push Windows LTSC2025 images
+        working-directory: build
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+          ./build.ps1 -Images
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
