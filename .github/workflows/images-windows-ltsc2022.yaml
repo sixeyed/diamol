@@ -1,7 +1,9 @@
 name: Windows LTSC2022 image build
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - "2e"
 
 jobs:
   images-ltsc2022:
