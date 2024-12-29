@@ -24,6 +24,16 @@ try {
         $env:OS_VERSION_TAG="-$env:WINDOWS_VERSION"
     }
 
+    echo '------------------'
+    echo 'OS info'
+    echo '------------------'
+    echo "DOCKER_BUILD_OS = $env:DOCKER_BUILD_OS"
+    echo "DOCKER_BUILD_CPU = $env:DOCKER_BUILD_CPU"
+    echo "WINDOWS_VERSION = $env:WINDOWS_VERSION"
+    echo "WINDOWS_VERSION_CODE = $env:WINDOWS_VERSION_CODE"
+    echo "OS_VERSION_TAG = $env:OS_VERSION_TAG"
+    echo '------------------'
+
     $collection='images'
     if ($Chapters) {
         $collection='chapters'
