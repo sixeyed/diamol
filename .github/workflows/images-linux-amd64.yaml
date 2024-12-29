@@ -9,12 +9,16 @@ jobs:
   images-linux-amd64:
     runs-on: ubuntu-latest
     steps:
+    
+      - name: Registry login    
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
       - uses: actions/checkout@master
+
       - name: Build and push Linux AMD64 images
         working-directory: build
         run: |
-          docker login -u $env:USER -p $env:TOKEN
           ./build.ps1 -Images
-        env:
-          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
-          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
