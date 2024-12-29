@@ -17,9 +17,10 @@ try {
         $env:WINDOWS_VERSION_CODE='1809'
         $winver=(Get-Item "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion").GetValue('DisplayVersion')
         echo "** winver: $winver **"
+        # yuck - https://www.gaijin.at/en/infos/windows-version-numbers
         $version=[System.Environment]::OSVersion.Version.ToString()
         echo "** version: $version **"
-        if ($winver -eq '23H2') {
+        if ($version -eq '10.0.22631.0' -or $version -eq '10.0.20348.0') {
             $env:WINDOWS_VERSION = $env:WINDOWS_VERSION_CODE = 'ltsc2022'
         } elseif ($winver -eq '24H2') {
             $env:WINDOWS_VERSION = $env:WINDOWS_VERSION_CODE ='ltsc2025'
