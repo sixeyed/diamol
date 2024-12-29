@@ -1,0 +1,22 @@
+services:  
+  SIGNUP-DB-DEV01:
+    image: diamol/mssql:2e
+    environment:
+      - MSSQL_SA_PASSWORD=DockerCon!!!
+    networks:
+      - signup-net
+
+  signup-web:
+    image: signup-web:2e
+    build:
+      context: ..
+      dockerfile: solution/Dockerfile
+    ports:
+      - 8088:80
+    depends_on:
+      - SIGNUP-DB-DEV01
+    networks:
+      - signup-net
+
+networks:
+  signup-net:

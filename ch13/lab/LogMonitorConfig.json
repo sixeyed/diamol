@@ -1,0 +1,12 @@
+{
+    "LogConfig": {
+      "sources": [
+        {
+          "type": "File",
+          "directory": "C:\\logs",
+          "filter": "SignUp.log",
+          "includeSubdirectories": false
+        }
+      ]
+    }
+  }
