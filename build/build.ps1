@@ -35,13 +35,13 @@ try {
         -f $composeFile `
         -f $osFile `
         -f $tagsFile `
-        build --pull $Filter
+        build --pull #$Filter
 
     docker compose `
         -f $composeFile `
         -f $osFile `
         -f $tagsFile `
-        push $Filter
+        push #$Filter
 }
 
 finally {

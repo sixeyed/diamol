@@ -53,21 +53,30 @@ services:
     image: diamol/prometheus:2e
     build:
       context: ../images/prometheus/linux
+      args:
+        PROMETHEUS_VERSION: ${PROMETHEUS_VERSION}
 
   grafana:
     image: diamol/grafana:2e
     build:
       context: ../images/grafana/linux
+      args:
+        GRAFANA_VERSION: ${GRAFANA_VERSION}
 
   gogs:
     image: diamol/gogs:2e
     build:
       context: ../images/gogs/linux
+      args:
+        GOGS_VERSION: ${GOGS_VERSION}
 
   jenkins:
     image: diamol/jenkins:2e
     build:
       context: ../images/jenkins/linux
+      args:
+        JENKINS_VERSION: ${JENKINS_VERSION}
+        JENKINS_JDK_VERSION: ${JENKINS_JDK_VERSION}
 
   mssql:
     build:
