@@ -16,7 +16,7 @@ RUN apk add --no-cache \
     docker-cli \
     docker-cli-compose
 
-ARG JENKINS_VERSION="2.263.4"
+ARG JENKINS_VERSION
 ENV JENKINS_VERSION=${JENKINS_VERSION} \
     JENKINS_HOME="/var/jenkins_home" \
     JENKINS_OPTS='-Djenkins.install.runSetupWizard=false'

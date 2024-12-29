@@ -6,6 +6,7 @@ on:
       - "2e"
     paths:
       - "images/**"
+      - "build/**"
       - ".github/workflows/images-windows-ltsc2019.yaml"
 
 jobs:
