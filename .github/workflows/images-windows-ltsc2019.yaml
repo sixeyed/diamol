@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - "2e"
+    paths:
+      - "images/**"
+      - ".github/workflows/images-windows-ltsc2019.yaml"
 
 jobs:
   images-windows-ltsc2019:
@@ -12,6 +15,7 @@ jobs:
       - uses: actions/checkout@master
       - name: Build and push Windows LTSC2019 images
         working-directory: build
+        shell: pwsh
         run: |
           docker login -u $env:USER -p $env:TOKEN
           ./build.ps1 -Images

@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - "2e"
+    paths:
+      - "images/**"
+      - ".github/workflows/images-linux-amd64.yaml"
 
 jobs:
   images-linux-amd64:
@@ -20,5 +23,6 @@ jobs:
 
       - name: Build and push Linux AMD64 images
         working-directory: build
+        shell: pwsh
         run: |
           ./build.ps1 -Images
