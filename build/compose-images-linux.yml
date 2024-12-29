@@ -64,8 +64,8 @@ services:
   jenkins:
     build:
       context: ../images/jenkins/linux
-    args:
-      JENKINS_JDK_VERSION: ${JENKINS_JDK_VERSION}
+      args:
+        JENKINS_JDK_VERSION: ${JENKINS_JDK_VERSION}
 
   mssql:
     build:
