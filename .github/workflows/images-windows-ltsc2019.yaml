@@ -1,4 +1,4 @@
-name: Windows LTSC2022 image build
+name: Windows LTSC2019 image build
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
       - "2e"
 
 jobs:
-  images-windows-ltsc2022:
-    runs-on: windows-2022
+  images-windows-ltsc2019:
+    runs-on: windows-2019
     steps:
       - uses: actions/checkout@master
-      - name: Build and push Windows LTSC2022 images
+      - name: Build and push Windows LTSC2019 images
         working-directory: build
         run: |
           docker login -u $env:USER -p $env:TOKEN
