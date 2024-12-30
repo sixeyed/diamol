@@ -22,9 +22,9 @@ jobs:
 
       - uses: actions/checkout@master
 
-      - uses: .github/actions/build
+      - uses: ./.github/actions/build
 
-      - uses: .github/actions/build
+      - uses: ./G.github/actions/build
         with:
           images: false
           chapters: true
