@@ -6,6 +6,16 @@ param(
 
 $ErrorActionPreference = 'Continue'
 
+if ($env:BUILD_IMAGES) {
+    $Images = [bool]$env:BUILD_IMAGES
+}
+if ($env:BUILD_CHAPTERS) {
+    $Chapters = [bool]$env:BUILD_CHAPTERS
+}
+if ($env:FILTER) {
+    $Filter = $env:FILTER
+}
+
 try {
     $info = docker version -f json | ConvertFrom-Json
     $env:DOCKER_BUILD_OS = $info.Server.Os.ToLower()
@@ -29,6 +39,12 @@ try {
     }
 
     echo '------------------'
+    echo 'Build info'
+    echo '------------------'
+    echo "Images = $Images"
+    echo "Chapters = $Chapters"
+    echo "Filter = $Filter"
+    echo '------------------'
     echo 'OS info'
     echo '------------------'
     echo "DOCKER_BUILD_OS = $env:DOCKER_BUILD_OS"
@@ -42,28 +58,32 @@ try {
     if ($Chapters) {
         $collection='chapters'
     }
+
     $compose="compose-$collection"
     $composeFile="${compose}.yml"
     $osFile="${compose}-$($env:DOCKER_BUILD_OS).yml"
     $tagsFile="${compose}-tags.yml"
 
+    $composeFiles = @(
+        '-f', $composeFile,
+        '-f', $osFile,
+        '-f', $tagsFile
+    )
+
     # Windows dependency
     if ($env:DOCKER_BUILD_OS -eq 'windows') {
-        docker compose -f $composeFile -f $osFile -f $tagsFile build --pull git-windows
-        docker compose -f $composeFile -f $osFile -f $tagsFile push git-windows
+        docker compose $composeFiles build --pull git-windows
+        docker compose $composeFiles push git-windows
     }
 
-    docker compose `
-        -f $composeFile `
-        -f $osFile `
-        -f $tagsFile `
-        build --pull #$Filter
-
-    docker compose `
-        -f $composeFile `
-        -f $osFile `
-        -f $tagsFile `
-        push #$Filter
+    if ($Filter -and ($Filter -ne '')) {
+        docker compose $composeFiles build --pull $Filter
+        docker compose $composeFiles push $Filter
+    }
+    else {
+        docker compose $composeFiles build --pull
+        docker compose $composeFiles push
+    }
 }
 
 finally {
