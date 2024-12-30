@@ -70,12 +70,6 @@ try {
         '-f', $tagsFile
     )
 
-    # Windows dependency
-    if ($env:DOCKER_BUILD_OS -eq 'windows') {
-        docker compose $composeFiles build --pull git-windows
-        docker compose $composeFiles push git-windows
-    }
-
     if ($Filter -and ($Filter -ne '')) {
         docker compose $composeFiles build --pull $Filter
         docker compose $composeFiles push $Filter
