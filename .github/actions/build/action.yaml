@@ -4,11 +4,11 @@ inputs:
   images: 
     description: 'Build base images'
     required: false
-    default: true
+    default: 'true'
   chapters: 
     description: 'Build chapter images'
     required: false
-    default: false
+    default: 'false'
   filter: 
     description: 'Filter image to build'
     required: false
