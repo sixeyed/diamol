@@ -15,7 +15,6 @@ jobs:
     steps:
 
       - name: Docker Hub login
-        working-directory: build
         shell: pwsh
         run: |
           docker login -u $env:USER -p $env:TOKEN
@@ -23,7 +22,8 @@ jobs:
           USER: ${{ secrets.DOCKER_HUB_USERNAME }}
           TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@master
 
       - name: Build Git Windows image
         uses: ./.github/actions/build
