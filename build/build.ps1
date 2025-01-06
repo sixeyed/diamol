@@ -72,11 +72,11 @@ try {
 
     if ($Filter -and ($Filter -ne '')) {
         docker compose $composeFiles build --pull $Filter
-        docker compose $composeFiles push $Filter
+        docker compose $composeFiles push -q $Filter
     }
     else {
         docker compose $composeFiles build --pull
-        docker compose $composeFiles push
+        docker compose $composeFiles push -q
     }
 }
 
