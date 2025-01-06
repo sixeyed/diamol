@@ -1,7 +1,8 @@
 param(
     [string]$Filter=$null,
     [switch]$Images=$true,
-    [switch]$Chapters=$false
+    [switch]$Chapters=$false,
+    [switch]$Pull=$false
 )
 
 try {
@@ -61,7 +62,10 @@ try {
         docker manifest rm $image
         docker manifest create --amend $image @variantList
         docker manifest push $image
-        docker pull $image
+        
+        if ($Pull) {
+            docker pull $image
+        }
     }
 }
 

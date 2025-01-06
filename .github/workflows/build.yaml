@@ -13,17 +13,26 @@ jobs:
   images-linux-amd64:
     runs-on: ubuntu-latest
     steps:
-    
       - name: Registry login    
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
       - uses: actions/checkout@master
-
       - uses: ./.github/actions/build
 
+  chapters-linux-amd64:
+    if: ${{ always() }}
+    needs:
+      - images-linux-amd64
+    runs-on: ubuntu-latest
+    steps:
+      - name: Registry login    
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
       - uses: ./.github/actions/build
         with:
           images: 'false'
@@ -32,7 +41,6 @@ jobs:
   images-windows-ltsc2019:
     runs-on: windows-2019
     steps:
-
       - name: Docker Hub login
         shell: pwsh
         run: |
@@ -40,20 +48,27 @@ jobs:
         env:
           USER: ${{ secrets.DOCKER_HUB_USERNAME }}
           TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - name: Build Git Windows image
-        uses: ./.github/actions/build
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
         with:
           filter: 'git-windows'
+      - uses: ./.github/actions/build
 
-      - name: Build base images
-        uses: ./.github/actions/build
-
-      - name: Build chapter images
-        uses: ./.github/actions/build
+  chapters-windows-ltsc2019:
+    if: ${{ always() }}
+    needs:
+      - images-windows-ltsc2019
+    runs-on: windows-2019
+    steps:
+      - name: Docker Hub login
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
         with:
           images: 'false'
           chapters: 'true'
@@ -61,7 +76,6 @@ jobs:
   images-windows-ltsc2022:
     runs-on: windows-2022
     steps:
-
       - name: Docker Hub login
         shell: pwsh
         run: |
@@ -69,20 +83,27 @@ jobs:
         env:
           USER: ${{ secrets.DOCKER_HUB_USERNAME }}
           TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - name: Build Git Windows image
-        uses: ./.github/actions/build
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
         with:
           filter: 'git-windows'
+      - uses: ./.github/actions/build
 
-      - name: Build base images
-        uses: ./.github/actions/build
-
-      - name: Build chapter images
-        uses: ./.github/actions/build
+  chapters-windows-ltsc2022:
+    if: ${{ always() }}
+    needs:
+      - images-windows-ltsc2022
+    runs-on: windows-2022
+    steps:
+      - name: Docker Hub login
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
         with:
           images: 'false'
           chapters: 'true'
@@ -90,7 +111,6 @@ jobs:
   images-windows-ltsc2025:
     runs-on: windows-2025
     steps:
-
       - name: Docker Hub login
         shell: pwsh
         run: |
@@ -98,18 +118,26 @@ jobs:
         env:
           USER: ${{ secrets.DOCKER_HUB_USERNAME }}
           TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - name: Build Git Windows image
-        uses: ./.github/actions/build
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
         with:
           filter: 'git-windows'
-
-      - name: Build base images
-        uses: ./.github/actions/build
-
+      - uses: ./.github/actions/build
+  
+  chapters-windows-ltsc2025:
+    if: ${{ always() }}
+    needs:
+      - images-windows-ltsc2025
+    runs-on: windows-2025
+    steps:
+      - name: Docker Hub login
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
       - name: Build chapter images
         uses: ./.github/actions/build
         with:
@@ -119,21 +147,20 @@ jobs:
   push-manifests:
     if: ${{ always() }}
     needs:
-      - images-linux-amd64
-      - images-windows-ltsc2019
-      - images-windows-ltsc2022
-      - images-windows-ltsc2025
+      - chapters-linux-amd64
+      - chapters-windows-ltsc2019
+      - chapters-windows-ltsc2022
+      - chapters-windows-ltsc2025
     runs-on: ubuntu-latest
     steps:
-
+      - name: Registry login    
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - uses: actions/checkout@master
-
-      - name: Push base image manifests
-        uses: ./.github/actions/push-manifests
-
-      - name: Push chapter image manifests
-        uses: ./.github/actions/push-manifests
+      - uses: ./.github/actions/push-manifests
+      - uses: ./.github/actions/push-manifests
         with:
           images: 'false'
           chapters: 'true'
-
