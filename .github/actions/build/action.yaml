@@ -25,3 +25,4 @@ runs:
         BUILD_IMAGES: ${{ inputs.images }}
         BUILD_CHAPTERS: ${{ inputs.chapters }}
         FILTER: ${{ inputs.filter }}
+        DOCKER_BUILDKIT: 0

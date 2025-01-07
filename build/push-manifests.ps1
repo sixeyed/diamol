@@ -2,7 +2,6 @@ param(
     [string]$Filter=$null,
     [switch]$Images=$true,
     [switch]$Chapters=$false,
-    [switch]$UseRegctl=$true,
     [switch]$Delete=$false,
     [switch]$Pull=$false
 )
@@ -51,12 +50,7 @@ try {
         $variantList = @()
         foreach ($variant in $variants) {
             $ref = "$($image)-$variant"
-            if ($UseRegctl) {
-                $manifest = regctl manifest get $ref --format raw-body | ConvertFrom-Json
-            } 
-            else {
-                $manifest = docker manifest inspect $ref | ConvertFrom-Json
-            }
+            $manifest = docker manifest inspect $ref | ConvertFrom-Json
             if ($null -ne $manifest -and $manifest.mediaType -eq $manifestMediaType) {
                 $variantList += $ref
                 echo "** Image variant found. Will add to manifest list: $ref"
