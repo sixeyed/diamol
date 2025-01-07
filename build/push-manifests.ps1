@@ -6,6 +6,18 @@ param(
     [switch]$Pull=$false
 )
 
+$ErrorActionPreference = 'Continue'
+
+if ($env:BUILD_IMAGES) {
+    $Images = [bool]::Parse($env:BUILD_IMAGES)
+}
+if ($env:BUILD_CHAPTERS) {
+    $Chapters = [bool]::Parse($env:BUILD_CHAPTERS)
+}
+if ($env:FILTER) {
+    $Filter = $env:FILTER
+}
+
 try {
         
     echo '------------------'
