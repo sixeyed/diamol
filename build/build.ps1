@@ -72,11 +72,14 @@ try {
 
     if ($Filter -and ($Filter -ne '')) {
         docker compose $composeFiles build --pull $Filter
-        docker compose $composeFiles push -q $Filter --ignore-push-failures
+        docker compose $composeFiles push -q $Filter
     }
     else {
         docker compose $composeFiles build --pull
+        # push what we can:
         docker compose $composeFiles push -q --ignore-push-failures
+        # but fail the task if any fail:
+        docker compose $composeFiles push -q
     }
 }
 
