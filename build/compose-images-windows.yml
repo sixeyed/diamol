@@ -28,6 +28,16 @@ services:
     build:
       context: ../images/openjdk/windows
 
+  git-windows:
+    image: diamol/git-windows:2e
+    build:
+      context: ../images/git-windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        GIT_WINDOWS_VERSION: ${GIT_WINDOWS_VERSION}
+        GIT_WINDOWS_RELEASE_NUMBER: ${GIT_WINDOWS_RELEASE_NUMBER}
+        GIT_WINDOWS_DOWNLOAD_SHA256: ${GIT_WINDOWS_DOWNLOAD_SHA256}
+
   golang:
     build:
       context: ../images/golang/windows
@@ -68,6 +78,33 @@ services:
       args:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
         ENTERPRISE_DB_DOWNLOAD_FILE_ID: ${ENTERPRISE_DB_13_DOWNLOAD_FILE_ID}
+
+  prometheus:
+    build:
+      context: ../images/prometheus/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        PROMETHEUS_WINDOWS_DOWNLOAD_SHA256: ${PROMETHEUS_WINDOWS_DOWNLOAD_SHA256}
+
+  grafana:
+    build:
+      context: ../images/grafana/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        GRAFANA_WINDOWS_DOWNLOAD_SHA256: ${GRAFANA_WINDOWS_DOWNLOAD_SHA256}
+
+  gogs:
+    build:
+      context: ../images/gogs/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        GOGS_WINDOWS_DOWNLOAD_SHA256: ${GOGS_WINDOWS_DOWNLOAD_SHA256}
+
+  jenkins:
+    build:
+      context: ../images/jenkins/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
 
   mssql:
     build:

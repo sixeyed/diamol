@@ -11,7 +11,8 @@ RUN Write-Host "Downloading Prometheus version: $env:PROMETHEUS_VERSION"; `
     if ((Get-FileHash prometheus.tar.gz -Algorithm sha256).Hash.ToLower() -ne $env:PROMETHEUS_WINDOWS_DOWNLOAD_SHA256) {exit 1}
 
 
-RUN tar xf prometheus.tar.gz; `
+RUN mkdir "C:\prometheus-$($env:PROMETHEUS_VERSION).windows-amd64"; `
+    tar xf prometheus.tar.gz; `
     Rename-Item -Path "C:\prometheus-$($env:PROMETHEUS_VERSION).windows-amd64" -NewName 'C:\prometheus'
 
 # Prometheus
