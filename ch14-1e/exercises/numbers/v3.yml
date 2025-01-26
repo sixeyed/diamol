@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    image: diamol/ch08-numbers-api:v3
+
+  numbers-web:
+    image: diamol/ch08-numbers-web:v3

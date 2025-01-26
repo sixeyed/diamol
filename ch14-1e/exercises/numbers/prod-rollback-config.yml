@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  numbers-api:
+    deploy:
+      rollback_config:
+        parallelism: 6
+        monitor: 0s
+        failure_action: continue
+        order: start-first
