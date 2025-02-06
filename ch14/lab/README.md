@@ -48,3 +48,9 @@ For a single request, 8 CPUs isn't much faster (13.5s compared to 15.3s):
 ![](/ch14/lab/img/my-pi.png)
 
 But with multiple concurrent requests, the single core version would slow down and this version would keep going.
+
+And delete the project:
+
+```
+gcloud projects delete $PROJECT --quiet
+```
