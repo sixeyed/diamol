@@ -1,0 +1,24 @@
+services:
+  todo-web:
+    image: ghcr.io/diamol2e/ch14-todo-web
+    ports:
+      - "8082:8080"
+    environment:
+      - Database__Provider=Postgres
+    depends_on:
+      - todo-db
+    networks:
+      - app-net
+    volumes:
+      - ./config/secrets.json:/app/config/secrets.json
+
+  todo-db:
+    image: ghcr.io/diamol2e/postgres:12
+    ports:
+      - "5432:5432"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    name: todo-test
