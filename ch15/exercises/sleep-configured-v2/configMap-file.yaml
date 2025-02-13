@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sleep-config-file
+data:
+  config.json: |-
+    {
+      "Database" : {
+        "Provider" : "Postgres"
+      }
+    }

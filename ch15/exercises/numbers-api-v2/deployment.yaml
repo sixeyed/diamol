@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: numbers-api
+spec:
+  selector:
+    matchLabels:
+      app: numbers
+      component: api
+  template:
+    metadata:
+      labels:
+        app: numbers
+        component: api
+    spec:
+      containers:
+        - name: api
+          image: kiamol/ch03-numbers-api
+          ports:
+            - containerPort: 80
+              name: http
+          env:
+          - name: FailAfterCallCount
+            value: "1"

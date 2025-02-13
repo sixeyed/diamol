@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pi
+spec:
+  containers:
+    - name: pi
+      image: kiamol/ch05-pi
+     # command: ["dotnet", "Pi.Web.dll", "-m", "console", "-dp", "50"]

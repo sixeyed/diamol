@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: numbers-api
+  labels:
+    app: numbers
+    component: api
+spec:
+  containers:
+    - name: api
+      image: kiamol/ch03-numbers-api
+      ports:
+        - containerPort: 80
+          name: http

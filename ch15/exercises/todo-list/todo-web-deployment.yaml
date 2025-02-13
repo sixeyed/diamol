@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo
+      component: web
+  template:
+    metadata:
+      labels:
+        app: todo
+        component: web
+    spec:
+      containers:
+        - name: web
+          image: kiamol/ch04-todo-list
+          env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Test
+          volumeMounts:
+            - name: config
+              mountPath: "/app/config"
+              readOnly: true
+            - name: secret
+              mountPath: "/app/secrets"
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: todo-web-config
+        - name: secret
+          secret:
+            secretName: todo-web-secret
+            defaultMode: 0400

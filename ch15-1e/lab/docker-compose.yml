@@ -1,0 +1,5 @@
+version: "3.7"
+
+services:
+  timecheck:
+    image: ${REGISTRY:-docker.io}/diamol/ch15-timecheck:3.0-build-${BUILD_NUMBER:-local}

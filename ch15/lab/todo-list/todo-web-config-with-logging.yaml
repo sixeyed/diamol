@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-web-config
+data:
+  config.json: |-
+    {
+      "ConfigController": {
+        "Enabled" : false
+      },
+      "Database" : {
+        "Provider" : "Postgres"
+      }
+    }
+  logging.json: |-
+    {
+      "Logging": {
+        "LogLevel": {
+          "ToDoList.Pages" : "Debug"
+        }
+      }
+    }

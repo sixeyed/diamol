@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-web
+  labels:
+    app: todo
+    component: web
+spec:
+  ports:
+    - port: 8025
+      targetPort: 80
+  selector:
+    app: todo
+    component: web
+  type: LoadBalancer

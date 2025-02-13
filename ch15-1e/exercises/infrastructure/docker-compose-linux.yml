@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  jenkins:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jenkins-scripts-linux:/data/init.groovy.d
+      - /tmp/pwd-certs:/certs
