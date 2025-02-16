@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: numbers-api
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: numbers

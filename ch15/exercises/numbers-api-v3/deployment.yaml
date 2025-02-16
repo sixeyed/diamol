@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: numbers-api
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: numbers
@@ -28,3 +28,8 @@ spec:
               path: /healthz
               port: http
             periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 20
