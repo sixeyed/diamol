@@ -1,8 +1,0 @@
-version: "3.7"
-
-services:
-  timecheck:
-    image: diamol/ch15-timecheck:3.0
-    environment:
-      - Application__Environment=PROD
-      - Timer__IntervalSeconds=20
