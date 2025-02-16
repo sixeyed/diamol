@@ -10,7 +10,7 @@ kubectl logs deploy/todo-web
 
 Here's the new ConfigMap:
 
-- [todo-web-config-with-logging.yaml](ch15/lab/todo-list/todo-web-config-with-logging.yaml)
+- [todo-web-config-with-logging.yaml](/ch15/lab/todo-list/todo-web-config-with-logging.yaml)
 
 Apply the update:
 ```
