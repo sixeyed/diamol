@@ -37,6 +37,34 @@ jobs:
         with:
           images: 'false'
           chapters: 'true'
+
+  images-linux-arm64:
+    runs-on: [self-hosted, Linux, ARM64, docker]
+    steps:
+      - name: Registry login    
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+
+  chapters-linux-arm64:
+    if: ${{ always() }}
+    needs:
+      - images-linux-amd64
+    runs-on: [self-hosted, Linux, ARM64, docker]
+    steps:
+      - name: Registry login    
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+        with:
+          images: 'false'
+          chapters: 'true'
   
   images-windows-ltsc2019:
     runs-on: windows-2019
@@ -148,6 +176,7 @@ jobs:
     if: ${{ always() }}
     needs:
       - chapters-linux-amd64
+      - chapters-linux-arm64
       - chapters-windows-ltsc2019
       - chapters-windows-ltsc2022
       - chapters-windows-ltsc2025
