@@ -52,7 +52,7 @@ jobs:
   chapters-linux-arm64:
     if: ${{ always() }}
     needs:
-      - images-linux-amd64
+      - images-linux-arm64
     runs-on: [self-hosted, Linux, ARM64, docker]
     steps:
       - name: Registry login    
