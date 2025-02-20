@@ -1,6 +1,11 @@
 name: images-windows
 
 on:
+  push:
+    branches:
+      - "2e"
+    paths:
+      - ".github/workflows/build-images-windows.yaml"
   workflow_dispatch:
     inputs:
       filter:
