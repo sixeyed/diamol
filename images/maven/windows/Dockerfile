@@ -16,9 +16,10 @@ ARG OPENJDK_DISTRO
 ARG OPENJDK_VERSION
 FROM ${OPENJDK_DISTRO}:${OPENJDK_VERSION}-jdk-nanoserver
 
-ENV MAVEN_HOME="C:\maven"
+ENV MAVEN_HOME="C:\maven" `
+    MAVEN_BIN="C:\maven\bin"
 
 USER ContainerAdministrator
-RUN setx /M PATH "%PATH%;%MAVEN_HOME%;"
+RUN setx /M PATH "%PATH%;%MAVEN_HOME%;%MAVEN_BIN%;"
 
 COPY --from=installer /maven ${MAVEN_HOME}
