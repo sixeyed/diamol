@@ -20,7 +20,6 @@ COPY --from=installer /nodejs /nodejs
 
 USER ContainerAdministrator
 RUN setx /M PATH "%PATH%;C:\nodejs"
-USER ContainerUser
 
 # see a more complete version - with Git & Yarn - from Stefan Scherer
 # https://github.com/StefanScherer/dockerfiles-windows/blob/master/node/10/nano/Dockerfile
