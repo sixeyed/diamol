@@ -66,6 +66,7 @@ try {
             if ($null -ne $manifest -and $manifest.mediaType -eq $manifestMediaType) {
                 $variantList += $ref
                 echo "** Image variant found. Will add to manifest list: $ref"
+                docker buildx imagetools inspect $ref
             }
             else {
                 echo "** Image variant NOT found. Skipping: $ref"
