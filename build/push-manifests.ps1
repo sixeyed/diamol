@@ -2,7 +2,7 @@ param(
     [string]$Filter=$null,
     [switch]$Images=$true,
     [switch]$Chapters=$false,
-    [switch]$Delete=$false,
+    [switch]$Delete=$true,
     [switch]$Pull=$false
 )
 
