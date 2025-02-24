@@ -1,0 +1,25 @@
+name: images-windows-ltsc2022
+
+on:
+  workflow_dispatch:
+    inputs:
+      filter:
+        required: false
+        default: ''
+        description: "Image filter"
+
+jobs:
+  images-windows-ltsc2022:
+    runs-on: windows-2022
+    steps:
+      - name: Docker Hub login
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+        with:
+          filter: "${{ github.event.inputs.filter }}"
