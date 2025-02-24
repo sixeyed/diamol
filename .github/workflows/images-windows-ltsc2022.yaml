@@ -1,6 +1,11 @@
 name: images-windows-ltsc2022
 
 on:
+  push:
+    branches:
+      - "2e"
+    paths:
+      - ".github/workflows/images-windows-ltsc2022.yaml"
   workflow_dispatch:
     inputs:
       filter:
