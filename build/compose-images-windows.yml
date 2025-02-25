@@ -1,4 +1,14 @@
 services:
+  windows-deps:
+    image: diamol/windows-deps:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+    build:
+      context: ../images/windows-deps
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        GIT_WINDOWS_VERSION: ${GIT_WINDOWS_VERSION}
+        GIT_WINDOWS_RELEASE_NUMBER: ${GIT_WINDOWS_RELEASE_NUMBER}
+        GIT_WINDOWS_DOWNLOAD_SHA256: ${GIT_WINDOWS_DOWNLOAD_SHA256}
+
   base:
     build:
       context: ../images/base/windows
@@ -27,16 +37,6 @@ services:
   openjdk:
     build:
       context: ../images/openjdk/windows
-
-  git-windows:
-    image: diamol/git-windows:2e
-    build:
-      context: ../images/git-windows
-      args:
-        WINDOWS_VERSION: ${WINDOWS_VERSION}
-        GIT_WINDOWS_VERSION: ${GIT_WINDOWS_VERSION}
-        GIT_WINDOWS_RELEASE_NUMBER: ${GIT_WINDOWS_RELEASE_NUMBER}
-        GIT_WINDOWS_DOWNLOAD_SHA256: ${GIT_WINDOWS_DOWNLOAD_SHA256}
 
   golang:
     build:
