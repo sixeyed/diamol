@@ -1,15 +1,7 @@
-# Addendum
+## Chapter 16: CI/CD in the Cloud (with Docker and GitHub Actions)
 
-## 16.4 - Building multi-arch images with Docker Buildx
+The content for this chapter is in a separate repo:
 
-The latest version of Docker does not work correctly with the version of Buildx used in the Play-with-Docker exercises.
+- https://github.com/diamol2e/ch16
 
-On page 311 replace the first command (which uses Buildx 3.1) with this command to use the latest version:
-
-```
-# download the latest Buildx binary:
-
-wget -O ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.4.2/buildx-v0.4.2.linux-amd64
-```
-
-And the rest of the exercises will work correctly.
+You will need to fork that repo to follow the examples.
