@@ -14,6 +14,9 @@ services:
   openjdk:
     image: diamol/openjdk:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
 
+  openjdk-jre:
+    image: diamol/openjdk:2e-jre-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
   golang:
     image: diamol/golang:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
 

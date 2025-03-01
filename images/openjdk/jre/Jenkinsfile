@@ -1,6 +1,0 @@
-library identifier: 'diamol-jenkins-library@master', 
-        retriever: modernSCM([$class: 'GitSCMSource', remote: 'https://github.com/sixeyed/diamol-jenkins-library.git'])
-
-multiArchBuild linuxContext: 'images/openjdk/jre', 
-               linuxArmContext: 'images/openjdk/jre/linux/arm', 
-               windowsContext: 'images/openjdk/jre/windows'

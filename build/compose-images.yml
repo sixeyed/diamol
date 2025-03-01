@@ -29,6 +29,13 @@ services:
         OPENJDK_DISTRO: ${OPENJDK_DISTRO}
         OPENJDK_VERSION: ${OPENJDK_VERSION}
 
+  openjdk-jre:
+    image: diamol/openjdk:2e-jre
+    build:
+      args:
+        OPENJDK_DISTRO: ${OPENJDK_DISTRO}
+        OPENJDK_VERSION: ${OPENJDK_VERSION}
+
   golang:
     image: diamol/golang:2e
     build:

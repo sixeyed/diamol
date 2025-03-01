@@ -28,6 +28,10 @@ services:
     build:
       context: ../images/openjdk/windows
 
+  openjdk-jre:
+    build:
+      context: ../images/openjdk/jre/windows
+
   git-windows:
     image: diamol/git-windows:2e
     build:

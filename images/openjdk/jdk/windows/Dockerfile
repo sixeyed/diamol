@@ -1,1 +1,0 @@
-FROM openjdk:11-jdk-nanoserver-1809

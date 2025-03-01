@@ -25,6 +25,10 @@ services:
     build:
       context: ../images/openjdk/linux
 
+  openjdk-jre:
+    build:
+      context: ../images/openjdk/jre/linux
+
   golang:
     build:
       context: ../images/golang/linux
