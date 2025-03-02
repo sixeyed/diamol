@@ -8,14 +8,10 @@ services:
   node:
     build:
       context: ../images/node/linux
-      args:
-        ALPINE_VERSION: ${ALPINE_VERSION}
 
   apache:
     build:
       context: ../images/apache/linux
-      args:
-        ALPINE_VERSION: ${ALPINE_VERSION}
 
   maven:
     build:
