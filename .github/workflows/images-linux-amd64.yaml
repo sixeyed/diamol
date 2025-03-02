@@ -15,7 +15,7 @@ on:
 
 jobs:
   images-linux-amd64:
-    runs-on: ubuntu-ltest
+    runs-on: ubuntu-latest
     steps:
       - name: Registry login    
         uses: docker/login-action@v3
