@@ -16,7 +16,7 @@ The solution in [Dockerfile.solution](./Dockerfile.solution) fixes that by doing
 You can build and run the solution using Docker on any of the supported arhchitectures for this book:
 
 ```
-docker image build -t diamol/ch16-lab -f Dockerfile.solution .
+docker image build -t diamol/ch16-lab:2e -f Dockerfile.solution .
 
-docker container run diamol/ch16-lab
+docker container run -it diamol/ch16-lab:2e
 ```
