@@ -1,4 +1,4 @@
-# DIAMOL Chapter 16 Lab - Sample Solution
+# DIAMOL Chapter 12 Lab - Sample Solution
 
 There are multiple problems with the original [Dockerfile](./Dockerfile) which stop it being multi-arch:
 
