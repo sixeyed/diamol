@@ -1,22 +1,20 @@
 # escape=`
 ARG WINDOWS_VERSION
-FROM mcr.microsoft.com/windows/servercore:${WINDOWS_VERSION} AS installer
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+FROM mcr.microsoft.com/windows/servercore:${WINDOWS_VERSION} AS base
 
+FROM base AS installer
 ARG GRAFANA_VERSION
 ARG GRAFANA_WINDOWS_DOWNLOAD_SHA256
 
-RUN Write-Host "Downloading Grafana version: $env:GRAFANA_VERSION"; `
-    Invoke-WebRequest "https://dl.grafana.com/oss/release/grafana-$($env:GRAFANA_VERSION).windows-amd64.zip"  -OutFile grafana.zip -UseBasicParsing; `
-    if ((Get-FileHash grafana.zip -Algorithm sha256).Hash.ToLower() -ne $env:GRAFANA_WINDOWS_DOWNLOAD_SHA256) {exit 1}
+RUN echo "Downloading Grafana version: %GRAFANA_VERSION%" && `
+    curl -sSL -o grafana.zip "https://dl.grafana.com/oss/release/grafana-%GRAFANA_VERSION%.windows-amd64.zip"
+ #   if ((Get-FileHash grafana.zip -Algorithm sha256).Hash.ToLower() -ne $env:GRAFANA_WINDOWS_DOWNLOAD_SHA256) {exit 1}
 
-RUN Expand-Archive grafana.zip -DestinationPath C:\; `
-    Move-Item "grafana-v$($env:GRAFANA_VERSION)" grafana
+WORKDIR /grafana
+RUN tar -xvf /grafana.zip --strip-components 1
 
 # Grafana
-ARG WINDOWS_VERSION
-FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION}
-
+FROM base
 EXPOSE 3000
 
 WORKDIR C:\grafana\bin
