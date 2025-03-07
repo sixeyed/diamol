@@ -55,3 +55,6 @@ services:
 
   mssql:
     image: diamol/mssql:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+  
+  trivy:
+    image: diamol/trivy:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

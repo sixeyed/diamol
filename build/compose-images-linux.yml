@@ -74,3 +74,9 @@ services:
         ALPINE_VERSION: ${ALPINE_VERSION}
         MSSQL_VERSION: ${MSSQL_VERSION}
         SQLPACKAGE_DOWNLOAD_URL: ${SQLPACKAGE_LINUX_DOWNLOAD_URL}
+
+  trivy:
+    build:
+      context: ../images/trivy/linux
+      args:
+        TRIVY_VERSION: ${TRIVY_VERSION}

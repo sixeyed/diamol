@@ -103,3 +103,6 @@ services:
 
   mssql:
     image: diamol/mssql:2e
+    
+  trivy:
+    image: diamol/trivy:2e

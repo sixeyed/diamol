@@ -119,3 +119,10 @@ services:
         MSSQL_VERSION_CODE: ${MSSQL_VERSION_CODE}
         MSSQL_INSTANCE_NAME: ${MSSQL_INSTANCE_NAME}
         SQLPACKAGE_DOWNLOAD_URL: ${SQLPACKAGE_WINDOWS_DOWNLOAD_URL}
+  
+  #TODO
+  #trivy:
+  #  build:
+  #    context: ../images/trivy/windows
+  #    args:
+  #      TRIVY_VERSION: ${TRIVY_VERSION}
