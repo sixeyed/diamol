@@ -1,8 +1,10 @@
-FROM diamol/base AS download
-ARG JENKINS_VERSION="2.190.2"
+FROM diamol/base:2e AS base
+
+FROM base AS download
+ARG JENKINS_VERSION="2.479.2"
 RUN wget -O jenkins.war http://mirrors.jenkins.io/war-stable/${JENKINS_VERSION}/jenkins.war 
 
-FROM diamol/base
+FROM base
 ENV JENKINS_HOME="/data"
 EXPOSE 8080
 ENTRYPOINT java -Duser.home=${JENKINS_HOME} -Djenkins.install.runSetupWizard=false -jar /jenkins/jenkins.war

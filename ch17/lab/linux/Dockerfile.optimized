@@ -1,5 +1,7 @@
-FROM alpine:3.10 AS install
+FROM diamol/base:2e AS base
+
+FROM base AS install
 RUN apk add --no-cache docker-cli
 
-FROM diamol/base
+FROM base
 COPY --from=install /usr/bin/docker /usr/bin/docker

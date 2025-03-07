@@ -1,7 +1,7 @@
-FROM diamol/base
+FROM diamol/base:2e
 
 ENV JENKINS_HOME="/data" \
-    JENKINS_VERSION="2.190.2"
+    JENKINS_VERSION="2.479.2"
 
 COPY ./jenkins.install.UpgradeWizard.state ${JENKINS_HOME}/
 

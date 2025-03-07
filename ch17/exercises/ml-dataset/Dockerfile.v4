@@ -1,0 +1,26 @@
+FROM diamol/base:2e AS base
+
+FROM base AS download
+ARG DATASET_URL=https://archive.ics.uci.edu/ml/machine-learning-databases/url/url_svmlight.tar.gz
+RUN wget -O dataset.tar.gz ${DATASET_URL} 
+
+FROM base AS expand
+COPY --from=download dataset.tar.gz .
+RUN tar xvzf dataset.tar.gz
+
+FROM base AS one-layer
+WORKDIR /dataset/url_svmlight
+COPY --from=expand url_svmlight/Day7?.svm .
+
+FROM base AS multi-layer
+WORKDIR /dataset/url_svmlight
+COPY --from=expand url_svmlight/Day70.svm .
+COPY --from=expand url_svmlight/Day71.svm .
+COPY --from=expand url_svmlight/Day72.svm .
+COPY --from=expand url_svmlight/Day73.svm .
+COPY --from=expand url_svmlight/Day74.svm .
+COPY --from=expand url_svmlight/Day75.svm .
+COPY --from=expand url_svmlight/Day76.svm .
+COPY --from=expand url_svmlight/Day77.svm .
+COPY --from=expand url_svmlight/Day78.svm .
+COPY --from=expand url_svmlight/Day79.svm .

@@ -1,4 +1,4 @@
-FROM diamol/maven AS builder
+FROM diamol/maven:2e AS builder
 
 WORKDIR /usr/src/truth
 COPY pom.xml .
@@ -8,7 +8,7 @@ COPY . .
 RUN mvn package
 
 # app
-FROM diamol/openjdk:jdk
+FROM diamol/openjdk:2e
 
 WORKDIR /app
 COPY truth.txt .
