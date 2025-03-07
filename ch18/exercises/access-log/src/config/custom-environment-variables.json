@@ -1,0 +1,7 @@
+{
+  "release": "APP_RELEASE",
+  "environment": "APP_ENVIRONMENT",
+  "metrics": {
+    "enabled": "APP_METRICS_ENABLED"
+  }
+}

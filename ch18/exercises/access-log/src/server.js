@@ -74,8 +74,8 @@ server.get("/config", config);
 server.post("/access-log", respond);
 
 if (metricsConf.enabled) {
-  server.get("/metrics", function(req, res, next) {
-    res.end(prom.register.metrics());
+  server.get("/metrics", async function(req, res) {
+    res.end(await prom.register.metrics());
   });
 }
 

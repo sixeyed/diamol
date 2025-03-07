@@ -24,6 +24,6 @@ curl http://localhost:8020/config
 curl http://localhost:8010/config
 ```
 
-You should see each app has the environment name `TEST` and the release cycle `20.01`. When you browse to http://localhost:8010 the app should work:
+You should see each app has the environment name `TEST` and the release cycle `25.03`. When you browse to http://localhost:8010 the app should work:
 
 ![The configured app with override files and environment variables](./solution.png)

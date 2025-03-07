@@ -92,3 +92,15 @@ services:
 
   ch09-todo-list:
     image: diamol/ch09-todo-list:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch18-access-log:
+    image: diamol/ch18-access-log:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch18-todo-list:
+    image: diamol/ch18-todo-list:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch18-image-gallery:
+    image: diamol/ch18-image-gallery:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch18-image-of-the-day:
+    image: diamol/ch18-image-of-the-day:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

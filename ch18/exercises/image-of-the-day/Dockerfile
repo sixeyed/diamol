@@ -1,4 +1,4 @@
-FROM diamol/maven AS builder
+FROM diamol/maven:2e AS builder
 
 WORKDIR /usr/src/iotd
 COPY pom.xml .
@@ -8,14 +8,14 @@ COPY . .
 RUN mvn package
 
 # config util
-FROM diamol/maven as utility-builder
+FROM diamol/maven:2e AS utility-builder
 
 WORKDIR /usr/src/utilities
 COPY ./src/utilities/ConfigLoader.java .
 RUN javac ConfigLoader.java
 
 # app
-FROM diamol/openjdk
+FROM diamol/openjdk:2e
 
 EXPOSE 80
 ENV CONFIG_SOURCE_PATH="" \

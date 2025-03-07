@@ -1,20 +1,18 @@
-FROM diamol/golang AS builder
+FROM diamol/golang:2e AS builder
 
+COPY src/go.mod src/main.go /src/
 WORKDIR /src
-COPY ./src/go.mod .
-RUN go mod download
-
-COPY ./src/main.go .
+RUN go mod tidy
 RUN go build -o /server
 
 # app
-FROM diamol/base
+FROM diamol/base:2e
 
 EXPOSE 80
 CMD ["/app/server"]
 
 WORKDIR /app
-COPY ./src/index.html .
-COPY ./src/config.toml .
+COPY src/index.html .
+COPY src/config.toml .
 COPY --from=builder /server .
 RUN chmod +x server

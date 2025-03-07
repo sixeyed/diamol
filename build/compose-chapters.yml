@@ -170,3 +170,23 @@ services:
     image: diamol/ch09-lab-grafana:2e
     build:
       context: ../ch09/lab/grafana
+
+  ch18-access-log:
+    image: diamol/ch18-access-log:2e
+    build:
+      context: ../ch18/exercises/access-log
+
+  ch18-todo-list:
+    image: diamol/ch18-todo-list:2e
+    build:
+      context: ../ch18/exercises/todo-list
+
+  ch18-image-gallery:
+    image: diamol/ch18-image-gallery:2e
+    build:
+      context: ../ch18/exercises/image-gallery
+
+  ch18-image-of-the-day:
+    image: diamol/ch18-image-of-the-day:2e
+    build:
+      context: ../ch18/exercises/image-of-the-day
