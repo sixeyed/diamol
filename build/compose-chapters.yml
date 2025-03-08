@@ -190,3 +190,20 @@ services:
     image: diamol/ch18-image-of-the-day:2e
     build:
       context: ../ch18/exercises/image-of-the-day
+
+  ch19-timecheck-1:
+    image: diamol/ch19-timecheck:2e
+    build:
+      context: ../ch19/exercises/timecheck
+
+  ch19-timecheck-2:
+    image: diamol/ch19-timecheck:2e-v2
+    build:
+      context: ../ch19/exercises/timecheck
+      dockerfile: Dockerfile-2.0
+
+  ch19-timecheck-3:
+    image: diamol/ch19-timecheck:2e-v3
+    build:
+      context: ../ch19/exercises/timecheck
+      dockerfile: Dockerfile-3.0

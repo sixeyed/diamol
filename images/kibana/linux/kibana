@@ -14,11 +14,10 @@ while [ -h "$SCRIPT" ] ; do
 done
 
 DIR="$(dirname "${SCRIPT}")/.."
-NODE="node"
-test -x "$NODE" || NODE=$(which node)
-if [ ! -x "$NODE" ]; then
-  echo "unable to find usable node.js executable."
-  exit 1
+CONFIG_DIR=${KBN_PATH_CONF:-"$DIR/config"}
+
+if [ -f "${CONFIG_DIR}/node.options" ]; then
+  KBN_NODE_OPTS="$(grep -v ^# < ${CONFIG_DIR}/node.options | xargs)"
 fi
 
-NODE_ENV=production exec "${NODE}" --no-warnings --max-http-header-size=65536 $NODE_OPTIONS "${DIR}/src/cli" ${@}
+NODE_OPTIONS="--no-warnings --max-http-header-size=65536 $KBN_NODE_OPTS $NODE_OPTIONS" NODE_ENV=production exec node "${DIR}/src/cli/dist" ${@}

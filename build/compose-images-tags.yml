@@ -58,3 +58,12 @@ services:
   
   trivy:
     image: diamol/trivy:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  fluentd:
+    image: diamol/fluentd:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  elasticsearch:
+    image: diamol/elasticsearch:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  kibana:
+    image: diamol/kibana:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

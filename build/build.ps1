@@ -20,6 +20,15 @@ try {
     $info = docker version -f json | ConvertFrom-Json
     $env:DOCKER_BUILD_OS = $info.Server.Os.ToLower()
     $env:DOCKER_BUILD_CPU = $info.Server.Arch.ToLower()
+    if ($env:DOCKER_BUILD_CPU -eq 'amd64') {
+        $env:DOCKER_BUILD_CPU_ALT = 'x86_64'
+    } 
+    elseif ($env:DOCKER_BUILD_CPU -eq 'arm64') {
+        $env:DOCKER_BUILD_CPU_ALT = 'aarch64'
+    }
+    else {        
+        $env:DOCKER_BUILD_CPU_ALT = $env:DOCKER_BUILD_CPU
+    }
 
     $env:OS_VERSION_TAG=''
     if ($env:DOCKER_BUILD_OS -eq 'windows') {
@@ -32,7 +41,8 @@ try {
         echo "** version: $version **"
         if ($version -eq '10.0.22631.0' -or $version -eq '10.0.20348.0') {
             $env:WINDOWS_VERSION = $env:WINDOWS_VERSION_CODE = 'ltsc2022'
-        } elseif ($version -eq '10.0.26100.0') {
+        } 
+        elseif ($version -eq '10.0.26100.0') {
             $env:WINDOWS_VERSION = $env:WINDOWS_VERSION_CODE ='ltsc2025'
         }
         $env:OS_VERSION_TAG="-$env:WINDOWS_VERSION"

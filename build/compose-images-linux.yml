@@ -78,5 +78,21 @@ services:
   trivy:
     build:
       context: ../images/trivy/linux
+
+  fluentd:
+    build:
+      context: ../images/fluentd/linux
       args:
-        TRIVY_VERSION: ${TRIVY_VERSION}
+        DOCKER_BUILD_CPU: ${DOCKER_BUILD_CPU}
+
+  elasticsearch:
+    build:
+      context: ../images/elasticsearch/linux
+      args:
+        DOCKER_BUILD_CPU_ALT: ${DOCKER_BUILD_CPU_ALT}
+
+  kibana:
+    build:
+      context: ../images/kibana/linux
+      args:
+        DOCKER_BUILD_CPU_ALT: ${DOCKER_BUILD_CPU_ALT}

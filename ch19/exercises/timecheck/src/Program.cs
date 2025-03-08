@@ -24,6 +24,7 @@ namespace Diamol.Chapter12.TimeCheck
             _Version = config["Application:Version"];
             _Env = config["Application:Environment"];
             var intervalSeconds = int.Parse(config["Timer:IntervalSeconds"]) * 1000;
+            var writeToConsole = bool.Parse(config["Output:Console"]);
 
             Log.Logger = new LoggerConfiguration()
                                 .MinimumLevel.Information()
@@ -31,17 +32,30 @@ namespace Diamol.Chapter12.TimeCheck
                                 .CreateLogger();
 
             using (var timer = new System.Timers.Timer(intervalSeconds))
-            {
-                timer.Elapsed += WriteTimeCheck;
+            {         
+                if (writeToConsole)
+                {
+                    timer.Elapsed += WriteToConsole;
+                }
+                else
+                {    
+                    timer.Elapsed += WriteLog;
+                }
                 timer.Enabled = true;
                 _ResetEvent.WaitOne();
             }
         }
 
-        private static void WriteTimeCheck(Object source, ElapsedEventArgs e)
+        
+        private static void WriteToConsole(Object source, ElapsedEventArgs e)
+        {
+            Console.WriteLine($"Environment: {_Env}; version: {_Version}; time check: {e.SignalTime.ToString("HH:mm.ss")}");
+        }
+
+        private static void WriteLog(Object source, ElapsedEventArgs e)
         {
             Log.Information("Environment: {environment}; version: {version}; time check: {timestamp}",
-                                _Env, _Version, e.SignalTime.ToString("HH:mm.ss"));
+                            _Env, _Version, e.SignalTime.ToString("HH:mm.ss"));
         }
     }
 }

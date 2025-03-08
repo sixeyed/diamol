@@ -124,5 +124,19 @@ services:
   #trivy:
   #  build:
   #    context: ../images/trivy/windows
-  #    args:
-  #      TRIVY_VERSION: ${TRIVY_VERSION}
+
+  fluentd:
+    build:
+      context: ../images/fluentd/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+
+# TODO
+ # elasticsearch:
+ #   build:
+ #     context: ../images/elasticsearch/linux
+ #     args:
+ #       DOCKER_BUILD_CPU_ALT: ${DOCKER_BUILD_CPU_ALT}
+
+# TODO
+ # kibana:

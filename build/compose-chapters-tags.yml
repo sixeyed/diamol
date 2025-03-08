@@ -104,3 +104,12 @@ services:
 
   ch18-image-of-the-day:
     image: diamol/ch18-image-of-the-day:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch19-timecheck-1:
+    image: diamol/ch19-timecheck:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch19-timecheck-2:
+    image: diamol/ch19-timecheck:2e-v2-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch19-timecheck-3:
+    image: diamol/ch19-timecheck:2e-v3-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

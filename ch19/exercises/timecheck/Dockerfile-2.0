@@ -1,0 +1,4 @@
+FROM diamol/ch19-timecheck:2e-1.0
+
+ENV Application__Version="2.0" \
+    Output__Console="false"

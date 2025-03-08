@@ -1,8 +1,6 @@
-version: "3.7"
-
 services:
   fluentd:
-    image: diamol/fluentd
+    image: diamol/fluentd:2e
     environment:
       FLUENTD_CONF: elasticsearch.conf
     volumes:
@@ -12,11 +10,11 @@ services:
       - "24224:24224/udp"
 
   elasticsearch:
-    image: diamol/elasticsearch
+    image: diamol/elasticsearch:2e
     ports:
       - "9200:9200"
 
   kibana:
-    image: diamol/kibana
+    image: diamol/kibana:2e
     ports:
       - "5601:5601"

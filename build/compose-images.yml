@@ -106,3 +106,25 @@ services:
     
   trivy:
     image: diamol/trivy:2e
+    build:
+      args:
+        TRIVY_VERSION: ${TRIVY_VERSION}
+
+  fluentd:
+    image: diamol/fluentd:2e
+    build:
+      args:
+        FLUENTD_VERSION: ${FLUENTD_VERSION}
+        FLUENTD_RELEASE: ${FLUENTD_RELEASE}
+
+  elasticsearch:
+    image: diamol/elasticsearch:2e
+    build:
+      args:
+        ELASTICSEARCH_VERSION: ${ELASTICSEARCH_VERSION}
+
+  kibana:
+    image: diamol/kibana:2e
+    build:
+      args:
+        KIBANA_VERSION: ${KIBANA_VERSION}
