@@ -1,18 +1,15 @@
-version: "3.7"
-
 services:
   numbers-api:
-    image: diamol/ch14-numbers-api:v5
+    image: diamol/ch08-numbers-api:2e-v3
     environment:
-      - Broken=false
       - Logging__LogLevel__Default=Debug
     networks:
       - app-net
 
   numbers-web:
-    image: diamol/ch14-numbers-web:v5
+    image: diamol/ch08-numbers-web:2e-v3
     ports:
-      - 8090:80
+      - 8090:8080
     networks:
       - app-net
 

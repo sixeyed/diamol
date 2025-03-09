@@ -1,8 +1,6 @@
-version: "3.7"
-
 services:
   accesslog:
-    image: diamol/ch18-access-log
+    image: diamol/ch18-access-log:2e
     networks:
       - iotd-net
     logging:
@@ -11,7 +9,7 @@ services:
         tag: "gallery.access-log.{{.ImageName}}"
 
   iotd:
-    image: diamol/ch18-image-of-the-day
+    image: diamol/ch18-image-of-the-day:2e
     networks:
       - iotd-net
     logging:
@@ -20,7 +18,7 @@ services:
         tag: "gallery.iotd.{{.ImageName}}"
 
   image-gallery:
-    image: diamol/ch18-image-gallery
+    image: diamol/ch18-image-gallery:2e
     ports:
       - "8010:80"
     depends_on:

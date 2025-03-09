@@ -15,20 +15,21 @@ There are three parts to my solution:
 Spin up the EFK stack from this directory:
 
 ```
-docker-compose -f fluentd/docker-compose.yml -f fluentd/solution.yml up -d
+docker compose -f fluentd/docker-compose.yml -f fluentd/solution.yml up -d
 ```
 
 And spin up the numbers app:
 
 ```
-docker-compose -f numbers/docker-compose.yml -f numbers/solution.yml up -d
+docker compose -f numbers/docker-compose.yml -f numbers/solution.yml up -d
 ```
 
 Browse to http://localhost:8090 and generate a few random numbers.
 
-Then browse to Kibana on http://localhost:5601:
+Then browse to Kibana on http://localhost:5601/app/discover:
 
-- set the index pattern to be `fluentd`
+- click _Create data view_
+- set the index pattern to be `fluentd*`
 - set the time field to be `@timestamp`
 
 In the Discover tab you'll see log entries from the API and the Web app:

@@ -5,3 +5,10 @@ FROM fluent/fluentd:${FLUENTD_VERSION}-debian-${DOCKER_BUILD_CPU}-${FLUENTD_RELE
 
 COPY fluent.conf /fluent/conf/fluent.conf
 ENV FLUENTD_CONF="fluent.conf"
+
+USER root
+
+RUN gem update --system && \
+    gem install fluent-plugin-elasticsearch --no-document
+
+USER fluent
