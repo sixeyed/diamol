@@ -1,18 +1,16 @@
-version: "3.7"
-
 services:
   accesslog:
-    image: diamol/ch04-access-log
+    image: diamol/ch18-access-log:2e
     networks:
       - ch20
 
   iotd:
-    image: diamol/ch04-image-of-the-day
+    image: diamol/ch18-image-of-the-day:2e
     networks:
       - ch20
 
   image-gallery:
-    image: diamol/ch04-image-gallery
+    image: diamol/ch18-image-gallery:2e
     depends_on:
       - accesslog
       - iotd
@@ -21,5 +19,5 @@ services:
 
 networks:
   ch20:
-    external:
-      name: ch20
+    name: ch20
+    external: true

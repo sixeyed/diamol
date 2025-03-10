@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   iotd:
     labels:
@@ -13,8 +11,3 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.image-gallery.rule=Host(`image-gallery.local`)"
       - "traefik.http.services.image-gallery.loadbalancer.server.port=80"
-
-networks:
-  ch20:
-    external:
-      name: ch20

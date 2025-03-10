@@ -67,3 +67,12 @@ services:
 
   kibana:
     image: diamol/kibana:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  nginx:
+    image: diamol/nginx:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  cert-generator:
+    image: diamol/cert-generator:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  traefik:
+    image: diamol/traefik:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

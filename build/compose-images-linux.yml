@@ -96,3 +96,15 @@ services:
       context: ../images/kibana/linux
       args:
         DOCKER_BUILD_CPU_ALT: ${DOCKER_BUILD_CPU_ALT}
+
+  nginx:
+    build:
+      context: ../images/nginx/linux
+
+  cert-generator:
+    build:
+      context: ../images/cert-generator/linux
+
+  traefik:
+    build:
+      context: ../images/traefik/linux

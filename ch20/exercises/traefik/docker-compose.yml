@@ -1,8 +1,6 @@
-version: "3.7"
-
 services:
   traefik:
-    image: diamol/traefik
+    image: diamol/traefik:2e
     command: 
       - "--api.insecure=true"
       - "--providers.docker"
@@ -19,5 +17,5 @@ services:
 
 networks:
   ch20:
-    external:
-      name: ch20
+    name: ch20
+    external: true

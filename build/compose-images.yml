@@ -128,3 +128,18 @@ services:
     build:
       args:
         KIBANA_VERSION: ${KIBANA_VERSION}
+
+  nginx:
+    image: diamol/nginx:2e
+    build:
+      args:
+        NGINX_VERSION: ${NGINX_VERSION}
+
+  cert-generator:
+    image: diamol/cert-generator:2e
+
+  traefik:
+    image: diamol/traefik:2e
+    build:
+      args:
+        TRAEFIK_VERSION: ${TRAEFIK_VERSION}

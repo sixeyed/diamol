@@ -2,7 +2,7 @@ server {
     server_name api.numbers.local;
 
     location / {
-        proxy_pass             http://numbers-api;
+        proxy_pass             http://numbers-api:8080;
         proxy_set_header       Host $host;
         add_header             X-Host $hostname;         
     }

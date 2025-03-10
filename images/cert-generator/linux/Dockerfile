@@ -1,6 +1,6 @@
-FROM diamol/base
+FROM diamol/base:2e
 
-RUN apk add --no-cache libressl
+RUN apk add --no-cache openssl
 
 COPY generate-certs.sh /
 RUN chmod +x /generate-certs.sh

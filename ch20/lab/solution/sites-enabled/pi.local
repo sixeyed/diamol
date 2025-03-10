@@ -7,7 +7,7 @@ server {
     gzip_proxied any;
 
     location / {
-        proxy_pass             http://pi;
+        proxy_pass             http://pi:8080;
         proxy_set_header       Host $host;
         proxy_cache            LONG;
         proxy_cache_valid      200  6h;

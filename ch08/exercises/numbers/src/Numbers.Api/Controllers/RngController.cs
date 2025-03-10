@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace Numbers.Api.Controllers
 {
@@ -10,11 +11,13 @@ namespace Numbers.Api.Controllers
     {
         private static Random _Random = new Random();
         private static int _CallCount;
+        private static int _BreakAfterCallCount;
 
         private readonly ILogger<RngController> _logger;
 
-        public RngController(ILogger<RngController> logger)
+        public RngController(IConfiguration config, ILogger<RngController> logger)
         {
+            _BreakAfterCallCount = config.GetValue<int>("App:BreakAfterCallCount", 3);
             _logger = logger;
         }
 
@@ -22,7 +25,7 @@ namespace Numbers.Api.Controllers
         public IActionResult Get()
         {
             _CallCount++;
-            if (_CallCount > 3)
+            if (_BreakAfterCallCount > -1 && _CallCount > _BreakAfterCallCount)
             {
                 Status.Healthy = false;
             }

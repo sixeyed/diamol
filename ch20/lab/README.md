@@ -4,17 +4,23 @@ Running a compute-heavy app behind a caching reverse proxy to improve performanc
 
 ## Before
 
-Run the app without a proxy:
+Remove Traefik and any other containers:
 
 ```
-docker-compose up -d
+docker rm -f $(docker ps -aq)
+```
+
+Run the app without a proxy - from the `lab` folder:
+
+```
+docker compose up -d
 ```
 
 Check the performance, computing Pi to 50K decimal places:
 
 http://localhost:8031/?dp=50000
 
-> That takes about 4 seconds on my dev box
+> That takes about 3 seconds on my dev box
 
 Refresh the browser and the response will take just as long, because it is computed each time.
 
@@ -32,16 +38,10 @@ echo \$'\n127.0.0.1 pi.local' | sudo tee -a /etc/hosts
 Add-Content -Value "127.0.0.1 pi.local" -Path /windows/system32/drivers/etc/hosts
 ```
 
-Leave the app container running, and run Nginx as a caching proxy using [this configuration file](./solution/sites-enabled/pi.local) - for Linux containers:
+Leave the app container running, and run Nginx as a caching proxy using [this configuration file](./solution/sites-enabled/pi.local) :
 
 ```
-docker-compose -f solution/docker-compose.yml -f solution/override-linux.yml up -d
-```
-
-**OR** for Windows containers:
-
-```
-docker-compose -f solution/docker-compose.yml -f solution/override-windows.yml up -d
+docker compose -f solution/docker-compose.yml up -d
 ```
 
 Browse to http://pi.local?dp=50000, this time the computed result is cached in Nginx.

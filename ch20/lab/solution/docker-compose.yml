@@ -1,14 +1,14 @@
-version: "3.7"
-
 services:
   nginx:
-    image: diamol/nginx
+    image: diamol/nginx:2e
     ports:
       - "80:80"
+    volumes:
+      - "./sites-enabled:/etc/nginx/sites-enabled"
     networks:
       - ch20
 
 networks:
   ch20:
-    external:
-      name: ch20
+    name: ch20
+    external: true

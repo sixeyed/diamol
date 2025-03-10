@@ -207,3 +207,13 @@ services:
     build:
       context: ../ch19/exercises/timecheck
       dockerfile: Dockerfile-3.0
+
+  ch20-whoami:
+    image: diamol/ch20-whoami:2e
+    build:
+      context: ../ch20/exercises/whoami/app
+
+  ch20-pi:
+    image: diamol/ch20-pi:2e
+    build:
+      context: ../ch20/lab/pi
