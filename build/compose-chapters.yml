@@ -217,3 +217,33 @@ services:
     image: diamol/ch20-pi:2e
     build:
       context: ../ch20/lab/pi
+
+  ch21-todo-api:
+    image: diamol/ch21-todo-api:2e
+    build:
+      context: ../ch21/exercises/todo-list
+      dockerfile: src/api/Dockerfile
+
+  ch21-todo-list:
+    image: diamol/ch21-todo-list:2e
+    build:
+      context: ../ch21/exercises/todo-list
+      dockerfile: src/web/Dockerfile
+
+  ch21-save-handler:
+    image: diamol/ch21-save-handler:2e
+    build:
+      context: ../ch21/exercises/todo-list
+      dockerfile: src/save-handler/Dockerfile
+
+  ch21-audit-handler:
+    image: diamol/ch21-audit-handler:2e
+    build:
+      context: ../ch21/exercises/todo-list
+      dockerfile: src/audit-handler/Dockerfile
+
+  ch21-mutating-handler:
+    image: diamol/ch21-mutating-handler:2e
+    build:
+      context: ../ch21/exercises/todo-list
+      dockerfile: src/mutating-handler/Dockerfile

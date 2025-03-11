@@ -144,3 +144,7 @@ services:
  # nginx:
 
  # cert-generator
+
+ # redis
+
+ # nats

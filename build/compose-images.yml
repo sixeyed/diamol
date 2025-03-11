@@ -143,3 +143,25 @@ services:
     build:
       args:
         TRAEFIK_VERSION: ${TRAEFIK_VERSION}
+
+  redis:
+    image: diamol/redis:2e
+    build:
+      args:
+        REDIS_VERSION: ${REDIS_VERSION}
+
+  redis-cli:
+    image: diamol/redis-cli:2e
+    build:
+      context: ../images/redis-cli
+
+  nats:
+    image: diamol/nats:2e
+    build:
+      args:
+        NATS_VERSION: ${NATS_VERSION}
+
+  nats-sub:
+    image: diamol/nats-sub:2e
+    build:
+      context: ../images/nats-sub

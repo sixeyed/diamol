@@ -29,16 +29,16 @@ And you need a new service for the mutating message handler, which needs the cor
 ```
 ## Try it out
 
-Run `docker-compose up -d` from this directory. 
+Run `docker compose up -d` from the `lab` directory. 
 
 You can check all the handlers are listening on the queue:
 
 ```
-docker container logs lab_save-handler_1
-docker container logs lab_audit-handler_1
-docker container logs lab_mutating-handler_1
+docker container logs lab-save-handler-1
+docker container logs lab-audit-handler-1
+docker container logs lab-mutating-handler-1
 ```
 
-Now browse to http://localhost:8081/new and add a new entry to your to-do list. Wait a moment for all the handlers to fire, and then refresh the list. When the updates have happened (remember eventual consistency) then you'll see your to-do item has been changed to something very worthwhile:
+Now browse to http://localhost:8080/new and add a new entry to your to-do list. Wait a moment for all the handlers to fire, and then refresh the list. When the updates have happened (remember eventual consistency) then you'll see your to-do item has been changed to something very worthwhile:
 
 ![Mutating to-do items with a message handler](./solution.png)

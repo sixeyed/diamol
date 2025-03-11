@@ -1,14 +1,12 @@
-FROM diamol/golang AS builder
+FROM diamol/golang:2e AS builder
 
+COPY go.mod nats-sub.go /src/
 WORKDIR /src
-COPY go.mod .
-RUN go mod download
-
-COPY nats-sub.go .
+RUN go mod tidy
 RUN go build -o /nats-sub
 
 # app
-FROM diamol/base
+FROM diamol/base:2e
 ENTRYPOINT ["/app/nats-sub", "-s", "nats://message-queue:4222"]
 
 WORKDIR /app

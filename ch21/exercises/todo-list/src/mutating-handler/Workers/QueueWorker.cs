@@ -48,7 +48,7 @@ namespace ToDoList.SaveHandler.Workers
                 using (var context = _serviceProvider.GetService<ToDoContext>())
                 {
                     var todo = context.ToDos.Find(eventMessage.Item.ToDoId);
-                    todo.Item = "Write a nice review for Learn Docker in a Month of Lunches :)";                    
+                    todo.Item = "Write a nice review for Learn Docker in a Month of Lunches 2e :)";                    
                     context.SaveChanges();
                 }
                 Console.WriteLine($"Item mutated; ID: {eventMessage.Item.ToDoId}; event ID: {eventMessage.CorrelationId}");

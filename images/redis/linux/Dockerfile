@@ -1,3 +1,5 @@
-FROM redis:4.0.14-alpine3.11
+ARG REDIS_VERSION
+FROM redis:${REDIS_VERSION}-alpine
+
 ENTRYPOINT ["/bin/sh", "-c"]
 CMD ["redis-server"]

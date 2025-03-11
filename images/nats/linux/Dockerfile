@@ -1,0 +1,2 @@
+ARG NATS_VERSION
+FROM nats:${NATS_VERSION}-alpine

@@ -119,3 +119,18 @@ services:
 
   ch20-pi:
     image: diamol/ch20-pi:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch21-todo-api:
+    image: diamol/ch21-todo-api:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch21-todo-list:
+    image: diamol/ch21-todo-list:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch21-save-handler:
+    image: diamol/ch21-save-handler:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch21-audit-handler:
+    image: diamol/ch21-audit-handler:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}
+
+  ch21-mutating-handler:
+    image: diamol/ch21-mutating-handler:2e-${DOCKER_BUILD_OS}${OS_VERSION_TAG}-${DOCKER_BUILD_CPU}

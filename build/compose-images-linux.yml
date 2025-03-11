@@ -108,3 +108,11 @@ services:
   traefik:
     build:
       context: ../images/traefik/linux
+
+  redis:
+    build:
+      context: ../images/redis/linux
+
+  nats:
+    build:
+      context: ../images/nats/linux
