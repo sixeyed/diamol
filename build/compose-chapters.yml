@@ -191,7 +191,7 @@ services:
     build:
       context: ../ch18/exercises/image-of-the-day
 
-  ch19-timecheck-1:
+  ch19-timecheck:
     image: diamol/ch19-timecheck:2e
     build:
       context: ../ch19/exercises/timecheck
