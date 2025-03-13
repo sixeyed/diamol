@@ -1,26 +1,24 @@
 # escape=`
-FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-
-ARG LIBRESSL_VERSION="2.5.5"
-
-RUN Write-Host "Downloading LibreSSL version: $env:LIBRESSL_VERSION"; `
-  Invoke-WebRequest "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$env:LIBRESSL_VERSION-windows.zip" -OutFile C:\libressl.zip -UseBasicParsing
-
-RUN Expand-Archive C:\libressl.zip C:\; `
-  Remove-Item "C:\libressl-$env:LIBRESSL_VERSION-windows\x64\*.pdb"
+ARG WINDOWS_VERSION
+FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION} AS installer
+ARG LIBRESSL_VERSION
+ARG HTTPD_BUILD
+RUN echo "Downloading LibreSSL version: %LIBRESSL_VERSION%" && `
+    curl -sSL -o libressl.zip "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-%LIBRESSL_VERSION%-windows.zip"
+WORKDIR /libressl
+RUN tar -xf /libressl.zip --strip-components 1
 
 # Cert generator
-FROM diamol/base
+FROM diamol/base:2e
 
-ARG LIBRESSL_VERSION="2.5.5"
+ARG LIBRESSL_VERSION
 ENV LIBRESSL_HOME C:\libressl
 
 USER ContainerAdministrator
 RUN setx /M PATH "%PATH%;C:\libressl;"
 
 WORKDIR ${LIBRESSL_HOME}
-COPY --from=installer C:\libressl-${LIBRESSL_VERSION}-windows\x64\ .
+COPY --from=installer C:\libressl\x64\ .
 COPY openssl.cnf .\ssl\openssl.cnf
 
 COPY generate-certs.bat C:\

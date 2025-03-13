@@ -8,7 +8,7 @@ ARG HTTPD_VERSION
 ARG HTTPD_BUILD
 RUN echo "Downloading Apache version: %HTTPD_VERSION% build: %HTTPD_BUILD%" && `
     curl -sSL -o httpd.zip "https://www.apachelounge.com/download/VS17/binaries//httpd-%HTTPD_VERSION%-%HTTPD_BUILD%-win64-VS17.zip" && `
-    tar -xvf httpd.zip
+    tar -xf httpd.zip
 
 # Apache
 FROM diamol/base:2e

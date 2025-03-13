@@ -143,7 +143,12 @@ services:
 
  # nginx:
 
- # cert-generator
+  cert-generator:
+    build:
+      context: ../images/cert-generator/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
+        LIBRESSL_VERSION: ${LIBRESSL_VERSION}
 
  # redis
 

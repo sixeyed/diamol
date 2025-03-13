@@ -15,7 +15,7 @@ RUN Write-Host "Downloading Jenkins version: $env:JENKINS_VERSION"; `
 
 # Git
 ARG WINDOWS_VERSION
-FROM diamol/git-windows:2e-windows-${WINDOWS_VERSION}-amd64 AS git
+FROM diamol/windows-deps:2e-windows-${WINDOWS_VERSION}-amd64 AS git
 
 # Jenkins
 FROM diamol/openjdk:2e-windows-${WINDOWS_VERSION}-amd64

@@ -1,13 +1,11 @@
 # escape=`
 ARG WINDOWS_VERSION
-FROM mcr.microsoft.com/windows/servercore:${WINDOWS_VERSION} as installer
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-
+FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION} AS httpd
 ARG NODE_VERSION
-RUN Write-Host "Downloading Node version: $env:NODE_VERSION"; `
-    Invoke-WebRequest -OutFile node.zip "https://nodejs.org/dist/v$($env:NODE_VERSION)/node-v$($env:NODE_VERSION)-win-x64.zip"; `
-    Expand-Archive node.zip -DestinationPath C:\ ; `
-    Rename-Item -Path "C:\node-v$($env:NODE_VERSION)-win-x64" -NewName C:\nodejs
+RUN echo "Downloading Node version: %NODE_VERSION%" && `
+    curl -sSL -o node.zip "https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-win-x64.zip"
+WORKDIR /nodejs
+RUN tar -xf /node.zip --strip-components 1
 
 # NodeJS
 ARG WINDOWS_VERSION

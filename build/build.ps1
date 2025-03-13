@@ -1,7 +1,8 @@
 param(
     [string]$Filter=$null,
     [switch]$Images=$true,
-    [switch]$Chapters=$false
+    [switch]$Chapters=$false,
+    [switch]$NoPush=$false
 )
 
 $ErrorActionPreference = 'Continue'
@@ -82,14 +83,18 @@ try {
 
     if ($Filter -and ($Filter -ne '')) {
         docker compose $composeFiles build --pull $Filter
-        docker compose $composeFiles push $Filter
+        if (-not $NoPush) {
+            docker compose $composeFiles push $Filter
+        }
     }
     else {
         docker compose $composeFiles build --pull
-        # push what we can:
-        docker compose $composeFiles push -q --ignore-push-failures
-        # but fail the task if any fail:
-        docker compose $composeFiles push -q
+        if (-not $NoPush) {
+            # push what we can:
+            docker compose $composeFiles push -q --ignore-push-failures
+            # but fail the task if any fail:
+            docker compose $composeFiles push -q
+        }
     }
 }
 
