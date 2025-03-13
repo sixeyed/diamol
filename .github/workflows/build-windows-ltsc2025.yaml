@@ -18,6 +18,8 @@ jobs:
       - uses: actions/checkout@master
       - uses: ./.github/actions/generate-image-matrix
         id: generate
+        with:
+          os: windows
 
   build-images-windows-2025:
     runs-on: windows-2025
