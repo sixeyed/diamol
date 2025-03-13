@@ -1,4 +1,5 @@
 [
+  "golang",
   "registry",
   "dotnet-runtime",
   "dotnet-sdk",
