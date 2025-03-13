@@ -1,0 +1,72 @@
+name: build-linux-amd64
+
+on:
+  push:
+    branches:
+      - "2e"
+    paths:
+      - ".github/workflows/build-linux-amd64.yaml"
+  workflow_dispatch:
+
+jobs:
+  define-matrices:
+    runs-on: ubuntu-latest
+    outputs:
+      images: ${{ steps.images.outputs.images }}
+      chapters: ${{ steps.chapters.outputs.chapters }}
+    steps:
+      - uses: actions/checkout@master
+      - name: Generate image matrix
+        id: images
+        working-directory: build/image-lists
+        shell: pwsh
+        run: |
+          $list = $(cat images-linux.json)
+          $out = "images=$list"
+          echo $out 
+          $out >> $env:GITHUB_OUTPUT
+      - name: Generate chapter matrix
+        id: chapters
+        working-directory: build/image-lists
+        shell: pwsh
+        run: |
+          $list = $(cat chapters-linux.json)
+          $out = "chapters=$list"
+          echo $out 
+          $out >> $env:GITHUB_OUTPUT
+
+  build-images-linux-amd64:
+    runs-on: ubuntu-latest
+    needs: define-matrices
+    strategy:
+      matrix:
+        image: ${{ fromJSON(needs.define-matrices.outputs.images) }}
+    steps:
+      - name: Registry login    
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+        with:
+          filter: ${{ matrix.image }}
+
+  build-chapters-linux-amd64:
+    runs-on: ubuntu-latest
+    needs: define-matrices
+    strategy:
+      matrix:
+        chapter: ${{ fromJSON(needs.define-matrices.outputs.chapters) }}
+    steps:
+      - name: Registry login    
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+        with:
+          images: 'false'
+          chapters: 'true'
+          filter: ${{ matrix.chapter }}
