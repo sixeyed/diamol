@@ -12,12 +12,12 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Generate image lists
-      id: images
-      working-directory: build
-      shell: pwsh
-      run: |
-        ./generate-image-lists.ps1
+#    - name: Generate image lists
+#      id: images
+#      working-directory: build
+#      shell: pwsh
+#      run: |
+#        ./generate-image-lists.ps1
     - name: Load image matrix
       id: images
       working-directory: build/image-lists
