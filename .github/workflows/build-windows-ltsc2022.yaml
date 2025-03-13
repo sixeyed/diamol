@@ -1,0 +1,60 @@
+name: build-windows-2022
+
+on:
+  push:
+    branches:
+      - "2e"
+    paths:
+      - ".github/workflows/build-windows-ltsc2022.yaml"
+  workflow_dispatch:
+
+jobs:
+  define-matrices:
+    runs-on: ubuntu-latest
+    outputs:
+      images: ${{ steps.generate.outputs.images }}
+      chapters: ${{ steps.generate.outputs.chapters }}
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/generate-image-matrix
+        id: generate
+
+  build-images-windows-2022:
+    runs-on: windows-2022
+    needs: define-matrices
+    strategy:
+      matrix:
+        image: ${{ fromJSON(needs.define-matrices.outputs.images) }}
+    steps:
+      - name: Docker Hub login
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+        with:
+          filter: ${{ matrix.image }}
+
+  build-chapters-windows-2022:
+    runs-on: windows-2022
+    needs: define-matrices
+    strategy:
+      matrix:
+        chapter: ${{ fromJSON(needs.define-matrices.outputs.chapters) }}
+    steps:
+      - name: Docker Hub login
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+        with:
+          images: 'false'
+          chapters: 'true'
+          filter: ${{ matrix.chapter }}
