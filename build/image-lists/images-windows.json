@@ -1,9 +1,7 @@
 [
-  "golang",
-  "registry",
-  "dotnet-runtime",
-  "dotnet-sdk",
-  "dotnet-aspnet",
-  "postgres-12",
-  "postgres-13"
+  "prometheus",
+  "grafana",
+  "gogs",
+  "jenkins",
+  "trivy"
 ]

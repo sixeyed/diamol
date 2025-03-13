@@ -1,6 +1,5 @@
 #escape=`
 ARG WINDOWS_VERSION
-ARG WINDOWS_NETAPI_SKU
 
 FROM mcr.microsoft.com/windows/servercore:${WINDOWS_VERSION} AS servercore
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]

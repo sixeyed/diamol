@@ -9,7 +9,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build-windows-deps-2019:
     runs-on: windows-2019
     steps:
@@ -24,6 +23,9 @@ jobs:
       - uses: ./.github/actions/build
         with:
           filter: windows-deps
+      - uses: ./.github/actions/build
+        with:
+          filter: mssql
 
   build-windows-deps-2022:
     runs-on: windows-2022
@@ -39,6 +41,9 @@ jobs:
       - uses: ./.github/actions/build
         with:
           filter: windows-deps
+      - uses: ./.github/actions/build
+        with:
+          filter: mssql
 
   build-windows-deps-2025:
     runs-on: windows-2025
@@ -54,3 +59,6 @@ jobs:
       - uses: ./.github/actions/build
         with:
           filter: windows-deps
+      - uses: ./.github/actions/build
+        with:
+          filter: mssql

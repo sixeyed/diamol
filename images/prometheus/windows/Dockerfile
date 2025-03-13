@@ -1,30 +1,24 @@
 # escape=`
 ARG WINDOWS_VERSION
-FROM mcr.microsoft.com/windows/servercore:${WINDOWS_VERSION} AS installer
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+FROM diamol/windows-deps:2e-windows-${WINDOWS_VERSION}-amd64 AS windows-deps
 
+FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION} AS installer
 ARG PROMETHEUS_VERSION
-ARG PROMETHEUS_WINDOWS_DOWNLOAD_SHA256
-
-RUN Write-Host "Downloading Prometheus version: $env:PROMETHEUS_VERSION"; `
-    Invoke-WebRequest "https://github.com/prometheus/prometheus/releases/download/v$($env:PROMETHEUS_VERSION)/prometheus-$($env:PROMETHEUS_VERSION).windows-amd64.zip" -OutFile 'prometheus.tar.gz' -UseBasicParsing; `
-    if ((Get-FileHash prometheus.tar.gz -Algorithm sha256).Hash.ToLower() -ne $env:PROMETHEUS_WINDOWS_DOWNLOAD_SHA256) {exit 1}
-
-
-RUN mkdir "C:\prometheus-$($env:PROMETHEUS_VERSION).windows-amd64"; `
-    tar xf prometheus.tar.gz; `
-    Rename-Item -Path "C:\prometheus-$($env:PROMETHEUS_VERSION).windows-amd64" -NewName 'C:\prometheus'
+USER ContainerAdministrator
+RUN echo "Downloading Prometheus version: %PROMETHEUS_VERSION%" && `
+    curl -sSL -o prometheus.zip "https://github.com/prometheus/prometheus/releases/download/v%PROMETHEUS_VERSION%/prometheus-%PROMETHEUS_VERSION%.windows-amd64.zip"
+WORKDIR /prometheus
+RUN tar -xf /prometheus.zip --strip-components 1
 
 # Prometheus
-ARG WINDOWS_VERSION
 FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION}
 
-COPY --from=installer /windows/system32/netapi32.dll /windows/system32/netapi32.dll
-COPY --from=installer /prometheus/prometheus.exe      /bin/prometheus.exe
-COPY --from=installer /prometheus/promtool.exe        /bin/promtool.exe
-COPY --from=installer /prometheus/prometheus.yml      /etc/prometheus/prometheus.yml
-COPY --from=installer /prometheus/console_libraries/  /etc/prometheus/
-COPY --from=installer /prometheus/consoles/           /etc/prometheus/
+COPY --from=windows-deps /netapi32.dll                   /windows/system32/netapi32.dll
+COPY --from=installer    /prometheus/prometheus.exe      /bin/prometheus.exe
+COPY --from=installer    /prometheus/promtool.exe        /bin/promtool.exe
+COPY --from=installer    /prometheus/prometheus.yml      /etc/prometheus/prometheus.yml
+COPY --from=installer    /prometheus/console_libraries/  /etc/prometheus/
+COPY --from=installer    /prometheus/consoles/           /etc/prometheus/
 
 EXPOSE     9090
 VOLUME     C:\prometheus

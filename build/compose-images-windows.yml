@@ -116,9 +116,11 @@ services:
         SQLPACKAGE_DOWNLOAD_URL: ${SQLPACKAGE_WINDOWS_DOWNLOAD_URL}
 
   #TODO
-  #trivy:
-  #  build:
-  #    context: ../images/trivy/windows
+  trivy:
+    build:
+      context: ../images/trivy/windows
+      args:
+        WINDOWS_VERSION: ${WINDOWS_VERSION}
 
   fluentd:
     build:
