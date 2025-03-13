@@ -2,6 +2,7 @@
 ARG WINDOWS_VERSION
 FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION} AS httpd
 ARG NODE_VERSION
+USER ContainerAdministrator
 WORKDIR /tmp
 RUN echo "Downloading Node version: %NODE_VERSION%" && `
     curl -sSL -o node.zip "https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-win-x64.zip"
