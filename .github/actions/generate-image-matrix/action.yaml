@@ -12,7 +12,13 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Generate image matrix
+    - name: Generate image lists
+      id: images
+      working-directory: build
+      shell: pwsh
+      run: |
+        ./generate-image-lists.ps1
+    - name: Load image matrix
       id: images
       working-directory: build/image-lists
       shell: pwsh
@@ -21,7 +27,7 @@ runs:
         $out = "images=$list"
         echo $out 
         $out >> $env:GITHUB_OUTPUT
-    - name: Generate chapter matrix
+    - name: Load chapter matrix
       id: chapters
       working-directory: build/image-lists
       shell: pwsh
