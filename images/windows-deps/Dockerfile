@@ -1,8 +1,9 @@
 #escape=`
 ARG WINDOWS_VERSION
+ARG WINDOWS_NETAPI_SKU
+
 FROM mcr.microsoft.com/windows/servercore:${WINDOWS_VERSION} AS servercore
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-
 
 FROM servercore AS vcredist
 RUN Invoke-WebRequest -OutFile VC_redist.x64.exe 'https://aka.ms/vs/17/release/VC_redist.x64.exe'
@@ -26,13 +27,13 @@ RUN Write-Host 'Expanding Git...'; `
     if ((Get-FileHash git.7z.exe -Algorithm sha256).Hash.ToLower() -ne $env:GIT_WINDOWS_DOWNLOAD_SHA256) {exit 1}; `
     & 'C:\Program Files\7-Zip\7z.exe' x -oC:\git .\git.7z.exe
 
+FROM mcr.microsoft.com/windows/${WINDOWS_NETAPI_SKU}:${WINDOWS_VERSION} AS netapi
 
 # windows-deps
-ARG WINDOWS_VERSION
 FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION}
 
 COPY --from=git /git /git
 COPY --from=servercore /Windows/System32/nslookup.exe /nslookup.exe
-COPY --from=servercore /windows/system32/netapi32.dll  /windows/system32/netapi32.dll
+COPY --from=netapi /windows/system32/netapi32.dll  /windows/system32/netapi32.dll
 COPY --from=vcredist C:\windows\system32\msvcp140.dll C:\windows\system32
 COPY --from=vcredist C:\windows\system32\vcruntime140.dll C:\windows\system32

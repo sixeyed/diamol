@@ -35,6 +35,7 @@ try {
     if ($env:DOCKER_BUILD_OS -eq 'windows') {
         $env:WINDOWS_VERSION='ltsc2019'
         $env:WINDOWS_VERSION_CODE='1809'
+        $env:WINDOWS_NETAPI_SKU='servercore'
         $winver=(Get-Item "HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion").GetValue('DisplayVersion')
         echo "** winver: $winver **"
         # yuck - https://www.gaijin.at/en/infos/windows-version-numbers
@@ -45,6 +46,7 @@ try {
         } 
         elseif ($version -eq '10.0.26100.0') {
             $env:WINDOWS_VERSION = $env:WINDOWS_VERSION_CODE ='ltsc2025'
+            $env:WINDOWS_NETAPI_SKU = 'nanoserver'
         }
         $env:OS_VERSION_TAG="-$env:WINDOWS_VERSION"
     }

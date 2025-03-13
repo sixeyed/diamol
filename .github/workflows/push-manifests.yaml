@@ -1,4 +1,4 @@
-name: images-push-manifests
+name: push-manifests
 
 on:
   push:
@@ -33,5 +33,5 @@ jobs:
       - name: Push chapter manifests
         uses: ./.github/actions/push-manifests
         with:
-          images: 'false'
-          chapters: 'true'
+          images: "false"
+          chapters: "true"

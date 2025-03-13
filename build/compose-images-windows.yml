@@ -8,6 +8,7 @@ services:
         GIT_WINDOWS_VERSION: ${GIT_WINDOWS_VERSION}
         GIT_WINDOWS_RELEASE_NUMBER: ${GIT_WINDOWS_RELEASE_NUMBER}
         GIT_WINDOWS_DOWNLOAD_SHA256: ${GIT_WINDOWS_DOWNLOAD_SHA256}
+        WINDOWS_NETAPI_SKU: ${WINDOWS_NETAPI_SKU}
 
   base:
     build:
@@ -48,8 +49,6 @@ services:
       args:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
         GIT_VERSION: ${GIT_VERSION}
-        GIT_WINDOWS_RELEASE_NUMBER: ${GIT_WINDOWS_RELEASE_NUMBER}
-        GIT_WINDOWS_DOWNLOAD_SHA256: ${GIT_WINDOWS_DOWNLOAD_SHA256}
 
   dotnet-runtime:
     build:
@@ -88,21 +87,18 @@ services:
       context: ../images/prometheus/windows
       args:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
-        PROMETHEUS_WINDOWS_DOWNLOAD_SHA256: ${PROMETHEUS_WINDOWS_DOWNLOAD_SHA256}
 
   grafana:
     build:
       context: ../images/grafana/windows
       args:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
-        GRAFANA_WINDOWS_DOWNLOAD_SHA256: ${GRAFANA_WINDOWS_DOWNLOAD_SHA256}
 
   gogs:
     build:
       context: ../images/gogs/windows
       args:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
-        GOGS_WINDOWS_DOWNLOAD_SHA256: ${GOGS_WINDOWS_DOWNLOAD_SHA256}
 
   jenkins:
     build:
@@ -119,7 +115,7 @@ services:
         MSSQL_VERSION_CODE: ${MSSQL_VERSION_CODE}
         MSSQL_INSTANCE_NAME: ${MSSQL_INSTANCE_NAME}
         SQLPACKAGE_DOWNLOAD_URL: ${SQLPACKAGE_WINDOWS_DOWNLOAD_URL}
-  
+
   #TODO
   #trivy:
   #  build:
@@ -131,17 +127,17 @@ services:
       args:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
 
-# TODO
- # elasticsearch:
- #   build:
- #     context: ../images/elasticsearch/linux
- #     args:
- #       DOCKER_BUILD_CPU_ALT: ${DOCKER_BUILD_CPU_ALT}
+  # TODO
+  # elasticsearch:
+  #   build:
+  #     context: ../images/elasticsearch/linux
+  #     args:
+  #       DOCKER_BUILD_CPU_ALT: ${DOCKER_BUILD_CPU_ALT}
 
-# TODO
- # kibana:
+  # TODO
+  # kibana:
 
- # nginx:
+  # nginx:
 
   cert-generator:
     build:
@@ -150,6 +146,6 @@ services:
         WINDOWS_VERSION: ${WINDOWS_VERSION}
         LIBRESSL_VERSION: ${LIBRESSL_VERSION}
 
- # redis
+  # redis
 
- # nats
+  # nats
