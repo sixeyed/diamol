@@ -1,9 +1,6 @@
 [
-  "base",
-  "node",
-  "apache",
-  "maven",
-  "openjdk",
-  "openjdk-jre",
-  "golang"
+  "registry",
+  "dotnet-runtime",
+  "dotnet-sdk",
+  "dotnet-aspnet"
 ]

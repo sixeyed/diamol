@@ -1,12 +1,10 @@
 # using old versions for Windows compatibility
-FROM golang:1.12 AS builder
-ENV CGO_ENABLED=0
-
+FROM diamol/golang:2e AS builder
+ENV  GO111MODULE=auto
 WORKDIR ${GOPATH}/src/github.com/docker
-RUN git clone https://github.com/docker/distribution.git
+RUN git clone --depth 1 --branch v2.6.2 https://github.com/docker/distribution.git
 
 WORKDIR ${GOPATH}/src/github.com/docker/distribution
-RUN git checkout "v2.6.2"
 RUN go build -o /out/registry ./cmd/registry
 
 # Registry
