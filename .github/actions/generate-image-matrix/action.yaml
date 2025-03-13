@@ -1,0 +1,32 @@
+name: generate-image-matrix
+description: Loads image lists into output
+
+outputs:
+  images:
+    description: "Image list"
+    value: ${{ steps.images.outputs.images }}
+  chapters:
+    description: "Chapter list"
+    value: ${{ steps.chapters.outputs.chapters }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Generate image matrix
+      id: images
+      working-directory: build/image-lists
+      shell: pwsh
+      run: |
+        $list = $(cat images-linux.json)
+        $out = "images=$list"
+        echo $out 
+        $out >> $env:GITHUB_OUTPUT
+    - name: Generate chapter matrix
+      id: chapters
+      working-directory: build/image-lists
+      shell: pwsh
+      run: |
+        $list = $(cat chapters-linux.json)
+        $out = "chapters=$list"
+        echo $out 
+        $out >> $env:GITHUB_OUTPUT

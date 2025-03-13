@@ -12,28 +12,12 @@ jobs:
   define-matrices:
     runs-on: ubuntu-latest
     outputs:
-      images: ${{ steps.images.outputs.images }}
-      chapters: ${{ steps.chapters.outputs.chapters }}
+      images: ${{ steps.generate.outputs.images }}
+      chapters: ${{ steps.generate.outputs.chapters }}
     steps:
       - uses: actions/checkout@master
-      - name: Generate image matrix
-        id: images
-        working-directory: build/image-lists
-        shell: pwsh
-        run: |
-          $list = $(cat images-linux.json)
-          $out = "images=$list"
-          echo $out 
-          $out >> $env:GITHUB_OUTPUT
-      - name: Generate chapter matrix
-        id: chapters
-        working-directory: build/image-lists
-        shell: pwsh
-        run: |
-          $list = $(cat chapters-linux.json)
-          $out = "chapters=$list"
-          echo $out 
-          $out >> $env:GITHUB_OUTPUT
+      - uses: ./.github/actions/generate-image-matrix
+        id: generate
 
   build-images-linux-amd64:
     runs-on: ubuntu-latest
