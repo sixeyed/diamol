@@ -4,6 +4,7 @@ ARG OPENJDK_DISTRO
 ARG OPENJDK_VERSION
 FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION} as installer
 ARG MAVEN_VERSION
+USER ContainerAdministrator
 RUN echo "Downloading Maven version: %MAVEN_VERSION%" && `
     curl.exe -sSL -o maven.zip "https://dlcdn.apache.org/maven/maven-3/%MAVEN_VERSION%/binaries/apache-maven-%MAVEN_VERSION%-bin.zip"
 WORKDIR /maven

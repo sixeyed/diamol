@@ -6,6 +6,7 @@ ARG WINDOWS_VERSION
 FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION} AS httpd
 ARG HTTPD_VERSION
 ARG HTTPD_BUILD
+USER ContainerAdministrator
 RUN echo "Downloading Apache version: %HTTPD_VERSION% build: %HTTPD_BUILD%" && `
     curl -sSL -o httpd.zip "https://www.apachelounge.com/download/VS17/binaries//httpd-%HTTPD_VERSION%-%HTTPD_BUILD%-win64-VS17.zip" && `
     tar -xf httpd.zip
