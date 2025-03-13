@@ -1,0 +1,56 @@
+name: build-windows-deps
+
+on:
+  push:
+    branches:
+      - "2e"
+    paths:
+      - ".github/workflows/build-windows-deps.yaml"
+  workflow_dispatch:
+
+jobs:
+
+  build-windows-deps-2019:
+    runs-on: windows-2019
+    steps:
+      - name: Docker Hub login
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+        with:
+          filter: windows-deps
+
+  build-windows-deps-2022:
+    runs-on: windows-2022
+    steps:
+      - name: Docker Hub login
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+        with:
+          filter: windows-deps
+
+  build-windows-deps-2025:
+    runs-on: windows-2025
+    steps:
+      - name: Docker Hub login
+        shell: pwsh
+        run: |
+          docker login -u $env:USER -p $env:TOKEN
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/build
+        with:
+          filter: windows-deps
