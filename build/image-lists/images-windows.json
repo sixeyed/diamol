@@ -2,5 +2,7 @@
   "registry",
   "dotnet-runtime",
   "dotnet-sdk",
-  "dotnet-aspnet"
+  "dotnet-aspnet",
+  "postgres-12",
+  "postgres-13"
 ]
