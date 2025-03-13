@@ -27,13 +27,16 @@ RUN Write-Host 'Expanding Git...'; `
     if ((Get-FileHash git.7z.exe -Algorithm sha256).Hash.ToLower() -ne $env:GIT_WINDOWS_DOWNLOAD_SHA256) {exit 1}; `
     & 'C:\Program Files\7-Zip\7z.exe' x -oC:\git .\git.7z.exe
 
-FROM mcr.microsoft.com/windows/${WINDOWS_NETAPI_SKU}:${WINDOWS_VERSION} AS netapi
+FROM servercore AS deps
+USER ContainerAdministrator
+RUN cp /Windows/System32/netapi32.dll /netapi32.dll; `
+    cp /Windows/System32/nslookup.exe /nslookup.exe
 
 # windows-deps
 FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION}
 
 COPY --from=git /git /git
-COPY --from=servercore /Windows/System32/nslookup.exe /nslookup.exe
-COPY --from=netapi /windows/system32/netapi32.dll  /windows/system32/netapi32.dll
+COPY --from=deps /nslookup.exe /nslookup.exe
+COPY --from=deps /netapi32.dll /netapi32.dll
 COPY --from=vcredist C:\windows\system32\msvcp140.dll C:\windows\system32
 COPY --from=vcredist C:\windows\system32\vcruntime140.dll C:\windows\system32
