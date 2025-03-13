@@ -1,6 +1,12 @@
 name: generate-image-matrix
 description: Loads image lists into output
 
+inputs:
+  os: 
+    description: 'OS'
+    required: false
+    default: 'linux'
+
 outputs:
   images:
     description: "Image list"
@@ -23,16 +29,20 @@ runs:
       working-directory: build/image-lists
       shell: pwsh
       run: |
-        $list = $(cat images-linux.json)
+        $list = $(cat "images-$env:BUILD_OS.json" )
         $out = "images=$list"
         echo $out 
         $out >> $env:GITHUB_OUTPUT
+      env:
+        BUILD_OS: ${{ inputs.os }}
     - name: Load chapter matrix
       id: chapters
       working-directory: build/image-lists
       shell: pwsh
       run: |
-        $list = $(cat chapters-linux.json)
+        $list = $(cat "chapters-$env:BUILD_OS.json" )
         $out = "chapters=$list"
         echo $out 
         $out >> $env:GITHUB_OUTPUT
+      env:
+        BUILD_OS: ${{ inputs.os }}
