@@ -33,5 +33,6 @@ FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION}
 
 COPY --from=git /git /git
 COPY --from=servercore /Windows/System32/nslookup.exe /nslookup.exe
+COPY --from=servercore /windows/system32/netapi32.dll  /windows/system32/netapi32.dll
 COPY --from=vcredist C:\windows\system32\msvcp140.dll C:\windows\system32
 COPY --from=vcredist C:\windows\system32\vcruntime140.dll C:\windows\system32
