@@ -1,6 +1,6 @@
 # escape=`
 ARG WINDOWS_VERSION
-FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION} AS httpd
+FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION} AS installer
 ARG NODE_VERSION
 USER ContainerAdministrator
 RUN echo "Downloading Node version: %NODE_VERSION%" && `
