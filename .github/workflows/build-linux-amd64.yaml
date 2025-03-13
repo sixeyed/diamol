@@ -23,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: define-matrices
     strategy:
+      fail-fast: false
       matrix:
         image: ${{ fromJSON(needs.define-matrices.outputs.images) }}
     steps:
@@ -40,6 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: define-matrices
     strategy:
+      fail-fast: false
       matrix:
         chapter: ${{ fromJSON(needs.define-matrices.outputs.chapters) }}
     steps:

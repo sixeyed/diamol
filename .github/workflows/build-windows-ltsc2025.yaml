@@ -23,6 +23,7 @@ jobs:
     runs-on: windows-2025
     needs: define-matrices
     strategy:
+      fail-fast: false
       matrix:
         image: ${{ fromJSON(needs.define-matrices.outputs.images) }}
     steps:
@@ -42,6 +43,7 @@ jobs:
     runs-on: windows-2025
     needs: define-matrices
     strategy:
+      fail-fast: false
       matrix:
         chapter: ${{ fromJSON(needs.define-matrices.outputs.chapters) }}
     steps:
