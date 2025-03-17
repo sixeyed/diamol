@@ -4,6 +4,7 @@ FROM mcr.microsoft.com/windows/nanoserver:${WINDOWS_VERSION} AS base
 
 FROM base AS installer
 ARG GOGS_VERSION
+USER ContainerAdministrator
 RUN echo "Downloading Gogs version: %GOGS_VERSION%" && `
     curl -sSL -o gogs.zip "https://dl.gogs.io/%GOGS_VERSION%/gogs_%GOGS_VERSION%_windows_amd64.zip"
 WORKDIR /gogs
