@@ -21,7 +21,7 @@ jobs:
         with:
           os: windows
 
-  build-images-windows-2025:
+  bld-2025:
     runs-on: windows-2025
     needs: define-matrices
     strategy:

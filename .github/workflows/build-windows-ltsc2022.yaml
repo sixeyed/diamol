@@ -21,7 +21,7 @@ jobs:
         with:
           os: windows
 
-  build-images-windows-2022:
+  bld-2022:
     runs-on: windows-2022
     needs: define-matrices
     strategy:
