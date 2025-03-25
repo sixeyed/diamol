@@ -1,3 +1,4 @@
 FROM diamol/base
 CMD echo app- && ls app && echo docs- && ls docs
-COPY ./app ./app
+COPY . . 
+RUN rm -rf docs
